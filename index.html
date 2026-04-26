@@ -513,8 +513,8 @@ var graphicItems=[];
 var photoItems=[];
 var exts=['.jpg','.JPG','.jpeg','.JPEG','.png','.PNG'];
 
-function addG(cat,label,base,count,start){start=start||1;for(var i=start;i<=start+count-1;i++)graphicItems.push({cat:cat,label:label,file:'images/graphic/'+base+'_('+i+')'});}
-function addP(cat,label,base,count,start,tall){start=start||1;for(var i=start;i<=start+count-1;i++)photoItems.push({cat:cat,label:label,file:'images/photo/'+base+'_('+i+')',tall:!!tall});}
+function addG(cat,label,base,count,start){start=start||1;for(var i=start;i<=start+count-1;i++)graphicItems.push({cat:cat,label:label,file:'images/images/graphic/'+base+'_('+i+')'});}
+function addP(cat,label,base,count,start,tall){start=start||1;for(var i=start;i<=start+count-1;i++)photoItems.push({cat:cat,label:label,file:'images/images/photo/'+base+'_('+i+')',tall:!!tall});}
 
 addG('logo','Logo & Identity','Logo',29);
 addG('flyer','Flyers & Affiches','Flyer',42);
