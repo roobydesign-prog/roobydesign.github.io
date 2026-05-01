@@ -339,32 +339,41 @@ footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
       <button onclick="toggleDD('brandMenu')">Menu <span class="chevron">&#9660;</span></button>
       <div class="dropdown">
         <div class="dropdown-links">
-          <a href="#" onclick="switchTab('graphic');closeDD();return false;" class="dropdown-link"><span class="dropdown-link-num">01</span>Graphic Design</a>
-          <a href="#" onclick="switchTab('photography');closeDD();return false;" class="dropdown-link"><span class="dropdown-link-num">02</span>Photography</a>
-          <a href="#services" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">03</span>Services &amp; Prices</a>
-          <a href="#testimonials" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">04</span>Testimonials</a>
-          <a href="#about" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">05</span>About</a>
-          <a href="#contact" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">06</span>Contact</a>
+          <a href="#" onclick="switchTab('graphic');closeDD();return false;" class="dropdown-link"><span class="dropdown-link-num">01</span data-i18n="graphic">Graphic Design</a>
+          <a href="#" onclick="switchTab('photography');closeDD();return false;" class="dropdown-link"><span class="dropdown-link-num">02</span data-i18n="photo">Photography</a>
+          <a href="#services" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">03</span data-i18n="services">Services &amp; Prices</a>
+          <a href="#testimonials" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">04</span data-i18n="testimonials">Testimonials</a>
+          <a href="#about" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">05</span data-i18n="about">About</a>
+          <a href="#contact" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">06</span data-i18n="contact">Contact</a>
         </div>
       </div>
     </li>
     <li><a href="#" onclick="switchTab('graphic');return false;">Graphic</a></li>
     <li><a href="#" onclick="switchTab('photography');return false;">Photo</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" data-i18n="contact">Contact</a></li>
     <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme"></button></li>
-  </ul>
+  
+<li>
+<select id="langSwitcher" onchange="changeLanguage(this.value)" style="margin-left:10px;padding:6px;border-radius:4px;">
+  <option value="en">EN</option>
+  <option value="fr">FR</option>
+  <option value="ht">HT</option>
+</select>
+</li>
+
+</ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-glow"></div>
   <div class="hero-left">
-    <div class="hero-tag">Portfolio 2026</div>
+    <div class="hero-tag" data-i18n="portfolio">Portfolio 2026</div>
     <h1 class="hero-name">Rooby<br><span class="gold">Design</span></h1>
-    <p class="hero-subtitle"><span>Visual Identity</span> &nbsp;&middot;&nbsp; Graphic Design &nbsp;&middot;&nbsp; <span>Photography</span></p>
+    <p class="hero-subtitle"><span>Visual Identity</span> &nbsp;&middot;&nbsp; Graphic Design &nbsp;&middot;&nbsp; <span data-i18n="photo">Photography</span></p>
     <div class="hero-cta">
-      <a href="#" onclick="switchTab('graphic');return false;" class="btn-primary">View Work</a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
+      <a href="#" onclick="switchTab('graphic');return false;" class="btn-primary" data-i18n="viewWork">View Work</a>
+      <a href="#contact" class="btn-outline" data-i18n="getInTouch">Get in Touch</a>
     </div>
     <div class="hero-stats">
       <div class="stat-item"><div class="stat-num" data-target="8">0</div><div class="stat-label">Years</div></div>
@@ -397,14 +406,14 @@ footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
 
 <!-- TABS -->
 <div class="main-tabs" id="mainTabs">
-  <button class="main-tab active" onclick="switchTab('graphic')">Graphic Design</button>
-  <button class="main-tab" onclick="switchTab('photography')">Photography</button>
+  <button class="main-tab active" onclick="switchTab('graphic')" data-i18n="graphic">Graphic Design</button>
+  <button class="main-tab" onclick="switchTab('photography')" data-i18n="photo">Photography</button>
 </div>
 
 <!-- GRAPHIC -->
 <div class="tab-content active" id="tab-graphic">
   <section id="graphic">
-    <div class="section-header reveal"><span class="section-num">01</span><h2 class="section-title">Graphic Design</h2><div class="section-line"></div></div>
+    <div class="section-header reveal"><span class="section-num">01</span><h2 class="section-title" data-i18n="graphic">Graphic Design</h2><div class="section-line"></div></div>
     <div class="cat-filters reveal">
       <button class="cat-btn active" onclick="filterG('graphic','all',this)">All</button>
       <button class="cat-btn" onclick="filterG('graphic','logo',this)">Logo &amp; Identity</button>
@@ -421,7 +430,7 @@ footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
 <!-- PHOTOGRAPHY -->
 <div class="tab-content" id="tab-photography">
   <section id="photography">
-    <div class="section-header reveal"><span class="section-num">02</span><h2 class="section-title">Photography</h2><div class="section-line"></div></div>
+    <div class="section-header reveal"><span class="section-num">02</span><h2 class="section-title" data-i18n="photo">Photography</h2><div class="section-line"></div></div>
     <div class="cat-filters reveal">
       <button class="cat-btn active" onclick="filterG('photography','all',this)">All</button>
       <button class="cat-btn" onclick="filterG('photography','wedding',this)">Wedding</button>
@@ -438,7 +447,7 @@ footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
 
 <!-- SERVICES -->
 <section id="services">
-  <div class="section-header reveal"><span class="section-num">03</span><h2 class="section-title">Services &amp; Prices</h2><div class="section-line"></div></div>
+  <div class="section-header reveal"><span class="section-num">03</span><h2 class="section-title" data-i18n="services">Services &amp; Prices</h2><div class="section-line"></div></div>
   <div class="services-grid reveal">
     <div class="service-card">
       <div class="service-icon">&#127968;</div>
@@ -448,7 +457,7 @@ footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
     </div>
     <div class="service-card">
       <div class="service-icon">&#128247;</div>
-      <div class="service-name">Photography</div>
+      <div class="service-name" data-i18n="photo">Photography</div>
       <div class="service-desc">Professional photo sessions — portrait, couple, wedding, studio, events and nature.</div>
       <div class="service-price">Starting at $80</div>
     </div>
@@ -483,7 +492,7 @@ footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
-  <div class="section-header reveal"><span class="section-num">04</span><h2 class="section-title">Testimonials</h2><div class="section-line"></div></div>
+  <div class="section-header reveal"><span class="section-num">04</span><h2 class="section-title" data-i18n="testimonials">Testimonials</h2><div class="section-line"></div></div>
   <div class="testimonials-grid reveal">
     <div class="testimonial-card">
       <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -507,7 +516,7 @@ footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-header reveal"><span class="section-num">05</span><h2 class="section-title">About</h2><div class="section-line"></div></div>
+  <div class="section-header reveal"><span class="section-num">05</span><h2 class="section-title" data-i18n="about">About</h2><div class="section-line"></div></div>
   <div class="about-wrap">
     <div class="about-text reveal">
       <p><strong>Rooby Design</strong> is a creative studio founded in April 2018 by Jean Robenson Raymonvil.</p>
@@ -535,7 +544,7 @@ footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-header reveal"><span class="section-num">06</span><h2 class="section-title">Contact</h2><div class="section-line"></div></div>
+  <div class="section-header reveal"><span class="section-num">06</span><h2 class="section-title" data-i18n="contact">Contact</h2><div class="section-line"></div></div>
   <div class="contact-wrap">
     <div class="contact-form reveal">
       <div class="form-row">
@@ -588,12 +597,12 @@ footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
     <div>
       <div class="footer-col-title">Navigation</div>
       <div class="footer-links">
-        <a href="#" onclick="switchTab('graphic');return false;">Graphic Design</a>
-        <a href="#" onclick="switchTab('photography');return false;">Photography</a>
-        <a href="#services">Services &amp; Prices</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#" onclick="switchTab('graphic');return false;" data-i18n="graphic">Graphic Design</a>
+        <a href="#" onclick="switchTab('photography');return false;" data-i18n="photo">Photography</a>
+        <a href="#services" data-i18n="services">Services &amp; Prices</a>
+        <a href="#testimonials" data-i18n="testimonials">Testimonials</a>
+        <a href="#about" data-i18n="about">About</a>
+        <a href="#contact" data-i18n="contact">Contact</a>
       </div>
     </div>
     <div>
@@ -791,6 +800,76 @@ function submitForm(){
 
 // ── REVEAL ON LOAD ────────────────────────────────────────────
 setTimeout(function(){document.querySelectorAll('.reveal').forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('visible');});},2300);
+
+// 🌍 TRANSLATIONS STRUCTURED
+const translations = {
+  en: {
+    graphic:"Graphic Design",
+    photo:"Photography",
+    services:"Services & Prices",
+    testimonials:"Testimonials",
+    about:"About",
+    contact:"Contact",
+    viewWork:"View Work",
+    getInTouch:"Get in Touch",
+    portfolio:"Portfolio 2026"
+  },
+  fr: {
+    graphic:"Design Graphique",
+    photo:"Photographie",
+    services:"Services & Tarifs",
+    testimonials:"Témoignages",
+    about:"À propos",
+    contact:"Contact",
+    viewWork:"Voir les projets",
+    getInTouch:"Contactez-nous",
+    portfolio:"Portfolio 2026"
+  },
+  ht: {
+    graphic:"Desen Grafik",
+    photo:"Fotografi",
+    services:"Sèvis ak Pri",
+    testimonials:"Temwayaj",
+    about:"Sou nou",
+    contact:"Kontak",
+    viewWork:"Gade travay yo",
+    getInTouch:"Kontakte nou",
+    portfolio:"Pòtfolyo 2026"
+  }
+};
+
+// Detect language
+function detectLanguage(){
+  const lang = navigator.language || navigator.userLanguage;
+  if(lang.startsWith('fr')) return 'fr';
+  if(lang.startsWith('ht')) return 'ht';
+  return 'en';
+}
+
+// Apply translation
+function applyLanguage(lang){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang] && translations[lang][key]){
+      el.textContent = translations[lang][key];
+    }
+  });
+}
+
+// Change language manually
+function changeLanguage(lang){
+  localStorage.setItem('lang', lang);
+  applyLanguage(lang);
+}
+
+// Init
+window.addEventListener('load', function(){
+  let lang = localStorage.getItem('lang') || detectLanguage();
+  applyLanguage(lang);
+  const switcher = document.getElementById('langSwitcher');
+  if(switcher) switcher.value = lang;
+});
+
 </script>
 </body>
 </html>
