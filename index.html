@@ -1,991 +1,1197 @@
 bash
 
-cat > /mnt/user-data/outputs/index.html << 'ENDOFFILE'
+cat > /mnt/user-data/outputs/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rooby Design — Portfolio 2026</title>
-<meta name="description" content="Rooby Design — Professional graphic design and photography studio. Visual identity, logos, flyers, wedding cards, portraits and more. Founded by Jean Robenson Raymonvil since 2018.">
-<meta name="keywords" content="Rooby Design, graphic design, photography, logo, flyer, wedding card, portrait, studio, Haiti, visual identity">
+<title>Rooby Design — Jean Robenson Raymonvil | Graphic Designer & Photographer</title>
+<meta name="description" content="Rooby Design — Premium graphic design, photography & IT services by Jean Robenson Raymonvil. 8+ years of experience. Logo, branding, wedding photography, flyers and more. Based in Haiti.">
+<meta name="keywords" content="Rooby Design, Jean Robenson Raymonvil, graphic designer Haiti, photographer Haiti, logo design, wedding photography, branding, flyers, CCNA, visual identity">
 <meta name="author" content="Jean Robenson Raymonvil">
-<meta property="og:title" content="Rooby Design — Portfolio 2026">
-<meta property="og:description" content="Professional graphic design and photography studio since 2018.">
+<meta property="og:title" content="Rooby Design — Premium Creative Studio">
+<meta property="og:description" content="8+ years of expertise in graphic design, photography and IT. Let's bring your vision to life.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="images/brand/Slide_01.png">
+<meta property="og:url" content="https://roobydesign-prog.github.io/roobydesign.github.io/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="images/logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--gold:#C9A84C;--gold-light:#E8C96B;--dark:#080808;--dark2:#0f0f0f;--dark3:#161616;--dark4:#1e1e1e;--light:#FFFFFF;--light2:#F0EBE1;--light3:#B8B0A0;--green:#25D366}
-html{scroll-behavior:smooth}
+:root{
+  --gold:#C9A84C;--gold-l:#E8C96B;--gold-dim:rgba(201,168,76,0.12);
+  --dark:#080808;--d2:#0f0f0f;--d3:#141414;--d4:#1a1a1a;--d5:#222;
+  --light:#fff;--l2:#e8e0d0;--l3:#9a9080;--l4:#5a5045;
+  --green:#25D366;--red:#e74c3c;
+  --r:0px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
 body{background:var(--dark);color:var(--light);font-family:'Outfit',sans-serif;overflow-x:hidden;cursor:none}
-body.light-mode{--dark:#F5F5F0;--dark2:#EBEBEB;--dark3:#E0E0DA;--dark4:#D5D5CF;--light:#111111;--light3:#555555;background:var(--dark);color:var(--light)}
+body.light{--dark:#f0ede8;--d2:#e8e5e0;--d3:#dedad4;--d4:#d0ccc6;--d5:#c8c4be;--light:#1a1510;--l2:#2a2520;--l3:#5a5045;--l4:#8a8075}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:'Outfit',sans-serif;cursor:none}
 
-/* CURSOR */
-.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;mix-blend-mode:difference}
-.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(201,168,76,0.6);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s}
-.cursor-ring.expand{width:56px;height:56px;border-color:var(--gold)}
+/* ═══════════════════════════════════════════
+   CURSOR
+═══════════════════════════════════════════ */
+#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:difference}
+#cur-r{position:fixed;width:32px;height:32px;border:1px solid rgba(201,168,76,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+#cur-r.big{width:52px;height:52px;border-color:var(--gold)}
 
-/* PROGRESS BAR */
-.progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--gold),var(--gold-light));z-index:9999;width:0;transition:width .1s}
+/* ═══════════════════════════════════════════
+   PROGRESS
+═══════════════════════════════════════════ */
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-l));z-index:9999;width:0;transition:width .08s}
 
-/* LOADER */
-.loader{position:fixed;inset:0;background:#080808;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .8s,visibility .8s}
-.loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.loader-logo-img{height:80px;object-fit:contain;animation:loaderPulse 1.4s ease-in-out infinite}
-.loader-logo-fallback{font-family:'Bebas Neue',sans-serif;font-size:80px;color:var(--gold);letter-spacing:.1em;animation:loaderPulse 1.4s ease-in-out infinite;display:none}
-.loader-bar-wrap{width:220px;height:1px;background:rgba(201,168,76,0.15)}
-.loader-bar{height:1px;background:linear-gradient(to right,var(--gold),var(--gold-light));width:0;animation:loadBar 2.2s ease forwards}
-.loader-text{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--light3)}
-@keyframes loadBar{to{width:100%}}
-@keyframes loaderPulse{0%,100%{opacity:.3}50%{opacity:1}}
+/* ═══════════════════════════════════════════
+   LOADER
+═══════════════════════════════════════════ */
+#loader{position:fixed;inset:0;background:#050505;z-index:9500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .9s var(--ease),visibility .9s}
+#loader.out{opacity:0;visibility:hidden}
+.ld-img{height:72px;object-fit:contain;animation:ldPulse 1.3s ease-in-out infinite}
+.ld-fb{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--gold);letter-spacing:.1em;animation:ldPulse 1.3s ease-in-out infinite;display:none}
+.ld-bar-w{width:200px;height:1px;background:rgba(201,168,76,.12)}
+.ld-bar{height:1px;background:linear-gradient(90deg,var(--gold),var(--gold-l));width:0;animation:ldFill 2.3s var(--ease) forwards}
+.ld-txt{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--l3)}
+@keyframes ldPulse{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes ldFill{to{width:100%}}
 
-/* LANG SWITCHER */
-.lang-bar{position:fixed;top:0;right:0;z-index:9001;display:flex;gap:0;background:rgba(8,8,8,0.95);border-bottom-left-radius:4px;border:1px solid rgba(201,168,76,0.12);border-top:none;border-right:none;overflow:hidden}
-.lang-btn{padding:6px 12px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--light3);background:none;border:none;cursor:none;font-family:'Outfit',sans-serif;transition:all .2s;font-weight:500}
-.lang-btn:hover{color:var(--gold)}
-.lang-btn.active{color:var(--gold);background:rgba(201,168,76,0.08)}
-.lang-sep{width:1px;background:rgba(201,168,76,0.15);margin:4px 0}
+/* ═══════════════════════════════════════════
+   LANG BAR
+═══════════════════════════════════════════ */
+.lang-bar{position:fixed;top:0;right:60px;z-index:8000;display:flex;background:rgba(8,8,8,.95);border-bottom:1px solid rgba(201,168,76,.1);border-left:1px solid rgba(201,168,76,.1);border-right:1px solid rgba(201,168,76,.1)}
+.lb{padding:5px 14px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--l3);background:none;border:none;cursor:none;transition:color .2s;font-weight:500}
+.lb:hover,.lb.on{color:var(--gold)}
+.lb.on{background:rgba(201,168,76,.06)}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:0 60px;height:72px;background:rgba(8,8,8,0.95);backdrop-filter:blur(24px);border-bottom:1px solid rgba(201,168,76,0.08);transition:all .3s}
-nav.scrolled{height:60px}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-logo img{height:38px;object-fit:contain}
-.nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;color:var(--gold)}
-.nav-right{display:flex;align-items:center;list-style:none;height:100%;gap:0}
-.nav-right>li{height:100%;display:flex;align-items:center;position:relative}
-.nav-right>li>a,.nav-right>li>button{padding:0 16px;height:100%;display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--light3);text-decoration:none;background:none;border:none;cursor:none;font-family:'Outfit',sans-serif;transition:color .2s;white-space:nowrap;font-weight:500}
-.nav-right>li>a:hover,.nav-right>li>button:hover{color:var(--gold)}
-.chevron{font-size:7px;transition:transform .25s}
-.nav-right>li.open>button .chevron{transform:rotate(180deg)}
-.theme-btn{width:40px;height:22px;background:rgba(255,255,255,0.08);border-radius:11px;border:1px solid rgba(201,168,76,0.25);cursor:none;position:relative;transition:background .3s;flex-shrink:0;margin:0 6px}
-.theme-btn::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--gold);transition:transform .3s}
-body.light-mode .theme-btn::after{transform:translateX(18px)}
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{position:fixed;inset:0 0 auto;height:70px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.08);transition:height .3s,background .3s}
+nav.sm{height:58px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{height:36px;object-fit:contain}
+.nav-logo-t{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.08em;color:var(--gold)}
+.nav-links{display:flex;align-items:center;height:100%;list-style:none;gap:0}
+.nav-links>li{height:100%;display:flex;align-items:center;position:relative}
+.nav-links>li>a,.nav-links>li>button{height:100%;padding:0 16px;display:flex;align-items:center;gap:5px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--l3);background:none;border:none;cursor:none;transition:color .2s;font-weight:500}
+.nav-links>li>a:hover,.nav-links>li>button:hover{color:var(--gold)}
+.chev{font-size:7px;transition:transform .25s}
+.nav-links>li.on>button .chev{transform:rotate(180deg)}
 
 /* DROPDOWN */
-.dropdown{position:absolute;top:72px;left:50%;transform:translateX(-50%) translateY(-10px);width:300px;background:rgba(10,10,10,0.98);border:1px solid rgba(201,168,76,0.15);border-top:2px solid var(--gold);backdrop-filter:blur(24px);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:300}
-.nav-right>li.open .dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
-.dropdown-links{padding:10px 0}
-.dropdown-link{display:flex;align-items:center;gap:14px;padding:13px 22px;color:var(--light3);text-decoration:none;font-size:10px;letter-spacing:.16em;text-transform:uppercase;transition:all .2s;border-left:2px solid transparent}
-.dropdown-link:hover{color:var(--gold);background:rgba(201,168,76,0.04);border-left-color:var(--gold);padding-left:26px}
-.dropdown-link-num{font-family:'Bebas Neue',sans-serif;font-size:12px;color:rgba(201,168,76,0.35)}
+.dd{position:absolute;top:70px;left:50%;transform:translateX(-50%) translateY(-8px);width:280px;background:rgba(10,10,10,.98);border:1px solid rgba(201,168,76,.15);border-top:2px solid var(--gold);opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:600}
+.nav-links>li.on .dd{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.dd-link{display:flex;align-items:center;gap:12px;padding:13px 20px;color:var(--l3);font-size:10px;letter-spacing:.15em;text-transform:uppercase;border-left:2px solid transparent;transition:all .2s}
+.dd-link:hover{color:var(--gold);background:rgba(201,168,76,.04);border-left-color:var(--gold);padding-left:24px}
+.dd-n{font-family:'Bebas Neue',sans-serif;font-size:12px;color:rgba(201,168,76,.3)}
 
-/* HERO */
-.hero{min-height:100vh;position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 60px 60px;overflow:hidden;gap:60px}
-.hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(201,168,76,0.06) 0%,transparent 70%);top:50%;left:30%;transform:translate(-50%,-50%);pointer-events:none;animation:glowPulse 5s ease-in-out infinite}
-@keyframes glowPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.15)}}
-.hero-left{position:relative;z-index:2}
-.hero-tag{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:fadeUp .8s .3s forwards}
-.hero-tag::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
-.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,10vw,140px);line-height:.88;color:var(--light);letter-spacing:.01em;margin-bottom:8px;opacity:0;animation:fadeUp .8s .5s forwards}
-.hero-name .gold{color:var(--gold)}
-.hero-subtitle{font-size:13px;font-weight:300;color:var(--light3);letter-spacing:.08em;margin-bottom:48px;line-height:1.9;opacity:0;animation:fadeUp .8s .7s forwards}
-.hero-subtitle span{color:var(--gold);font-weight:500}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s forwards}
-.btn-primary{padding:14px 32px;background:var(--gold);color:#080808;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;border:none;cursor:none;transition:all .3s;text-decoration:none;display:inline-block}
-.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
-.btn-outline{padding:14px 32px;background:transparent;color:var(--light);font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;border:1px solid rgba(255,255,255,0.15);cursor:none;transition:all .3s;text-decoration:none;display:inline-block}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
-.hero-stats{display:flex;gap:0;margin-top:52px;opacity:0;animation:fadeUp .8s 1.1s forwards;border-top:1px solid rgba(255,255,255,0.06)}
-.stat-item{flex:1;padding:20px 0 0;border-right:1px solid rgba(255,255,255,0.05)}
-.stat-item:last-child{border-right:none;padding-left:20px}
-.stat-item:nth-child(2){padding-left:20px}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--gold);line-height:1;margin-bottom:4px}
-.stat-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--light3)}
+/* THEME BTN */
+.th-btn{width:38px;height:21px;background:rgba(255,255,255,.07);border-radius:11px;border:1px solid rgba(201,168,76,.22);cursor:none;position:relative;transition:all .3s;margin:0 6px;flex-shrink:0}
+.th-btn::after{content:'';position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:var(--gold);transition:transform .3s}
+body.light .th-btn::after{transform:translateX(17px)}
 
-/* HERO SLIDESHOW */
-.hero-right{position:relative;z-index:2;opacity:0;animation:fadeIn 1s 1s forwards}
-.hero-slideshow{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--dark3)}
-.hero-slideshow::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.06) 0%,transparent 60%);z-index:1;pointer-events:none}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
-.hero-slide.active{opacity:1}
-.hero-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.82) contrast(1.05)}
-.hero-slide-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(135deg,#0d0d0d,#1a1506)}
-.hero-slide-ph-num{font-family:'Bebas Neue',sans-serif;font-size:100px;color:rgba(201,168,76,0.06);line-height:1}
-.hero-slide-ph-label{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(201,168,76,0.25)}
-.slide-info{position:absolute;bottom:0;left:0;right:0;padding:24px 20px;background:linear-gradient(to top,rgba(0,0,0,.9),transparent);z-index:2}
-.slide-info-cat{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-.slide-info-title{font-size:14px;font-weight:300;color:var(--light)}
-.frame-tl,.frame-br{position:absolute;width:36px;height:36px;z-index:3}
-.frame-tl{top:0;left:0;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
-.frame-br{bottom:0;right:0;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
-.slide-counter-hero{position:absolute;top:16px;right:16px;font-family:'Bebas Neue',sans-serif;font-size:12px;color:var(--gold);letter-spacing:.1em;z-index:3;background:rgba(0,0,0,0.6);padding:4px 10px}
-.slide-ui-v{position:absolute;right:-18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:3}
-.sdot{width:2px;height:18px;background:rgba(255,255,255,0.15);cursor:none;transition:all .3s;border:none}
-.sdot.active{height:36px;background:var(--gold)}
-.slide-nav-btns{position:absolute;bottom:80px;right:16px;display:flex;flex-direction:column;gap:6px;z-index:3}
-.snav{width:30px;height:30px;background:rgba(0,0,0,0.6);border:1px solid rgba(201,168,76,0.3);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:none;font-size:11px;transition:all .2s}
-.snav:hover{background:rgba(201,168,76,0.2)}
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:90px 60px 60px;gap:60px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(201,168,76,.055) 0%,transparent 70%);top:50%;left:25%;transform:translate(-50%,-50%);pointer-events:none;animation:gPulse 6s ease-in-out infinite}
+@keyframes gPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.9;transform:translate(-50%,-50%) scale(1.12)}}
+.hero-l{position:relative;z-index:2}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0;animation:fUp .8s .3s forwards}
+.hero-tag::before{content:'';display:block;width:28px;height:1px;background:var(--gold)}
+.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(68px,10vw,138px);line-height:.88;margin-bottom:6px;opacity:0;animation:fUp .8s .5s forwards}
+.hero-name .g{color:var(--gold)}
+.hero-sub{font-size:13px;font-weight:300;color:var(--l3);letter-spacing:.07em;line-height:1.9;margin-bottom:44px;opacity:0;animation:fUp .8s .7s forwards}
+.hero-sub b{color:var(--gold);font-weight:500}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fUp .8s .9s forwards}
+.btn-g{padding:13px 30px;background:var(--gold);color:#080808;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:none;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.btn-g:hover{background:var(--gold-l);transform:translateY(-2px)}
+.btn-o{padding:13px 30px;background:transparent;color:var(--light);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;border:1px solid rgba(255,255,255,.14);cursor:none;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.btn-o:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-stats{display:flex;margin-top:52px;opacity:0;animation:fUp .8s 1.1s forwards;border-top:1px solid rgba(255,255,255,.05)}
+.hs{flex:1;padding:18px 0 0;border-right:1px solid rgba(255,255,255,.04)}
+.hs:last-child{border-right:none;padding-left:16px}
+.hs:nth-child(2){padding-left:16px}
+.hs-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1;margin-bottom:3px}
+.hs-l{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--l3)}
 
-/* SCROLL INDICATOR */
-.scroll-ind{position:absolute;bottom:36px;left:60px;display:flex;align-items:center;gap:14px;opacity:0;animation:fadeIn 1s 1.8s forwards}
-.scroll-line{width:40px;height:1px;background:rgba(255,255,255,0.15);overflow:hidden;position:relative}
-.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);animation:scrollAnim 2s ease-in-out infinite}
-@keyframes scrollAnim{0%{left:-100%}100%{left:100%}}
-.scroll-text{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--light3)}
+/* HERO RIGHT - SLIDESHOW */
+.hero-r{position:relative;z-index:2;opacity:0;animation:fIn 1s 1s forwards}
+.h-ss{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--d3)}
+.h-ss::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.055) 0%,transparent 60%);z-index:1;pointer-events:none}
+.h-slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.h-slide.on{opacity:1}
+.h-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.82) contrast(1.04)}
+.h-slide-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#0c0c0c,#181206)}
+.h-slide-ph-n{font-family:'Bebas Neue',sans-serif;font-size:90px;color:rgba(201,168,76,.05);line-height:1}
+.h-slide-ph-l{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(201,168,76,.22)}
+.s-info{position:absolute;bottom:0;left:0;right:0;padding:22px 18px;background:linear-gradient(to top,rgba(0,0,0,.9),transparent);z-index:2}
+.s-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.s-title{font-size:13px;font-weight:300;color:var(--light)}
+.fr-tl,.fr-br{position:absolute;width:32px;height:32px;z-index:3}
+.fr-tl{top:0;left:0;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
+.fr-br{bottom:0;right:0;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
+.s-cnt{position:absolute;top:14px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:11px;color:var(--gold);letter-spacing:.1em;z-index:3;background:rgba(0,0,0,.6);padding:3px 9px}
+.s-ui{position:absolute;right:-16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:7px;z-index:3}
+.s-dot{width:2px;height:16px;background:rgba(255,255,255,.12);border:none;cursor:none;transition:all .3s}
+.s-dot.on{height:34px;background:var(--gold)}
+.s-nav{position:absolute;bottom:70px;right:14px;display:flex;flex-direction:column;gap:5px;z-index:3}
+.s-btn{width:28px;height:28px;background:rgba(0,0,0,.6);border:1px solid rgba(201,168,76,.28);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:none;font-size:10px;transition:background .2s}
+.s-btn:hover{background:rgba(201,168,76,.18)}
 
-/* MARQUEE */
-.marquee-wrap{padding:20px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);background:var(--dark2)}
-.marquee-track{display:flex;animation:marquee 25s linear infinite;white-space:nowrap}
-.marquee-item{display:inline-flex;align-items:center;gap:18px;padding:0 28px;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.12em;color:rgba(255,255,255,0.12);text-transform:uppercase}
-.marquee-item .mdot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.4;flex-shrink:0}
-.marquee-item.hl{color:rgba(201,168,76,0.5)}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* SCROLL IND */
+.sc-ind{position:absolute;bottom:32px;left:60px;display:flex;align-items:center;gap:12px;opacity:0;animation:fIn 1s 2s forwards}
+.sc-line{width:36px;height:1px;background:rgba(255,255,255,.12);overflow:hidden;position:relative}
+.sc-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);animation:scAnim 2s ease-in-out infinite}
+@keyframes scAnim{0%{left:-100%}100%{left:100%}}
+.sc-t{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--l3)}
 
-/* DIVIDER */
-.divider{height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.2),transparent);margin:0 60px}
+/* ═══════════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════════ */
+.mq{padding:18px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);background:var(--d2)}
+.mq-t{display:flex;animation:mq 28s linear infinite;white-space:nowrap}
+.mq-i{display:inline-flex;align-items:center;gap:16px;padding:0 24px;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.11em;color:rgba(255,255,255,.1);text-transform:uppercase}
+.mq-i .dot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.35;flex-shrink:0}
+.mq-i.hl{color:rgba(201,168,76,.45)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* TABS */
-.main-tabs{display:flex;margin:0 60px;border-bottom:1px solid rgba(201,168,76,0.1);position:sticky;top:72px;z-index:90;background:var(--dark)}
-.main-tab{flex:1;padding:22px 0;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.8vw,28px);letter-spacing:.06em;color:rgba(255,255,255,0.25);cursor:none;border-bottom:2px solid transparent;transition:all .3s;background:none;border-top:none;border-left:none;border-right:none;position:relative}
-.main-tab::after{content:'';position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--gold);transition:width .35s}
-.main-tab:hover{color:rgba(255,255,255,0.6)}
-.main-tab.active{color:var(--gold)}
-.main-tab.active::after{width:80%}
-.tab-content{display:none}
-.tab-content.active{display:block}
+/* ═══════════════════════════════════════════
+   LAYOUT HELPERS
+═══════════════════════════════════════════ */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.18),transparent);margin:0 60px}
+.section{padding:90px 60px}
+.sec-hd{display:flex;align-items:center;gap:18px;margin-bottom:56px}
+.sec-n{font-family:'Bebas Neue',sans-serif;font-size:11px;color:var(--gold);letter-spacing:.14em;opacity:.45}
+.sec-t{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,52px);letter-spacing:.02em}
+.sec-l{flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,.16),transparent);margin-left:14px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-r{opacity:0;transform:translateX(30px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-r.vis{opacity:1;transform:translateX(0)}
 
-/* SECTIONS */
-section{padding:80px 60px}
-.section-header{display:flex;align-items:center;gap:20px;margin-bottom:48px}
-.section-num{font-family:'Bebas Neue',sans-serif;font-size:11px;color:var(--gold);letter-spacing:.15em;opacity:.5}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,52px);letter-spacing:.02em;color:var(--light)}
-.section-line{flex:1;height:1px;background:linear-gradient(to right,rgba(201,168,76,0.18),transparent);margin-left:16px}
+/* ═══════════════════════════════════════════
+   TABS
+═══════════════════════════════════════════ */
+.tabs{display:flex;margin:0 60px;border-bottom:1px solid rgba(201,168,76,.1);position:sticky;top:70px;z-index:90;background:var(--dark)}
+.tab{flex:1;padding:20px 0;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(16px,2.6vw,26px);letter-spacing:.06em;color:rgba(255,255,255,.22);cursor:none;border:none;background:none;border-bottom:2px solid transparent;transition:all .3s;position:relative}
+.tab::after{content:'';position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--gold);transition:width .35s var(--ease)}
+.tab:hover{color:rgba(255,255,255,.55)}
+.tab.on{color:var(--gold)}.tab.on::after{width:75%}
+.tc{display:none}.tc.on{display:block}
 
-/* FILTERS */
-.cat-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
-.cat-btn{padding:9px 20px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:rgba(255,255,255,0.4);font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:none;transition:all .25s;font-weight:500}
-.cat-btn:hover{color:var(--light);border-color:rgba(255,255,255,0.2)}
-.cat-btn.active{background:var(--gold);border-color:var(--gold);color:#080808;font-weight:700}
+/* ═══════════════════════════════════════════
+   FILTERS
+═══════════════════════════════════════════ */
+.cats{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:32px}
+.cat{padding:8px 18px;border:1px solid rgba(255,255,255,.07);background:transparent;color:rgba(255,255,255,.35);font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:none;transition:all .22s;font-weight:500}
+.cat:hover{color:var(--light);border-color:rgba(255,255,255,.18)}
+.cat.on{background:var(--gold);border-color:var(--gold);color:#080808;font-weight:700}
 
-/* GALLERY */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2px}
-.gallery-item{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--dark3);cursor:none}
-.gallery-item.tall{aspect-ratio:3/4}
-.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;filter:brightness(.78) saturate(.9)}
-.gallery-item:hover img{transform:scale(1.08);filter:brightness(.95) saturate(1.1)}
-.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.1) 50%,transparent 100%);opacity:0;transition:opacity .4s;display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
-.gallery-item:hover .gallery-overlay{opacity:1}
-.gallery-cat{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;font-weight:600}
-.gallery-title{font-size:14px;font-weight:400;color:var(--light)}
-.gallery-icon{position:absolute;top:16px;right:16px;width:36px;height:36px;border:1px solid rgba(201,168,76,0.5);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:16px;opacity:0;transition:opacity .3s;background:rgba(0,0,0,0.4)}
-.gallery-item:hover .gallery-icon{opacity:1}
-.gallery-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:rgba(201,168,76,0.18);font-size:9px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(201,168,76,0.07)}
+/* ═══════════════════════════════════════════
+   GALLERY
+═══════════════════════════════════════════ */
+.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:2px}
+.g-item{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--d3);cursor:none}
+.g-item.tall{aspect-ratio:3/4}
+.g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease);filter:brightness(.76) saturate(.88)}
+.g-item:hover img{transform:scale(1.09);filter:brightness(.94) saturate(1.08)}
+.g-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.08) 55%,transparent 100%);opacity:0;transition:opacity .38s;display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
+.g-item:hover .g-ov{opacity:1}
+.g-cat{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-weight:600}
+.g-ttl{font-size:13px;color:var(--light)}
+.g-ico{position:absolute;top:14px;right:14px;width:34px;height:34px;border:1px solid rgba(201,168,76,.45);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;opacity:0;transition:opacity .3s;background:rgba(0,0,0,.45)}
+.g-item:hover .g-ico{opacity:1}
+.g-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.06)}
 
-/* SERVICES */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px}
-.service-card{background:var(--dark3);padding:36px 32px;position:relative;overflow:hidden;transition:background .3s}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold),transparent);transform:scaleX(0);transition:transform .4s;transform-origin:left}
-.service-card:hover{background:var(--dark4)}
-.service-card:hover::before{transform:scaleX(1)}
-.service-icon{font-size:28px;margin-bottom:16px}
-.service-name{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--light);letter-spacing:.04em;margin-bottom:10px}
-.service-desc{font-size:13px;color:var(--light3);font-weight:300;line-height:1.7;margin-bottom:16px}
-.service-price{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+/* ═══════════════════════════════════════════
+   ABOUT / PROFILE
+═══════════════════════════════════════════ */
+.profile-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.profile-img-wrap{position:relative}
+.profile-img{width:100%;aspect-ratio:3/4;object-fit:cover;filter:brightness(.88) contrast(1.04)}
+.profile-img-fr{position:absolute;inset:0;border:1px solid rgba(201,168,76,.15);pointer-events:none}
+.profile-img-fr::before{content:'';position:absolute;top:-6px;left:-6px;width:40px;height:40px;border-top:2px solid var(--gold);border-left:2px solid var(--gold)}
+.profile-img-fr::after{content:'';position:absolute;bottom:-6px;right:-6px;width:40px;height:40px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold)}
+.profile-badge{position:absolute;bottom:24px;left:-20px;background:var(--d4);border:1px solid rgba(201,168,76,.2);padding:14px 18px}
+.profile-badge-n{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);line-height:1}
+.profile-badge-l{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--l3)}
+.profile-r{}
+.profile-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,4vw,56px);line-height:.95;margin-bottom:8px}
+.profile-title{font-size:13px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:24px}
+.profile-bio{font-size:15px;font-weight:300;color:rgba(255,255,255,.5);line-height:2;margin-bottom:36px}
+.profile-bio strong{color:var(--gold);font-weight:600}
 
-/* TESTIMONIALS */
-.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px}
-.testimonial-card{background:var(--dark3);padding:36px 32px;position:relative}
-.testimonial-card::before{content:'\201C';position:absolute;top:16px;left:24px;font-family:'Playfair Display',serif;font-size:72px;color:rgba(201,168,76,0.1);line-height:1}
-.testimonial-text{font-size:14px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:24px;padding-top:16px;font-style:italic}
-.testimonial-author{display:flex;align-items:center;gap:14px}
-.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#080808;flex-shrink:0}
-.testimonial-name{font-size:13px;font-weight:600;color:var(--light);margin-bottom:2px}
-.testimonial-role{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--light3)}
-.testimonial-stars{color:var(--gold);font-size:12px;margin-bottom:16px;letter-spacing:2px}
+/* SKILLS */
+.skills-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px}
+.skill-item{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--d3);border-left:2px solid var(--gold)}
+.skill-icon{font-size:16px;flex-shrink:0}
+.skill-name{font-size:12px;color:var(--l2);font-weight:400;letter-spacing:.04em}
 
-/* ABOUT */
-.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.about-text{font-size:15px;font-weight:300;color:rgba(255,255,255,0.5);line-height:2;letter-spacing:.02em}
-.about-text strong{color:var(--gold);font-weight:600}
-.about-text p{margin-bottom:20px}
-.detail-row{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
-.detail-key{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
-.detail-val{font-size:13px;color:var(--light);text-align:right;font-weight:300}
-.social-links{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
-.social-link{display:flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid rgba(255,255,255,0.08);color:var(--light3);text-decoration:none;font-size:10px;letter-spacing:.16em;text-transform:uppercase;transition:all .25s}
-.social-link:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
-.social-link svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+/* EXPERIENCE */
+.exp-grid{display:flex;flex-direction:column;gap:0;margin-bottom:32px}
+.exp-item{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.05);display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.exp-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:7px;flex-shrink:0}
+.exp-role{font-size:13px;color:var(--light);font-weight:500;margin-bottom:2px}
+.exp-org{font-size:11px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.exp-yr{font-size:10px;color:var(--l3)}
 
-/* CONTACT */
-.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.contact-form{display:flex;flex-direction:column;gap:14px}
-.form-group{display:flex;flex-direction:column;gap:8px}
-.form-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
-.form-input,.form-textarea,.form-select{background:var(--dark3);border:1px solid rgba(255,255,255,0.08);color:var(--light);font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;padding:14px 16px;transition:border-color .25s;outline:none;width:100%}
-.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--gold)}
-.form-textarea{height:120px;resize:vertical}
-.form-select option{background:var(--dark3);color:var(--light)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-submit{padding:16px 36px;background:var(--gold);color:#080808;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:none;transition:all .3s;align-self:flex-start}
-.form-submit:hover{background:var(--gold-light);transform:translateY(-2px)}
-.form-success{display:none;padding:16px 20px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);color:#25D366;font-size:13px;margin-top:8px}
-.contact-info{display:flex;flex-direction:column}
-.contact-info-item{padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;gap:6px}
-.contact-info-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
-.contact-info-val{font-size:15px;color:var(--light);font-weight:300}
+/* CERTS & LANGS */
+.cert-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.cert-tag{padding:7px 14px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.18);font-size:10px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.lang-row{display:flex;gap:12px;flex-wrap:wrap}
+.lang-tag{padding:7px 14px;background:var(--d3);border:1px solid rgba(255,255,255,.06);font-size:10px;color:var(--l2);letter-spacing:.1em;text-transform:uppercase}
 
-/* FOOTER */
-footer{padding:40px 60px 28px;border-top:1px solid rgba(255,255,255,0.05)}
-.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.05)}
-.footer-logo-text{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.08em;color:var(--gold);margin-bottom:12px}
-.footer-tagline{font-size:12px;color:var(--light3);font-weight:300;line-height:1.7}
-.footer-col-title{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
-.footer-links{display:flex;flex-direction:column;gap:10px}
-.footer-links a{font-size:13px;color:var(--light3);text-decoration:none;transition:color .2s;font-weight:300}
-.footer-links a:hover{color:var(--gold)}
-.footer-socials{display:flex;gap:10px;flex-wrap:wrap}
-.footer-social{width:38px;height:38px;border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:var(--light3);text-decoration:none;transition:all .25s;font-size:11px;font-weight:600}
-.footer-social:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-copy{font-size:10px;color:rgba(255,255,255,0.18)}
-.footer-made{font-size:10px;color:rgba(255,255,255,0.18)}
+/* ═══════════════════════════════════════════
+   WHY CHOOSE ME
+═══════════════════════════════════════════ */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2px}
+.why-card{background:var(--d3);padding:36px 28px;position:relative;overflow:hidden;transition:background .3s}
+.why-card:hover{background:var(--d4)}
+.why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transition:transform .4s var(--ease);transform-origin:left}
+.why-card:hover::before{transform:scaleX(1)}
+.why-ico{font-size:30px;margin-bottom:16px}
+.why-n{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gold);line-height:1;margin-bottom:6px}
+.why-t{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--light);font-weight:500;margin-bottom:8px}
+.why-d{font-size:13px;color:var(--l3);font-weight:300;line-height:1.6}
 
-/* LIGHTBOX */
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:999;align-items:center;justify-content:center;padding:40px}
-.lightbox.open{display:flex}
-.lightbox img{max-width:88vw;max-height:88vh;object-fit:contain}
-.lb-close{position:absolute;top:24px;right:32px;font-size:26px;color:rgba(255,255,255,0.4);cursor:none;background:none;border:none;transition:color .2s}
+/* ═══════════════════════════════════════════
+   SERVICES DETAIL
+═══════════════════════════════════════════ */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2px}
+.svc-card{background:var(--d3);padding:40px 36px;position:relative;overflow:hidden;transition:background .3s;display:flex;flex-direction:column}
+.svc-card:hover{background:var(--d4)}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transition:transform .4s var(--ease);transform-origin:left}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-ico{font-size:30px;margin-bottom:18px}
+.svc-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.03em;margin-bottom:12px}
+.svc-desc{font-size:14px;color:var(--l3);font-weight:300;line-height:1.7;margin-bottom:20px}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:24px;flex:1}
+.svc-list li{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.55);font-weight:300}
+.svc-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.svc-price{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
+.svc-cta{padding:11px 22px;background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:none;transition:all .25s;font-weight:600;align-self:flex-start}
+.svc-cta:hover{background:var(--gold);color:#080808}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+.test-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px}
+.test-card{background:var(--d3);padding:36px 30px;position:relative}
+.test-card::before{content:'\201C';position:absolute;top:12px;left:20px;font-family:'Playfair Display',serif;font-size:68px;color:rgba(201,168,76,.09);line-height:1}
+.test-stars{color:var(--gold);font-size:11px;margin-bottom:14px;letter-spacing:2px}
+.test-txt{font-size:14px;font-weight:300;color:rgba(255,255,255,.52);line-height:1.8;margin-bottom:22px;padding-top:12px;font-style:italic}
+.test-auth{display:flex;align-items:center;gap:12px}
+.test-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-l));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;color:#080808;flex-shrink:0}
+.test-name{font-size:13px;font-weight:600;margin-bottom:1px}
+.test-role{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--l3)}
+
+/* ═══════════════════════════════════════════
+   CTA HERO
+═══════════════════════════════════════════ */
+.cta-section{background:var(--d2);padding:110px 60px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'RD';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:380px;color:rgba(201,168,76,.016);pointer-events:none;white-space:nowrap;line-height:1}
+.cta-eye{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;position:relative}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,105px);line-height:.88;margin-bottom:16px;position:relative}
+.cta-title span{color:var(--gold)}
+.cta-sub{font-size:14px;color:var(--l3);font-weight:300;margin-bottom:48px;position:relative}
+.cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;position:relative}
+.wa-cta{padding:13px 30px;background:var(--green);color:#fff;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;border:none;cursor:none;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.wa-cta:hover{background:#1ea855;transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════
+   ABOUT SECTION (COMPANY)
+═══════════════════════════════════════════ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-txt{font-size:15px;font-weight:300;color:rgba(255,255,255,.48);line-height:2}
+.about-txt strong{color:var(--gold);font-weight:600}
+.about-txt p{margin-bottom:18px}
+.soc-links{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
+.soc-link{display:flex;align-items:center;gap:8px;padding:11px 18px;border:1px solid rgba(255,255,255,.07);color:var(--l3);font-size:10px;letter-spacing:.14em;text-transform:uppercase;transition:all .22s}
+.soc-link:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.soc-link svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
+.det-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.det-k{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.det-v{font-size:13px;color:var(--light);text-align:right;font-weight:300}
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:70px;align-items:start}
+.form{display:flex;flex-direction:column;gap:16px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f-grp{display:flex;flex-direction:column;gap:7px}
+.f-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.f-wrap{position:relative}
+.f-ico{position:absolute;top:50%;left:14px;transform:translateY(-50%);color:var(--l3);font-size:14px;pointer-events:none}
+.f-ico-top{position:absolute;top:16px;left:14px;color:var(--l3);font-size:14px;pointer-events:none}
+.f-in,.f-ta,.f-sel{background:var(--d3);border:1px solid rgba(255,255,255,.07);color:var(--light);font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;padding:13px 14px 13px 40px;transition:border-color .25s;outline:none;width:100%}
+.f-ta{padding-left:40px;height:130px;resize:vertical}
+.f-sel{padding-left:40px}
+.f-in:focus,.f-ta:focus,.f-sel:focus{border-color:var(--gold)}
+.f-sel option{background:var(--d3)}
+.f-err{font-size:10px;color:var(--red);margin-top:4px;display:none}
+.f-err.show{display:block}
+.f-submit{padding:15px 34px;background:var(--gold);color:#080808;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;border:none;cursor:none;transition:all .3s;align-self:flex-start;display:flex;align-items:center;gap:10px}
+.f-submit:hover{background:var(--gold-l);transform:translateY(-2px)}
+.f-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.f-ok{display:none;padding:14px 18px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.28);color:#25D366;font-size:13px;margin-top:6px}
+.f-fail{display:none;padding:14px 18px;background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.28);color:var(--red);font-size:13px;margin-top:6px}
+.c-info{display:flex;flex-direction:column}
+.c-info-item{padding:20px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.c-info-k{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:5px}
+.c-info-v{font-size:14px;color:var(--light);font-weight:300}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{padding:50px 60px 28px;border-top:1px solid rgba(255,255,255,.04)}
+.ft-top{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:50px;margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.04)}
+.ft-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.08em;color:var(--gold);margin-bottom:10px}
+.ft-tag{font-size:12px;color:var(--l3);font-weight:300;line-height:1.7;margin-bottom:18px}
+.ft-emails{display:flex;flex-direction:column;gap:6px}
+.ft-email{font-size:12px;color:var(--l3);transition:color .2s}
+.ft-email:hover{color:var(--gold)}
+.ft-col-t{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+.ft-links{display:flex;flex-direction:column;gap:9px}
+.ft-links a{font-size:13px;color:var(--l3);transition:color .2s;font-weight:300}
+.ft-links a:hover{color:var(--gold)}
+.ft-socs{display:flex;gap:8px;flex-wrap:wrap}
+.ft-soc{width:36px;height:36px;border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:var(--l3);transition:all .22s;font-size:10px;font-weight:700}
+.ft-soc:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.ft-copy{font-size:10px;color:rgba(255,255,255,.16)}
+.ft-made{font-size:10px;color:rgba(255,255,255,.16)}
+
+/* ═══════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════ */
+.lb-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:999;align-items:center;justify-content:center;padding:40px}
+.lb-wrap.on{display:flex}
+.lb-wrap img{max-width:88vw;max-height:88vh;object-fit:contain}
+.lb-close{position:absolute;top:22px;right:28px;font-size:24px;color:rgba(255,255,255,.35);cursor:none;background:none;border:none;transition:color .2s}
 .lb-close:hover{color:var(--gold)}
-.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:none;font-size:16px;transition:all .2s}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.35);width:46px;height:46px;display:flex;align-items:center;justify-content:center;cursor:none;font-size:15px;transition:all .2s}
 .lb-prev:hover,.lb-next:hover{border-color:var(--gold);color:var(--gold)}
-.lb-prev{left:24px}.lb-next{right:24px}
-.lb-info{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+.lb-prev{left:22px}.lb-next{right:22px}
+.lb-inf{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22)}
 
-/* WHATSAPP */
-.wa-btn{position:fixed;bottom:32px;right:32px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:500;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.3);transition:all .3s;animation:waPulse 2.5s ease-in-out infinite}
-.wa-btn:hover{transform:scale(1.1);animation:none;box-shadow:0 6px 28px rgba(37,211,102,0.5)}
-.wa-btn svg{width:26px;height:26px;fill:white}
-@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.3)}50%{box-shadow:0 4px 30px rgba(37,211,102,0.5)}}
+/* ═══════════════════════════════════════════
+   FLOATING ELEMENTS
+═══════════════════════════════════════════ */
+.wa-float{position:fixed;bottom:30px;right:30px;width:54px;height:54px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:500;box-shadow:0 4px 18px rgba(37,211,102,.28);transition:all .3s;animation:waPulse 2.8s ease-in-out infinite}
+.wa-float:hover{transform:scale(1.1);animation:none;box-shadow:0 6px 26px rgba(37,211,102,.45)}
+.wa-float svg{width:24px;height:24px;fill:#fff}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.28)}50%{box-shadow:0 4px 28px rgba(37,211,102,.45)}}
+.btt{position:fixed;bottom:30px;left:30px;width:42px;height:42px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);display:flex;align-items:center;justify-content:center;color:var(--gold);cursor:none;font-size:15px;transition:all .3s;opacity:0;pointer-events:none;z-index:500}
+.btt.vis{opacity:1;pointer-events:all}
+.btt:hover{background:var(--gold);color:#080808}
 
-/* BACK TO TOP */
-.back-top{position:fixed;bottom:32px;left:32px;width:44px;height:44px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);display:flex;align-items:center;justify-content:center;color:var(--gold);cursor:none;font-size:16px;transition:all .3s;opacity:0;pointer-events:none;z-index:500}
-.back-top.visible{opacity:1;pointer-events:all}
-.back-top:hover{background:var(--gold);color:#080808}
+/* ═══════════════════════════════════════════
+   COOKIE
+═══════════════════════════════════════════ */
+.cookie{position:fixed;bottom:0;left:0;right:0;background:rgba(12,12,12,.98);border-top:1px solid rgba(201,168,76,.12);padding:14px 60px;display:flex;align-items:center;justify-content:space-between;gap:18px;z-index:800;transform:translateY(100%);transition:transform .4s var(--ease)}
+.cookie.show{transform:translateY(0)}
+.cookie-t{font-size:12px;color:var(--l3);font-weight:300;flex:1}
+.cookie-t a{color:var(--gold)}
+.cookie-btns{display:flex;gap:9px;flex-shrink:0}
+.ck-acc{padding:9px 22px;background:var(--gold);color:#080808;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;border:none;cursor:none;transition:all .2s}
+.ck-acc:hover{background:var(--gold-l)}
+.ck-dec{padding:9px 18px;background:transparent;color:var(--l3);font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;border:1px solid rgba(255,255,255,.09);cursor:none;transition:all .2s}
+.ck-dec:hover{border-color:rgba(255,255,255,.22);color:var(--light)}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
-.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes fUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fIn{from{opacity:0}to{opacity:1}}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-/* COOKIE BANNER */
-.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:rgba(14,14,14,0.98);border-top:1px solid rgba(201,168,76,0.15);padding:16px 60px;display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:800;transform:translateY(100%);transition:transform .4s}
-.cookie-banner.show{transform:translateY(0)}
-.cookie-text{font-size:12px;color:var(--light3);font-weight:300;flex:1}
-.cookie-text a{color:var(--gold);text-decoration:none}
-.cookie-btns{display:flex;gap:10px;flex-shrink:0}
-.cookie-accept{padding:10px 24px;background:var(--gold);color:#080808;font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border:none;cursor:none;transition:all .2s}
-.cookie-accept:hover{background:var(--gold-light)}
-.cookie-decline{padding:10px 20px;background:transparent;color:var(--light3);font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;border:1px solid rgba(255,255,255,0.1);cursor:none;transition:all .2s}
-.cookie-decline:hover{border-color:rgba(255,255,255,0.25);color:var(--light)}
-
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:100px 24px 60px;gap:40px}
-  .hero-right{order:-1}
-  .hero-slideshow{aspect-ratio:16/9}
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;padding:96px 24px 56px;gap:36px}
+  .hero-r{order:-1}.h-ss{aspect-ratio:16/9}
   nav{padding:0 20px}
-  .nav-right li:not(:first-child):not(:last-child) a{display:none}
-  section,footer{padding:60px 24px}
-  .footer-top{grid-template-columns:1fr;gap:32px}
-  .main-tabs{margin:0 24px}
-  .about-wrap,.contact-wrap{grid-template-columns:1fr;gap:40px}
+  .nav-links li:not(:first-child):not(:last-child) a{display:none}
+  .section,footer{padding:60px 24px}
+  .tabs{margin:0 24px}
+  .profile-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
   .cta-section{padding:70px 24px}
   .divider{margin:0 24px}
-  .gallery-grid{grid-template-columns:1fr 1fr}
-  .scroll-ind{left:24px}
-  .services-grid,.testimonials-grid{grid-template-columns:1fr}
-  .form-row{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column;text-align:center}
-  .cookie-banner{padding:16px 20px;flex-direction:column;align-items:flex-start}
-  .lang-bar{top:auto;bottom:90px;right:0;flex-direction:column}
+  .g-grid{grid-template-columns:1fr 1fr}
+  .sc-ind{left:24px}
+  .svc-grid,.test-grid,.why-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr;gap:32px}
+  .ft-bot{flex-direction:column;text-align:center}
+  .cookie{padding:14px 20px;flex-direction:column;align-items:flex-start}
+  .lang-bar{right:20px}
+  .profile-badge{left:0;bottom:16px}
+}
+@media(max-width:480px){
+  .g-grid{grid-template-columns:1fr}
+  .hero-name{font-size:60px}
+  .skills-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
 <!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div id="cur"></div><div id="cur-r"></div>
 
-<!-- PROGRESS BAR -->
-<div class="progress-bar" id="progressBar"></div>
+<!-- PROGRESS -->
+<div id="prog"></div>
 
-<!-- LANG SWITCHER -->
+<!-- LANG BAR -->
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
-  <div class="lang-sep"></div>
-  <button class="lang-btn" onclick="setLang('fr')" id="btn-fr">FR</button>
-  <div class="lang-sep"></div>
-  <button class="lang-btn" onclick="setLang('ht')" id="btn-ht">HT</button>
+  <button class="lb on" onclick="setL('en')" id="lb-en">EN</button>
+  <button class="lb" onclick="setL('fr')" id="lb-fr">FR</button>
+  <button class="lb" onclick="setL('ht')" id="lb-ht">HT</button>
 </div>
 
 <!-- LOADER -->
-<div class="loader" id="loader">
-  <img src="images/logo.png" class="loader-logo-img" alt="Rooby Design" id="loaderImg" onerror="this.style.display='none';document.getElementById('loaderFallback').style.display='block'">
-  <div class="loader-logo-fallback" id="loaderFallback">RD</div>
-  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
-  <div class="loader-text" data-i18n="loading">Loading Portfolio 2026</div>
+<div id="loader">
+  <img src="images/logo.png" class="ld-img" alt="Rooby Design" onerror="this.style.display='none';document.getElementById('ld-fb').style.display='block'">
+  <div class="ld-fb" id="ld-fb">RD</div>
+  <div class="ld-bar-w"><div class="ld-bar"></div></div>
+  <div class="ld-txt" data-i="loading">Loading Portfolio 2026</div>
 </div>
 
-<!-- WHATSAPP -->
-<a href="https://wa.me/50937704274" target="_blank" class="wa-btn" title="WhatsApp">
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/50937704274" target="_blank" class="wa-float" title="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.122 1.533 5.854L.057 23.5l5.784-1.517A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.49-5.186-1.349l-.371-.22-3.844 1.008 1.028-3.737-.242-.385A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
 
 <!-- BACK TO TOP -->
-<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 
-<!-- COOKIE BANNER -->
-<div class="cookie-banner" id="cookieBanner">
-  <div class="cookie-text" data-i18n="cookie">We use cookies to improve your experience. <a href="#">Learn more</a></div>
+<!-- COOKIE -->
+<div class="cookie" id="cookie">
+  <div class="cookie-t" data-i="cookie">We use cookies to improve your experience on this site.</div>
   <div class="cookie-btns">
-    <button class="cookie-accept" onclick="acceptCookie()" data-i18n="accept">Accept</button>
-    <button class="cookie-decline" onclick="declineCookie()" data-i18n="decline">Decline</button>
+    <button class="ck-acc" onclick="ckAcc()" data-i="accept">Accept</button>
+    <button class="ck-dec" onclick="ckDec()" data-i="decline">Decline</button>
   </div>
 </div>
 
 <!-- NAV -->
-<nav id="navbar">
+<nav id="nav">
   <a href="#hero" class="nav-logo">
     <img src="images/logo.png" alt="Rooby Design" onerror="this.style.display='none'">
-    <span class="nav-logo-text">Rooby Design</span>
+    <span class="nav-logo-t">Rooby Design</span>
   </a>
-  <ul class="nav-right">
-    <li id="brandMenu">
-      <button onclick="toggleDD('brandMenu')"><span data-i18n="menu">Menu</span> <span class="chevron">&#9660;</span></button>
-      <div class="dropdown">
-        <div class="dropdown-links">
-          <a href="#" onclick="switchTab('graphic');closeDD();return false;" class="dropdown-link"><span class="dropdown-link-num">01</span><span data-i18n="graphic">Graphic Design</span></a>
-          <a href="#" onclick="switchTab('photography');closeDD();return false;" class="dropdown-link"><span class="dropdown-link-num">02</span><span data-i18n="photography">Photography</span></a>
-          <a href="#services" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">03</span><span data-i18n="services">Services & Prices</span></a>
-          <a href="#testimonials" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">04</span><span data-i18n="testimonials">Testimonials</span></a>
-          <a href="#about" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">05</span><span data-i18n="about">About</span></a>
-          <a href="#contact" onclick="closeDD();" class="dropdown-link"><span class="dropdown-link-num">06</span><span data-i18n="contact">Contact</span></a>
-        </div>
+  <ul class="nav-links">
+    <li id="ddLi">
+      <button onclick="toggleDD()"><span data-i="menu">Menu</span> <span class="chev">&#9660;</span></button>
+      <div class="dd">
+        <a href="#" onclick="swTab('graphic');cDD();return false;" class="dd-link"><span class="dd-n">01</span><span data-i="graphic">Graphic Design</span></a>
+        <a href="#" onclick="swTab('photo');cDD();return false;" class="dd-link"><span class="dd-n">02</span><span data-i="photo">Photography</span></a>
+        <a href="#profile" onclick="cDD();" class="dd-link"><span class="dd-n">03</span><span data-i="profile">About Me</span></a>
+        <a href="#why" onclick="cDD();" class="dd-link"><span class="dd-n">04</span><span data-i="why">Why Choose Me</span></a>
+        <a href="#services" onclick="cDD();" class="dd-link"><span class="dd-n">05</span><span data-i="services">Services</span></a>
+        <a href="#testimonials" onclick="cDD();" class="dd-link"><span class="dd-n">06</span><span data-i="testimonials">Testimonials</span></a>
+        <a href="#contact" onclick="cDD();" class="dd-link"><span class="dd-n">07</span><span data-i="contact">Contact</span></a>
       </div>
     </li>
-    <li><a href="#" onclick="switchTab('graphic');return false;" data-i18n="graphic">Graphic</a></li>
-    <li><a href="#" onclick="switchTab('photography');return false;" data-i18n="photography">Photo</a></li>
-    <li><a href="#contact" data-i18n="contact">Contact</a></li>
-    <li><button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme"></button></li>
+    <li><a href="#" onclick="swTab('graphic');return false;" data-i="graphic">Graphic</a></li>
+    <li><a href="#" onclick="swTab('photo');return false;" data-i="photo">Photo</a></li>
+    <li><a href="#profile" data-i="profile">About</a></li>
+    <li><a href="#contact" data-i="contact">Contact</a></li>
+    <li><button class="th-btn" onclick="toggleTheme()" title="Theme"></button></li>
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- ═══════ HERO ═══════ -->
 <section class="hero" id="hero">
   <div class="hero-glow"></div>
-  <div class="hero-left">
-    <div class="hero-tag" data-i18n="portfolio">Portfolio 2026</div>
-    <h1 class="hero-name">Rooby<br><span class="gold">Design</span></h1>
-    <p class="hero-subtitle"><span data-i18n="visual">Visual Identity</span> &nbsp;&middot;&nbsp; <span data-i18n="graphic">Graphic Design</span> &nbsp;&middot;&nbsp; <span data-i18n="photography">Photography</span></p>
-    <div class="hero-cta">
-      <a href="#" onclick="switchTab('graphic');return false;" class="btn-primary" data-i18n="viewWork">View Work</a>
-      <a href="#contact" class="btn-outline" data-i18n="getInTouch">Get in Touch</a>
+  <div class="hero-l">
+    <div class="hero-tag" data-i="portfolio">Portfolio 2026</div>
+    <h1 class="hero-name">Rooby<br><span class="g">Design</span></h1>
+    <p class="hero-sub"><b data-i="visual">Visual Identity</b> &nbsp;&middot;&nbsp; <span data-i="graphic">Graphic Design</span> &nbsp;&middot;&nbsp; <b data-i="photo">Photography</b></p>
+    <div class="hero-btns">
+      <a href="#" onclick="swTab('graphic');return false;" class="btn-g" data-i="viewWork">View Work &#8594;</a>
+      <a href="#contact" class="btn-o" data-i="hireMe">Hire Me</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num" data-target="8">0</div><div class="stat-label" data-i18n="years">Years</div></div>
-      <div class="stat-item"><div class="stat-num" data-target="240">0</div><div class="stat-label" data-i18n="projects">Projects</div></div>
-      <div class="stat-item"><div class="stat-num" data-target="100">0</div><div class="stat-label" data-i18n="satisfaction">% Satisfaction</div></div>
+      <div class="hs"><div class="hs-n" data-target="8">0</div><div class="hs-l" data-i="years">Years</div></div>
+      <div class="hs"><div class="hs-n" data-target="240">0</div><div class="hs-l" data-i="projects">Projects</div></div>
+      <div class="hs"><div class="hs-n" data-target="100">0</div><div class="hs-l" data-i="satisfaction">% Satisfaction</div></div>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-slideshow">
-      <div class="frame-tl"></div><div class="frame-br"></div>
-      <div class="slide-counter-hero" id="heroCounter">1 / 5</div>
-      <div class="hero-slide active"><img src="images/brand/Slide_01.png" alt="Brand" onerror="this.parentNode.innerHTML='<div class=hero-slide-ph><div class=hero-slide-ph-num>01</div><div class=hero-slide-ph-label>Brand</div></div>'"><div class="slide-info"><div class="slide-info-cat">Visual Identity</div><div class="slide-info-title">Rooby Design — Brand Overview</div></div></div>
-      <div class="hero-slide"><img src="images/brand/Slide_02.jpg" alt="Brand" onerror="this.parentNode.innerHTML='<div class=hero-slide-ph><div class=hero-slide-ph-num>02</div><div class=hero-slide-ph-label>Logo</div></div>'"><div class="slide-info"><div class="slide-info-cat">Logo Design</div><div class="slide-info-title">Rooby Design — Logo Collection</div></div></div>
-      <div class="hero-slide"><img src="images/brand/Slide_03.jpg" alt="Brand" onerror="this.parentNode.innerHTML='<div class=hero-slide-ph><div class=hero-slide-ph-num>03</div><div class=hero-slide-ph-label>Colors</div></div>'"><div class="slide-info"><div class="slide-info-cat">Color Palette</div><div class="slide-info-title">Rooby Design — Brand Colors</div></div></div>
-      <div class="hero-slide"><img src="images/brand/Slide_04.jpg" alt="Brand" onerror="this.parentNode.innerHTML='<div class=hero-slide-ph><div class=hero-slide-ph-num>04</div><div class=hero-slide-ph-label>Typography</div></div>'"><div class="slide-info"><div class="slide-info-cat">Typography</div><div class="slide-info-title">Rooby Design — Brand Typography</div></div></div>
-      <div class="hero-slide"><img src="images/brand/Slide_05.jpg" alt="Brand" onerror="this.parentNode.innerHTML='<div class=hero-slide-ph><div class=hero-slide-ph-num>05</div><div class=hero-slide-ph-label>Mockups</div></div>'"><div class="slide-info"><div class="slide-info-cat">Brand Mockup</div><div class="slide-info-title">Rooby Design — Mockup Collection</div></div></div>
-      <div class="slide-ui-v" id="heroSlideUI"></div>
-      <div class="slide-nav-btns"><button class="snav" onclick="hNav(-1)">&#8593;</button><button class="snav" onclick="hNav(1)">&#8595;</button></div>
+  <div class="hero-r">
+    <div class="h-ss">
+      <div class="fr-tl"></div><div class="fr-br"></div>
+      <div class="s-cnt" id="sCnt">1 / 5</div>
+      <div class="h-slide on"><img src="images/brand/Slide_01.png" alt="Rooby Design Brand Identity" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>01</div><div class=h-slide-ph-l>Brand</div></div>'"><div class="s-info"><div class="s-cat">Visual Identity</div><div class="s-title">Rooby Design — Brand Overview</div></div></div>
+      <div class="h-slide"><img src="images/brand/Slide_02.jpg" alt="Logo Design" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>02</div><div class=h-slide-ph-l>Logo</div></div>'"><div class="s-info"><div class="s-cat">Logo Design</div><div class="s-title">Rooby Design — Logo Collection</div></div></div>
+      <div class="h-slide"><img src="images/brand/Slide_03.jpg" alt="Brand Colors" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>03</div><div class=h-slide-ph-l>Colors</div></div>'"><div class="s-info"><div class="s-cat">Color Palette</div><div class="s-title">Rooby Design — Brand Colors</div></div></div>
+      <div class="h-slide"><img src="images/brand/Slide_04.jpg" alt="Typography" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>04</div><div class=h-slide-ph-l>Typography</div></div>'"><div class="s-info"><div class="s-cat">Typography</div><div class="s-title">Rooby Design — Brand Typography</div></div></div>
+      <div class="h-slide"><img src="images/brand/Slide_05.jpg" alt="Brand Mockup" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>05</div><div class=h-slide-ph-l>Mockups</div></div>'"><div class="s-info"><div class="s-cat">Brand Mockup</div><div class="s-title">Rooby Design — Mockup Collection</div></div></div>
+      <div class="s-ui" id="sUI"></div>
+      <div class="s-nav"><button class="s-btn" onclick="hNav(-1)">&#8593;</button><button class="s-btn" onclick="hNav(1)">&#8595;</button></div>
     </div>
   </div>
-  <div class="scroll-ind"><div class="scroll-line"></div><span class="scroll-text" data-i18n="scroll">Scroll to explore</span></div>
+  <div class="sc-ind"><div class="sc-line"></div><span class="sc-t" data-i="scroll">Scroll to explore</span></div>
 </section>
 
 <!-- MARQUEE -->
-<div class="marquee-wrap"><div class="marquee-track" id="marqueeTrack"></div></div>
+<div class="mq"><div class="mq-t" id="mqT"></div></div>
 
 <div class="divider"></div>
 
 <!-- TABS -->
-<div class="main-tabs" id="mainTabs">
-  <button class="main-tab active" onclick="switchTab('graphic')" data-i18n="graphic">Graphic Design</button>
-  <button class="main-tab" onclick="switchTab('photography')" data-i18n="photography">Photography</button>
+<div class="tabs" id="tabsBar">
+  <button class="tab on" onclick="swTab('graphic')" data-i="graphic">Graphic Design</button>
+  <button class="tab" onclick="swTab('photo')" data-i="photo">Photography</button>
 </div>
 
-<!-- GRAPHIC -->
-<div class="tab-content active" id="tab-graphic">
-  <section id="graphic">
-    <div class="section-header reveal"><span class="section-num">01</span><h2 class="section-title" data-i18n="graphic">Graphic Design</h2><div class="section-line"></div></div>
-    <div class="cat-filters reveal">
-      <button class="cat-btn active" onclick="filterG('graphic','all',this)" data-i18n="all">All</button>
-      <button class="cat-btn" onclick="filterG('graphic','logo',this)">Logo &amp; Identity</button>
-      <button class="cat-btn" onclick="filterG('graphic','flyer',this)" data-i18n="flyers">Flyers &amp; Affiches</button>
-      <button class="cat-btn" onclick="filterG('graphic','trifold',this)">Trifold</button>
-      <button class="cat-btn" onclick="filterG('graphic','visitcard',this)" data-i18n="visitcard">Visit Card</button>
-      <button class="cat-btn" onclick="filterG('graphic','weddingcard',this)" data-i18n="weddingcard">Wedding Card</button>
-      <button class="cat-btn" onclick="filterG('graphic','banner',this)" data-i18n="banners">Banni&egrave;res &amp; Roll-up</button>
+<!-- ═══════ GRAPHIC ═══════ -->
+<div class="tc on" id="tc-graphic">
+  <div class="section" id="graphic">
+    <div class="sec-hd reveal"><span class="sec-n">01</span><h2 class="sec-t" data-i="graphic">Graphic Design</h2><div class="sec-l"></div></div>
+    <div class="cats reveal">
+      <button class="cat on" onclick="fG('graphic','all',this)" data-i="all">All</button>
+      <button class="cat" onclick="fG('graphic','logo',this)">Logo &amp; Identity</button>
+      <button class="cat" onclick="fG('graphic','flyer',this)" data-i="flyers">Flyers &amp; Affiches</button>
+      <button class="cat" onclick="fG('graphic','trifold',this)">Trifold</button>
+      <button class="cat" onclick="fG('graphic','visitcard',this)" data-i="visitcard">Visit Card</button>
+      <button class="cat" onclick="fG('graphic','weddingcard',this)" data-i="weddingcard">Wedding Card</button>
+      <button class="cat" onclick="fG('graphic','banner',this)" data-i="banners">Banni&egrave;res &amp; Roll-up</button>
     </div>
-    <div class="gallery-grid" id="gallery-graphic"></div>
-  </section>
+    <div class="g-grid" id="gg-graphic"></div>
+  </div>
 </div>
 
-<!-- PHOTOGRAPHY -->
-<div class="tab-content" id="tab-photography">
-  <section id="photography">
-    <div class="section-header reveal"><span class="section-num">02</span><h2 class="section-title" data-i18n="photography">Photography</h2><div class="section-line"></div></div>
-    <div class="cat-filters reveal">
-      <button class="cat-btn active" onclick="filterG('photography','all',this)" data-i18n="all">All</button>
-      <button class="cat-btn" onclick="filterG('photography','wedding',this)" data-i18n="wedding">Wedding</button>
-      <button class="cat-btn" onclick="filterG('photography','nature',this)" data-i18n="nature">Nature &amp; Paysage</button>
-      <button class="cat-btn" onclick="filterG('photography','couple',this)" data-i18n="couple">Couple</button>
-      <button class="cat-btn" onclick="filterG('photography','portrait',this)" data-i18n="portrait">Portrait</button>
-      <button class="cat-btn" onclick="filterG('photography','studio',this)" data-i18n="studio">Studio</button>
+<!-- ═══════ PHOTOGRAPHY ═══════ -->
+<div class="tc" id="tc-photo">
+  <div class="section" id="photography">
+    <div class="sec-hd reveal"><span class="sec-n">02</span><h2 class="sec-t" data-i="photo">Photography</h2><div class="sec-l"></div></div>
+    <div class="cats reveal">
+      <button class="cat on" onclick="fG('photo','all',this)" data-i="all">All</button>
+      <button class="cat" onclick="fG('photo','wedding',this)" data-i="wedding">Wedding</button>
+      <button class="cat" onclick="fG('photo','nature',this)" data-i="nature">Nature &amp; Paysage</button>
+      <button class="cat" onclick="fG('photo','couple',this)" data-i="couple">Couple</button>
+      <button class="cat" onclick="fG('photo','portrait',this)" data-i="portrait">Portrait</button>
+      <button class="cat" onclick="fG('photo','studio',this)" data-i="studio">Studio</button>
     </div>
-    <div class="gallery-grid" id="gallery-photography"></div>
-  </section>
+    <div class="g-grid" id="gg-photo"></div>
+  </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-header reveal"><span class="section-num">03</span><h2 class="section-title" data-i18n="services">Services &amp; Prices</h2><div class="section-line"></div></div>
-  <div class="services-grid reveal">
-    <div class="service-card"><div class="service-icon">&#127968;</div><div class="service-name">Logo &amp; Identity</div><div class="service-desc" data-i18n="svc1">Complete brand identity including logo, color palette, typography and usage guidelines.</div><div class="service-price">Starting at $50</div></div>
-    <div class="service-card"><div class="service-icon">&#128247;</div><div class="service-name" data-i18n="photography">Photography</div><div class="service-desc" data-i18n="svc2">Professional photo sessions — portrait, couple, wedding, studio, events and nature.</div><div class="service-price">Starting at $80</div></div>
-    <div class="service-card"><div class="service-icon">&#128196;</div><div class="service-name" data-i18n="flyers">Flyers &amp; Posters</div><div class="service-desc" data-i18n="svc3">Eye-catching designs for events, promotions and marketing campaigns.</div><div class="service-price">Starting at $20</div></div>
-    <div class="service-card"><div class="service-icon">&#128140;</div><div class="service-name" data-i18n="cards">Visit &amp; Wedding Cards</div><div class="service-desc" data-i18n="svc4">Elegant business cards and personalized wedding invitation designs.</div><div class="service-price">Starting at $25</div></div>
-    <div class="service-card"><div class="service-icon">&#128230;</div><div class="service-name">Packaging</div><div class="service-desc" data-i18n="svc5">Product packaging design that stands out on the shelf and tells your brand story.</div><div class="service-price">Starting at $60</div></div>
-    <div class="service-card"><div class="service-icon">&#127987;</div><div class="service-name" data-i18n="banners">Banni&egrave;res &amp; Roll-up</div><div class="service-desc" data-i18n="svc6">Large format print designs for events, exhibitions and storefronts.</div><div class="service-price">Starting at $30</div></div>
+<!-- ═══════ PROFILE ═══════ -->
+<section class="section" id="profile">
+  <div class="sec-hd reveal"><span class="sec-n">03</span><h2 class="sec-t" data-i="profileTitle">About Me</h2><div class="sec-l"></div></div>
+  <div class="profile-grid">
+    <div class="reveal">
+      <div class="profile-img-wrap">
+        <img src="images/brand/Slide_02.jpg" alt="Jean Robenson Raymonvil" class="profile-img" onerror="this.src='images/brand/Slide_01.png'">
+        <div class="profile-img-fr"></div>
+        <div class="profile-badge">
+          <div class="profile-badge-n">8+</div>
+          <div class="profile-badge-l" data-i="yearsExp">Years of Experience</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-r">
+      <h2 class="profile-name">Jean Robenson<br>Raymonvil</h2>
+      <div class="profile-title">Graphic Designer | Photographer | Network Engineer</div>
+      <p class="profile-bio" data-i="bio">Professional with <strong>8+ years of experience</strong> at the intersection of design, technology, and strategy. Specialized in graphic design, photography, and IT networks. Passionate about transforming ideas into impactful visual solutions and digital experiences.</p>
+
+      <div class="skills-label" data-i="skillsLabel">Core Skills</div>
+      <div class="skills-grid">
+        <div class="skill-item"><span class="skill-icon">🎨</span><span class="skill-name">Graphic Design</span></div>
+        <div class="skill-item"><span class="skill-icon">📸</span><span class="skill-name">Photography</span></div>
+        <div class="skill-item"><span class="skill-icon">🌐</span><span class="skill-name">Cisco Networking</span></div>
+        <div class="skill-item"><span class="skill-icon">🎬</span><span class="skill-name">Multimedia</span></div>
+        <div class="skill-item"><span class="skill-icon">🖥️</span><span class="skill-name">Adobe Creative Suite</span></div>
+        <div class="skill-item"><span class="skill-icon">📱</span><span class="skill-name">Social Media Design</span></div>
+      </div>
+
+      <div class="skills-label" data-i="expLabel">Experience</div>
+      <div class="exp-grid">
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div>
+            <div class="exp-role">CEO &amp; Creative Director</div>
+            <div class="exp-org">Rooby Design</div>
+            <div class="exp-yr">2018 — Present</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div>
+            <div class="exp-role" data-i="professorRole">Professor — Graphic Design &amp; Networks</div>
+            <div class="exp-org" data-i="professorOrg">Technical Institute</div>
+            <div class="exp-yr">2019 — Present</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-dot"></div>
+          <div>
+            <div class="exp-role" data-i="mmRole">Multimedia Manager</div>
+            <div class="exp-org" data-i="mmOrg">Media Organization</div>
+            <div class="exp-yr">2016 — 2020</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-label" data-i="certLabel">Certifications</div>
+      <div class="cert-row">
+        <div class="cert-tag">CCNA</div>
+        <div class="cert-tag">Cisco Academy</div>
+        <div class="cert-tag">Adobe Certified</div>
+        <div class="cert-tag">IT Networks</div>
+      </div>
+
+      <div class="skills-label" data-i="langLabel">Languages</div>
+      <div class="lang-row">
+        <div class="lang-tag">Créole</div>
+        <div class="lang-tag">Français</div>
+        <div class="lang-tag">English</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-header reveal"><span class="section-num">04</span><h2 class="section-title" data-i18n="testimonials">Testimonials</h2><div class="section-line"></div></div>
-  <div class="testimonials-grid reveal">
-    <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text" data-i18n="t1">Rooby Design created our logo and brand identity from scratch. The result exceeded all our expectations — professional, creative and delivered on time.</div><div class="testimonial-author"><div class="testimonial-avatar">MJ</div><div><div class="testimonial-name">Marie Joseph</div><div class="testimonial-role">CEO, Cooking Xpress</div></div></div></div>
-    <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text" data-i18n="t2">Our wedding photos are absolutely stunning. Jean captured every special moment with such artistry and sensitivity. We will treasure these memories forever.</div><div class="testimonial-author"><div class="testimonial-avatar">KP</div><div><div class="testimonial-name">Karl &amp; Patricia</div><div class="testimonial-role" data-i18n="weddingClient">Wedding Clients</div></div></div></div>
-    <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text" data-i18n="t3">The flyers and banners designed for our event were incredible. Everyone asked who designed them. 100% recommend Rooby Design for any graphic project.</div><div class="testimonial-author"><div class="testimonial-avatar">DS</div><div><div class="testimonial-name">David Saint-Fleur</div><div class="testimonial-role" data-i18n="eventOrg">Event Organizer</div></div></div></div>
+<!-- ═══════ WHY CHOOSE ME ═══════ -->
+<section class="section" id="why">
+  <div class="sec-hd reveal"><span class="sec-n">04</span><h2 class="sec-t" data-i="why">Why Choose Me</h2><div class="sec-l"></div></div>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <div class="why-ico">🏆</div>
+      <div class="why-n" data-target-why="8">0</div>
+      <div class="why-t" data-i="years">Years Experience</div>
+      <div class="why-d" data-i="whyD1">Proven expertise in design, photography and IT networks since 2018.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-ico">📁</div>
+      <div class="why-n" data-target-why="240">0</div>
+      <div class="why-t" data-i="projects">Projects Done</div>
+      <div class="why-d" data-i="whyD2">240+ successful projects delivered to clients across multiple industries.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-ico">⚡</div>
+      <div class="why-n">48H</div>
+      <div class="why-t" data-i="fastDel">Fast Delivery</div>
+      <div class="why-d" data-i="whyD3">Quick turnaround without compromising on quality and attention to detail.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-ico">💎</div>
+      <div class="why-n">100%</div>
+      <div class="why-t" data-i="satisfaction">Satisfaction</div>
+      <div class="why-d" data-i="whyD4">Every project is delivered to the highest standard. Your satisfaction is guaranteed.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-ico">🌐</div>
+      <div class="why-n">3</div>
+      <div class="why-t" data-i="domains">Domains</div>
+      <div class="why-d" data-i="whyD5">Unique combination of design, photography and IT networking expertise.</div>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header reveal"><span class="section-num">05</span><h2 class="section-title" data-i18n="about">About</h2><div class="section-line"></div></div>
-  <div class="about-wrap">
-    <div class="about-text reveal">
-      <p><strong>Rooby Design</strong> <span data-i18n="about1">is a creative studio founded in April 2018 by Jean Robenson Raymonvil.</span></p>
-      <p data-i18n="about2">Specialized in multidisciplinary graphic design and photography, we create impactful visuals for independent businesses and major brands alike.</p>
-      <p data-i18n="about3">From brand identity to wedding cards, flyers to studio photography — every project is handled with passion, precision and professionalism.</p>
-      <div class="social-links">
-        <a href="https://instagram.com/roobydesign" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</a>
-        <a href="https://tiktok.com/@roobydesign" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>TikTok</a>
-        <a href="https://facebook.com/roobydesign" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</a>
-        <a href="https://youtube.com/@roobydesign" target="_blank" class="social-link"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a>
-      </div>
+<!-- ═══════ SERVICES ═══════ -->
+<section class="section" id="services">
+  <div class="sec-hd reveal"><span class="sec-n">05</span><h2 class="sec-t" data-i="services">Services &amp; Prices</h2><div class="sec-l"></div></div>
+  <div class="svc-grid reveal">
+    <div class="svc-card">
+      <div class="svc-ico">🏢</div>
+      <div class="svc-name">Branding &amp; Logo Design</div>
+      <div class="svc-desc" data-i="svc1d">Complete brand identity system designed to make your business unforgettable.</div>
+      <ul class="svc-list">
+        <li data-i="svc1i1">Logo design (3 concepts)</li>
+        <li data-i="svc1i2">Color palette &amp; typography</li>
+        <li data-i="svc1i3">Brand guidelines document</li>
+        <li data-i="svc1i4">All file formats (AI, PNG, SVG)</li>
+      </ul>
+      <div class="svc-price">Starting at $50</div>
+      <button class="svc-cta" onclick="bookService('Branding & Logo Design')" data-i="bookBtn">Book this service &#8594;</button>
     </div>
-    <div class="about-details reveal">
-      <div class="detail-row"><span class="detail-key">CEO</span><span class="detail-val">Jean Robenson Raymonvil</span></div>
-      <div class="detail-row"><span class="detail-key" data-i18n="founded">Founded</span><span class="detail-val">April 2018</span></div>
-      <div class="detail-row"><span class="detail-key" data-i18n="specialty">Specialty</span><span class="detail-val" data-i18n="specialtyVal">Graphic Design &amp; Photography</span></div>
-      <div class="detail-row"><span class="detail-key">Email</span><span class="detail-val">roobydesign@gmail.com</span></div>
-      <div class="detail-row"><span class="detail-key">Phone</span><span class="detail-val">+509 3770 4274</span></div>
-      <div class="detail-row"><span class="detail-key">WhatsApp</span><span class="detail-val">+509 3770 4274</span></div>
+    <div class="svc-card">
+      <div class="svc-ico">📸</div>
+      <div class="svc-name" data-i="photoSvc">Photography Sessions</div>
+      <div class="svc-desc" data-i="svc2d">Professional photo sessions that capture your most important moments.</div>
+      <ul class="svc-list">
+        <li data-i="svc2i1">Wedding &amp; couple photography</li>
+        <li data-i="svc2i2">Portrait &amp; studio sessions</li>
+        <li data-i="svc2i3">Event coverage</li>
+        <li data-i="svc2i4">Nature &amp; landscape</li>
+      </ul>
+      <div class="svc-price">Starting at $80</div>
+      <button class="svc-cta" onclick="bookService('Photography Session')" data-i="bookBtn">Book this service &#8594;</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-ico">🎯</div>
+      <div class="svc-name" data-i="mktSvc">Marketing Design</div>
+      <div class="svc-desc" data-i="svc3d">Eye-catching marketing materials that drive results for your business.</div>
+      <ul class="svc-list">
+        <li data-i="svc3i1">Flyers &amp; posters</li>
+        <li data-i="svc3i2">Social media content</li>
+        <li data-i="svc3i3">Banners &amp; roll-ups</li>
+        <li data-i="svc3i4">Trifold brochures</li>
+      </ul>
+      <div class="svc-price">Starting at $20</div>
+      <button class="svc-cta" onclick="bookService('Marketing Design')" data-i="bookBtn">Book this service &#8594;</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-ico">💌</div>
+      <div class="svc-name" data-i="cardSvc">Cards &amp; Invitations</div>
+      <div class="svc-desc" data-i="svc4d">Elegant designs for your most important occasions and professional presence.</div>
+      <ul class="svc-list">
+        <li data-i="svc4i1">Wedding invitation cards</li>
+        <li data-i="svc4i2">Professional visit cards</li>
+        <li data-i="svc4i3">Thank you cards</li>
+        <li data-i="svc4i4">Custom event invitations</li>
+      </ul>
+      <div class="svc-price">Starting at $25</div>
+      <button class="svc-cta" onclick="bookService('Cards & Invitations')" data-i="bookBtn">Book this service &#8594;</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-ico">📦</div>
+      <div class="svc-name">Packaging Design</div>
+      <div class="svc-desc" data-i="svc5d">Product packaging that stands out on shelves and tells your brand story.</div>
+      <ul class="svc-list">
+        <li data-i="svc5i1">Box &amp; label design</li>
+        <li data-i="svc5i2">3D mockup visualization</li>
+        <li data-i="svc5i3">Print-ready files</li>
+        <li data-i="svc5i4">Multiple variations</li>
+      </ul>
+      <div class="svc-price">Starting at $60</div>
+      <button class="svc-cta" onclick="bookService('Packaging Design')" data-i="bookBtn">Book this service &#8594;</button>
+    </div>
+    <div class="svc-card">
+      <div class="svc-ico">🌐</div>
+      <div class="svc-name">IT &amp; Network Services</div>
+      <div class="svc-desc" data-i="svc6d">Professional Cisco network design and IT consulting for businesses.</div>
+      <ul class="svc-list">
+        <li data-i="svc6i1">Network architecture design</li>
+        <li data-i="svc6i2">Cisco configuration</li>
+        <li data-i="svc6i3">IT consulting</li>
+        <li data-i="svc6i4">Technical training</li>
+      </ul>
+      <div class="svc-price" data-i="contactPrice">Contact for pricing</div>
+      <button class="svc-cta" onclick="bookService('IT & Network Services')" data-i="bookBtn">Book this service &#8594;</button>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-header reveal"><span class="section-num">06</span><h2 class="section-title" data-i18n="contact">Contact</h2><div class="section-line"></div></div>
-  <div class="contact-wrap">
-    <div class="contact-form reveal">
-      <div class="form-row">
-        <div class="form-group"><label class="form-label" data-i18n="firstName">First Name</label><input type="text" class="form-input" id="fname" placeholder="Your name"></div>
-        <div class="form-group"><label class="form-label" data-i18n="lastName">Last Name</label><input type="text" class="form-input" id="lname" placeholder="Your last name"></div>
+<!-- ═══════ CTA ═══════ -->
+<div class="cta-section">
+  <div class="cta-eye reveal" data-i="readyQ">Ready to start your project?</div>
+  <h2 class="cta-title reveal">Let's Bring Your<br><span data-i="visionCTA">Vision to Life</span></h2>
+  <p class="cta-sub reveal" data-i="ctaSub">Professional design and photography services tailored to your needs</p>
+  <div class="cta-btns reveal">
+    <a href="#contact" class="btn-g" data-i="hireMe">Hire Me &#8594;</a>
+    <a href="#contact" class="btn-o" data-i="contactMe">Contact Me</a>
+    <a href="https://wa.me/50937704274" target="_blank" class="wa-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.122 1.533 5.854L.057 23.5l5.784-1.517A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.49-5.186-1.349l-.371-.22-3.844 1.008 1.028-3.737-.242-.385A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════ TESTIMONIALS ═══════ -->
+<section class="section" id="testimonials">
+  <div class="sec-hd reveal"><span class="sec-n">06</span><h2 class="sec-t" data-i="testimonials">Testimonials</h2><div class="sec-l"></div></div>
+  <div class="test-grid reveal">
+    <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-txt" data-i="t1">Rooby Design created our logo and brand identity from scratch. The result exceeded all our expectations — professional, creative and delivered on time.</div><div class="test-auth"><div class="test-av">MJ</div><div><div class="test-name">Marie Joseph</div><div class="test-role">CEO, Cooking Xpress</div></div></div></div>
+    <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-txt" data-i="t2">Our wedding photos are absolutely stunning. Jean captured every special moment with such artistry and sensitivity. We will treasure these forever.</div><div class="test-auth"><div class="test-av">KP</div><div><div class="test-name">Karl &amp; Patricia</div><div class="test-role" data-i="weddingC">Wedding Clients</div></div></div></div>
+    <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-txt" data-i="t3">The flyers and banners for our event were incredible. Everyone asked who made them. 100% recommend Rooby Design for any creative project.</div><div class="test-auth"><div class="test-av">DS</div><div><div class="test-name">David Saint-Fleur</div><div class="test-role" data-i="eventOrg">Event Organizer</div></div></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════ ABOUT COMPANY ═══════ -->
+<section class="section" id="about">
+  <div class="sec-hd reveal"><span class="sec-n">07</span><h2 class="sec-t" data-i="aboutStudio">About the Studio</h2><div class="sec-l"></div></div>
+  <div class="about-grid">
+    <div class="about-txt reveal">
+      <p><strong>Rooby Design</strong> <span data-i="about1">is a creative studio founded in April 2018 by Jean Robenson Raymonvil.</span></p>
+      <p data-i="about2">Specialized in graphic design, photography and IT, we deliver impactful visuals for businesses of all sizes worldwide.</p>
+      <p data-i="about3">Every project is handled with passion, precision and professionalism — guaranteed.</p>
+      <div class="soc-links">
+        <a href="https://instagram.com/roobydesign" target="_blank" class="soc-link"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</a>
+        <a href="https://tiktok.com/@roobydesign" target="_blank" class="soc-link"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>TikTok</a>
+        <a href="https://facebook.com/roobydesign" target="_blank" class="soc-link"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</a>
+        <a href="https://youtube.com/@roobydesign" target="_blank" class="soc-link"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>YouTube</a>
       </div>
-      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="femail" placeholder="your@email.com"></div>
-      <div class="form-group"><label class="form-label">Phone / WhatsApp</label><input type="tel" class="form-input" id="fphone" placeholder="+509 ..."></div>
-      <div class="form-group">
-        <label class="form-label" data-i18n="serviceLabel">Service Needed</label>
-        <select class="form-select" id="fservice">
-          <option value="" data-i18n="selectService">Select a service...</option>
-          <option>Logo &amp; Visual Identity</option>
-          <option data-i18n="photoPortrait">Photography — Portrait</option>
-          <option data-i18n="photoWedding">Photography — Wedding</option>
-          <option data-i18n="photoCouple">Photography — Couple</option>
-          <option data-i18n="photoStudio">Photography — Studio</option>
-          <option data-i18n="photoEvent">Photography — Event</option>
-          <option>Flyers &amp; Posters</option>
-          <option>Visit Card</option>
-          <option>Wedding Card</option>
-          <option>Trifold</option>
-          <option>Bannières &amp; Roll-up</option>
-          <option>Packaging</option>
-          <option data-i18n="other">Other</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label" data-i18n="message">Message</label><textarea class="form-textarea" id="fmessage" placeholder="Tell us about your project..."></textarea></div>
-      <button class="form-submit" onclick="submitForm()" data-i18n="send">Send Message &#8594;</button>
-      <div class="form-success" id="formSuccess" data-i18n="sent">&#10003; Message sent! We will get back to you within 24 hours.</div>
     </div>
-    <div class="contact-info reveal">
-      <div class="contact-info-item"><div class="contact-info-label">Email</div><div class="contact-info-val">roobydesign@gmail.com</div></div>
-      <div class="contact-info-item"><div class="contact-info-label">Phone &amp; WhatsApp</div><div class="contact-info-val">+509 3770 4274</div></div>
-      <div class="contact-info-item"><div class="contact-info-label">Instagram</div><div class="contact-info-val">@roobydesign</div></div>
-      <div class="contact-info-item"><div class="contact-info-label">TikTok</div><div class="contact-info-val">@roobydesign</div></div>
-      <div class="contact-info-item"><div class="contact-info-label">Facebook</div><div class="contact-info-val">roobydesign</div></div>
-      <div class="contact-info-item"><div class="contact-info-label">YouTube</div><div class="contact-info-val">@roobydesign</div></div>
+    <div class="reveal">
+      <div class="det-row"><span class="det-k">CEO</span><span class="det-v">Jean Robenson Raymonvil</span></div>
+      <div class="det-row"><span class="det-k" data-i="founded">Founded</span><span class="det-v">April 2018</span></div>
+      <div class="det-row"><span class="det-k" data-i="specialty">Specialty</span><span class="det-v" data-i="specialtyV">Design, Photo &amp; IT</span></div>
+      <div class="det-row"><span class="det-k">Email</span><span class="det-v">infos@roobydesign.com</span></div>
+      <div class="det-row"><span class="det-k">Phone</span><span class="det-v">+509 3770 4274</span></div>
+      <div class="det-row"><span class="det-k">WhatsApp</span><span class="det-v">+509 3770 4274</span></div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<div class="divider"></div>
+
+<!-- ═══════ CONTACT ═══════ -->
+<section class="section" id="contact">
+  <div class="sec-hd reveal"><span class="sec-n">08</span><h2 class="sec-t" data-i="contact">Contact</h2><div class="sec-l"></div></div>
+  <div class="contact-grid">
+    <div class="form reveal" id="contactForm">
+      <div class="f-row">
+        <div class="f-grp">
+          <label class="f-label" data-i="firstName">First Name *</label>
+          <div class="f-wrap"><span class="f-ico">👤</span><input type="text" class="f-in" id="f-fname" placeholder="Your first name"></div>
+          <div class="f-err" id="e-fname" data-i="errName">Please enter your name</div>
+        </div>
+        <div class="f-grp">
+          <label class="f-label" data-i="lastName">Last Name</label>
+          <div class="f-wrap"><span class="f-ico">👤</span><input type="text" class="f-in" id="f-lname" placeholder="Your last name"></div>
+        </div>
+      </div>
+      <div class="f-grp">
+        <label class="f-label">Email *</label>
+        <div class="f-wrap"><span class="f-ico">✉️</span><input type="email" class="f-in" id="f-email" placeholder="your@email.com"></div>
+        <div class="f-err" id="e-email" data-i="errEmail">Please enter a valid email</div>
+      </div>
+      <div class="f-grp">
+        <label class="f-label">Phone / WhatsApp</label>
+        <div class="f-wrap"><span class="f-ico">📞</span><input type="tel" class="f-in" id="f-phone" placeholder="+509 ..."></div>
+      </div>
+      <div class="f-grp">
+        <label class="f-label" data-i="serviceLabel">Service Needed</label>
+        <div class="f-wrap"><span class="f-ico">🎯</span>
+          <select class="f-sel" id="f-service">
+            <option value="" data-i="selectSvc">Select a service...</option>
+            <option>Branding &amp; Logo Design</option>
+            <option>Photography — Wedding</option>
+            <option>Photography — Portrait</option>
+            <option>Photography — Studio</option>
+            <option>Photography — Event</option>
+            <option>Flyers &amp; Marketing Design</option>
+            <option>Visit Card</option>
+            <option>Wedding Card</option>
+            <option>Packaging Design</option>
+            <option>IT &amp; Network Services</option>
+            <option data-i="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="f-grp">
+        <label class="f-label" data-i="message">Message *</label>
+        <div class="f-wrap"><span class="f-ico-top">💬</span><textarea class="f-ta" id="f-msg" placeholder="Tell us about your project, your budget and deadline..."></textarea></div>
+        <div class="f-err" id="e-msg" data-i="errMsg">Please write your message</div>
+      </div>
+      <button class="f-submit" id="f-btn" onclick="submitForm()"><span id="f-btn-t" data-i="send">Send Message</span> <span id="f-btn-i">&#8594;</span></button>
+      <div class="f-ok" id="f-ok" data-i="sent">✓ Message sent! We'll get back to you within 24 hours.</div>
+      <div class="f-fail" id="f-fail" data-i="failed">✗ Failed to send. Please email us directly at infos@roobydesign.com</div>
+    </div>
+    <div class="c-info reveal">
+      <div class="c-info-item"><div class="c-info-k" data-i="mainEmail">Main Email</div><div class="c-info-v">infos@roobydesign.com</div></div>
+      <div class="c-info-item"><div class="c-info-k" data-i="adminEmail">Admin</div><div class="c-info-v">admin@roobydesign.com</div></div>
+      <div class="c-info-item"><div class="c-info-k" data-i="techEmail">Tech</div><div class="c-info-v">tech@roobydesign.com</div></div>
+      <div class="c-info-item"><div class="c-info-k">Phone &amp; WhatsApp</div><div class="c-info-v">+509 3770 4274</div></div>
+      <div class="c-info-item"><div class="c-info-k">Instagram</div><div class="c-info-v">@roobydesign</div></div>
+      <div class="c-info-item"><div class="c-info-k">TikTok</div><div class="c-info-v">@roobydesign</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
 <footer>
-  <div class="footer-top">
+  <div class="ft-top">
     <div>
-      <div class="footer-logo-text">Rooby Design</div>
-      <div class="footer-tagline" data-i18n="footerTag">Professional graphic design &amp; photography studio.<br>Creating visuals that mark since 2018.</div>
-    </div>
-    <div>
-      <div class="footer-col-title" data-i18n="navigation">Navigation</div>
-      <div class="footer-links">
-        <a href="#" onclick="switchTab('graphic');return false;" data-i18n="graphic">Graphic Design</a>
-        <a href="#" onclick="switchTab('photography');return false;" data-i18n="photography">Photography</a>
-        <a href="#services" data-i18n="services">Services &amp; Prices</a>
-        <a href="#testimonials" data-i18n="testimonials">Testimonials</a>
-        <a href="#about" data-i18n="about">About</a>
-        <a href="#contact" data-i18n="contact">Contact</a>
+      <div class="ft-logo">Rooby Design</div>
+      <div class="ft-tag" data-i="footerTag">Premium graphic design, photography<br>&amp; IT services since 2018.</div>
+      <div class="ft-emails">
+        <a href="mailto:infos@roobydesign.com" class="ft-email">✉ infos@roobydesign.com</a>
+        <a href="mailto:admin@roobydesign.com" class="ft-email">✉ admin@roobydesign.com</a>
+        <a href="mailto:tech@roobydesign.com" class="ft-email">✉ tech@roobydesign.com</a>
       </div>
     </div>
     <div>
-      <div class="footer-col-title" data-i18n="followUs">Follow Us</div>
-      <div class="footer-socials">
-        <a href="https://instagram.com/roobydesign" target="_blank" class="footer-social" title="Instagram">IG</a>
-        <a href="https://tiktok.com/@roobydesign" target="_blank" class="footer-social" title="TikTok">TK</a>
-        <a href="https://facebook.com/roobydesign" target="_blank" class="footer-social" title="Facebook">FB</a>
-        <a href="https://youtube.com/@roobydesign" target="_blank" class="footer-social" title="YouTube">YT</a>
-        <a href="https://wa.me/50937704274" target="_blank" class="footer-social" title="WhatsApp">WA</a>
+      <div class="ft-col-t" data-i="navigation">Navigation</div>
+      <div class="ft-links">
+        <a href="#" onclick="swTab('graphic');return false;" data-i="graphic">Graphic Design</a>
+        <a href="#" onclick="swTab('photo');return false;" data-i="photo">Photography</a>
+        <a href="#profile" data-i="profileTitle">About Me</a>
+        <a href="#services" data-i="services">Services</a>
+        <a href="#testimonials" data-i="testimonials">Testimonials</a>
+        <a href="#contact" data-i="contact">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-col-t" data-i="followUs">Follow Us</div>
+      <div class="ft-socs">
+        <a href="https://instagram.com/roobydesign" target="_blank" class="ft-soc" title="Instagram">IG</a>
+        <a href="https://tiktok.com/@roobydesign" target="_blank" class="ft-soc" title="TikTok">TK</a>
+        <a href="https://facebook.com/roobydesign" target="_blank" class="ft-soc" title="Facebook">FB</a>
+        <a href="https://youtube.com/@roobydesign" target="_blank" class="ft-soc" title="YouTube">YT</a>
+        <a href="https://wa.me/50937704274" target="_blank" class="ft-soc" title="WhatsApp">WA</a>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">&copy; 2026 Rooby Design &mdash; <span data-i18n="rights">All rights reserved</span></div>
-    <div class="footer-made">Jean Robenson Raymonvil</div>
+  <div class="ft-bot">
+    <div class="ft-copy">&copy; 2026 Rooby Design &mdash; <span data-i="rights">All rights reserved</span> &mdash; Jean Robenson Raymonvil</div>
+    <div class="ft-made" data-i="builtWith">Built with passion &amp; precision</div>
   </div>
 </footer>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
+<div class="lb-wrap" id="lb">
   <button class="lb-close" onclick="closeLB()">&times;</button>
-  <button class="lb-prev" onclick="lbNav(-1)">&#8592;</button>
-  <button class="lb-next" onclick="lbNav(1)">&#8594;</button>
-  <img id="lbImg" src="" alt="">
-  <div class="lb-info" id="lbInfo"></div>
+  <button class="lb-prev" onclick="lbN(-1)">&#8592;</button>
+  <button class="lb-next" onclick="lbN(1)">&#8594;</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-inf" id="lb-inf"></div>
 </div>
 
 <script>
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
 // TRANSLATIONS
-// ══════════════════════════════════════════
-var i18n = {
-  en: {
-    loading:'Loading Portfolio 2026',menu:'Menu',graphic:'Graphic Design',photography:'Photography',
-    services:'Services & Prices',testimonials:'Testimonials',about:'About',contact:'Contact',
-    portfolio:'Portfolio 2026',visual:'Visual Identity',viewWork:'View Work',getInTouch:'Get in Touch',
-    years:'Years',projects:'Projects',satisfaction:'% Satisfaction',scroll:'Scroll to explore',
-    all:'All',flyers:'Flyers & Affiches',visitcard:'Visit Card',weddingcard:'Wedding Card',
-    banners:'Bannières & Roll-up',wedding:'Wedding',nature:'Nature & Landscape',couple:'Couple',
-    portrait:'Portrait',studio:'Studio',svc1:'Complete brand identity including logo, color palette, typography and usage guidelines.',
-    svc2:'Professional photo sessions — portrait, couple, wedding, studio, events and nature.',
-    svc3:'Eye-catching designs for events, promotions and marketing campaigns.',
-    svc4:'Elegant business cards and personalized wedding invitation designs.',
-    svc5:'Product packaging design that stands out on the shelf and tells your brand story.',
-    svc6:'Large format print designs for events, exhibitions and storefronts.',
-    t1:'Rooby Design created our logo and brand identity from scratch. The result exceeded all our expectations — professional, creative and delivered on time.',
-    t2:'Our wedding photos are absolutely stunning. Jean captured every special moment with such artistry and sensitivity. We will treasure these memories forever.',
-    t3:'The flyers and banners designed for our event were incredible. Everyone asked who designed them. 100% recommend Rooby Design for any graphic project.',
-    weddingClient:'Wedding Clients',eventOrg:'Event Organizer',
-    about1:'is a creative studio founded in April 2018 by Jean Robenson Raymonvil.',
-    about2:'Specialized in multidisciplinary graphic design and photography, we create impactful visuals for independent businesses and major brands alike.',
-    about3:'From brand identity to wedding cards, flyers to studio photography — every project is handled with passion, precision and professionalism.',
-    founded:'Founded',specialty:'Specialty',specialtyVal:'Graphic Design & Photography',
-    firstName:'First Name',lastName:'Last Name',serviceLabel:'Service Needed',
-    selectService:'Select a service...',photoPortrait:'Photography — Portrait',
-    photoWedding:'Photography — Wedding',photoCouple:'Photography — Couple',
-    photoStudio:'Photography — Studio',photoEvent:'Photography — Event',
-    other:'Other',message:'Message',send:'Send Message →',
-    sent:'✓ Message sent! We will get back to you within 24 hours.',
-    footerTag:'Professional graphic design & photography studio.<br>Creating visuals that mark since 2018.',
-    navigation:'Navigation',followUs:'Follow Us',rights:'All rights reserved',
-    cookie:'We use cookies to improve your experience.',accept:'Accept',decline:'Decline',
-    cards:'Visit & Wedding Cards',
-  },
-  fr: {
-    loading:'Chargement Portfolio 2026',menu:'Menu',graphic:'Design Graphique',photography:'Photographie',
-    services:'Services & Tarifs',testimonials:'Témoignages',about:'À Propos',contact:'Contact',
-    portfolio:'Portfolio 2026',visual:'Identité Visuelle',viewWork:'Voir le Travail',getInTouch:'Nous Contacter',
-    years:'Années',projects:'Projets',satisfaction:'% Satisfaction',scroll:'Défiler pour explorer',
-    all:'Tout',flyers:'Flyers & Affiches',visitcard:'Carte de Visite',weddingcard:'Faire-Part',
-    banners:'Bannières & Roll-up',wedding:'Mariage',nature:'Nature & Paysage',couple:'Couple',
-    portrait:'Portrait',studio:'Studio',
-    svc1:'Identité de marque complète incluant logo, palette de couleurs, typographie et guide d\'utilisation.',
-    svc2:'Séances photo professionnelles — portrait, couple, mariage, studio, événements et nature.',
-    svc3:'Designs accrocheurs pour événements, promotions et campagnes marketing.',
-    svc4:'Cartes de visite élégantes et faire-part de mariage personnalisés.',
-    svc5:'Design d\'emballage produit qui se démarque et raconte l\'histoire de votre marque.',
-    svc6:'Designs grand format pour événements, expositions et devantures.',
-    t1:'Rooby Design a créé notre logo et notre identité de marque de zéro. Le résultat a dépassé toutes nos attentes — professionnel, créatif et livré à temps.',
-    t2:'Nos photos de mariage sont absolument magnifiques. Jean a capturé chaque moment spécial avec art et sensibilité. Nous chérirons ces souvenirs pour toujours.',
-    t3:'Les flyers et bannières conçus pour notre événement étaient incroyables. Tout le monde demandait qui les avait créés. 100% recommande Rooby Design.',
-    weddingClient:'Clients Mariage',eventOrg:'Organisateur d\'Événements',
-    about1:'est un studio créatif fondé en avril 2018 par Jean Robenson Raymonvil.',
-    about2:'Spécialisé en design graphique multidisciplinaire et photographie, nous créons des visuels percutants pour les entreprises indépendantes comme les grandes marques.',
-    about3:'De l\'identité de marque aux faire-part, des flyers à la photographie studio — chaque projet est traité avec passion, précision et professionnalisme.',
-    founded:'Fondé',specialty:'Spécialité',specialtyVal:'Design Graphique & Photographie',
-    firstName:'Prénom',lastName:'Nom',serviceLabel:'Service Souhaité',
-    selectService:'Choisir un service...',photoPortrait:'Photographie — Portrait',
-    photoWedding:'Photographie — Mariage',photoCouple:'Photographie — Couple',
-    photoStudio:'Photographie — Studio',photoEvent:'Photographie — Événement',
-    other:'Autre',message:'Message',send:'Envoyer →',
-    sent:'✓ Message envoyé ! Nous vous répondrons dans les 24 heures.',
-    footerTag:'Studio professionnel de design graphique & photographie.<br>Créer des visuels qui marquent depuis 2018.',
-    navigation:'Navigation',followUs:'Nous Suivre',rights:'Tous droits réservés',
-    cookie:'Nous utilisons des cookies pour améliorer votre expérience.',accept:'Accepter',decline:'Refuser',
-    cards:'Cartes de Visite & Faire-Part',
-  },
-  ht: {
-    loading:'Chajman Pòtfolyo 2026',menu:'Meni',graphic:'Dèsèn Grafik',photography:'Fotografi',
-    services:'Sèvis & Pri',testimonials:'Temwayaj',about:'Sou Nou',contact:'Kontakte',
-    portfolio:'Pòtfolyo 2026',visual:'Idantite Vizyèl',viewWork:'Wè Travay',getInTouch:'Kontakte Nou',
-    years:'Ane',projects:'Pwojè',satisfaction:'% Satisfaksyon',scroll:'Défile pou eksplore',
-    all:'Tout',flyers:'Flyers & Afich',visitcard:'Kat Vizit',weddingcard:'Kart Maryaj',
-    banners:'Banyè & Roll-up',wedding:'Maryaj',nature:'Nati & Peyzaj',couple:'Koup',
-    portrait:'Pòtrè',studio:'Studio',
-    svc1:'Idantite mak konplè ak logo, palèt koulè, tipografi ak gid itilizasyon.',
-    svc2:'Sesyon foto pwofesyonèl — pòtrè, koup, maryaj, studio, evènman ak nati.',
-    svc3:'Dèsèn ki atiran pou evènman, pwomosyon ak kanpay maketing.',
-    svc4:'Kat vizit eleg ak envitasyon maryaj pèsonalize.',
-    svc5:'Dèsèn pakaj pwodwi ki fè diferans ak rakonte istwa mak ou a.',
-    svc6:'Dèsèn gran fòma pou evènman, ekspozisyon ak devantin.',
-    t1:'Rooby Design te kreye logo nou an ak idantite mak nou an depi nan kòmansman. Rezilta a depase tout espwa nou — pwofesyonèl, kreyatif ak delivre a tan.',
-    t2:'Foto maryaj nou yo absoilman bèl. Jean te kaptire chak moman espesyal ak atizay ak santiman. Nou pral cheri souvni sa yo pou toujou.',
-    t3:'Flyers ak banyè yo te kreye pou evènman nou an te incrwayab. Tout moun te mande ki moun ki te fè yo. 100% rekòmande Rooby Design.',
-    weddingClient:'Kliyan Maryaj',eventOrg:'Òganizatè Evènman',
-    about1:'se yon studio kreyatif ki te fonde an avril 2018 pa Jean Robenson Raymonvil.',
-    about2:'Espesyalize nan dèsèn grafik multidisiplinè ak fotografi, nou kreye vizyèl ki fò pou biznis endepandan ak gwo mak.',
-    about3:'Depi idantite mak rive nan kart maryaj, flyers rive nan fotografi studio — chak pwojè trete ak pasyon, presizyon ak pwofesyonalism.',
-    founded:'Fondé',specialty:'Espesyalite',specialtyVal:'Dèsèn Grafik & Fotografi',
-    firstName:'Prenon',lastName:'Non',serviceLabel:'Sèvis Bezwen',
-    selectService:'Chwazi yon sèvis...',photoPortrait:'Fotografi — Pòtrè',
-    photoWedding:'Fotografi — Maryaj',photoCouple:'Fotografi — Koup',
-    photoStudio:'Fotografi — Studio',photoEvent:'Fotografi — Evènman',
-    other:'Lòt',message:'Mesaj',send:'Voye →',
-    sent:'✓ Mesaj voye! Nou pral reponn ou nan 24 èdtan.',
-    footerTag:'Studio pwofesyonèl dèsèn grafik & fotografi.<br>Kreye vizyèl ki make depi 2018.',
-    navigation:'Navigasyon',followUs:'Swiv Nou',rights:'Tout dwa rezève',
-    cookie:'Nou itilize cookies pou amelyore eksperyans ou.',accept:'Aksepte',decline:'Refize',
-    cards:'Kat Vizit & Kart Maryaj',
-  }
+// ══════════════════════════════════════
+var T = {
+en:{loading:'Loading Portfolio 2026',menu:'Menu',graphic:'Graphic Design',photo:'Photography',profile:'About Me',why:'Why Choose Me',services:'Services & Prices',testimonials:'Testimonials',contact:'Contact',about:'About',portfolio:'Portfolio 2026',visual:'Visual Identity',viewWork:'View Work',hireMe:'Hire Me',years:'Years',projects:'Projects',satisfaction:'% Satisfaction',scroll:'Scroll to explore',all:'All',flyers:'Flyers & Affiches',visitcard:'Visit Card',weddingcard:'Wedding Card',banners:'Bannières & Roll-up',wedding:'Wedding',nature:'Nature & Landscape',couple:'Couple',portrait:'Portrait',studio:'Studio',profileTitle:'About Me',yearsExp:'Years of Experience',bio:'Professional with <strong>8+ years of experience</strong> at the intersection of design, technology, and strategy. Specialized in graphic design, photography, and IT networks. Passionate about transforming ideas into impactful visual solutions.',skillsLabel:'Core Skills',expLabel:'Experience',certLabel:'Certifications',langLabel:'Languages',professorRole:'Professor — Graphic Design & Networks',professorOrg:'Technical Institute',mmRole:'Multimedia Manager',mmOrg:'Media Organization',whyD1:'Proven expertise in design, photography and IT networks since 2018.',whyD2:'240+ successful projects delivered to clients across multiple industries.',whyD3:'Quick turnaround without compromising on quality and attention to detail.',whyD4:'Every project is delivered to the highest standard. Your satisfaction is guaranteed.',whyD5:'Unique combination of design, photography and IT networking expertise.',fastDel:'Fast Delivery',domains:'Domains',svc1d:'Complete brand identity system designed to make your business unforgettable.',svc1i1:'Logo design (3 concepts)',svc1i2:'Color palette & typography',svc1i3:'Brand guidelines document',svc1i4:'All file formats (AI, PNG, SVG)',photoSvc:'Photography Sessions',svc2d:'Professional photo sessions that capture your most important moments.',svc2i1:'Wedding & couple photography',svc2i2:'Portrait & studio sessions',svc2i3:'Event coverage',svc2i4:'Nature & landscape',mktSvc:'Marketing Design',svc3d:'Eye-catching marketing materials that drive results for your business.',svc3i1:'Flyers & posters',svc3i2:'Social media content',svc3i3:'Banners & roll-ups',svc3i4:'Trifold brochures',cardSvc:'Cards & Invitations',svc4d:'Elegant designs for your most important occasions.',svc4i1:'Wedding invitation cards',svc4i2:'Professional visit cards',svc4i3:'Thank you cards',svc4i4:'Custom event invitations',svc5d:'Product packaging that stands out on shelves.',svc5i1:'Box & label design',svc5i2:'3D mockup visualization',svc5i3:'Print-ready files',svc5i4:'Multiple variations',svc6d:'Professional Cisco network design and IT consulting.',svc6i1:'Network architecture design',svc6i2:'Cisco configuration',svc6i3:'IT consulting',svc6i4:'Technical training',contactPrice:'Contact for pricing',bookBtn:'Book this service →',readyQ:'Ready to start your project?',visionCTA:'Vision to Life',ctaSub:'Professional design and photography services tailored to your needs',contactMe:'Contact Me',t1:'Rooby Design created our logo and brand identity from scratch. The result exceeded all our expectations — professional, creative and delivered on time.',t2:"Our wedding photos are absolutely stunning. Jean captured every special moment with such artistry and sensitivity. We will treasure these forever.",t3:'The flyers and banners for our event were incredible. Everyone asked who made them. 100% recommend Rooby Design for any creative project.',weddingC:'Wedding Clients',eventOrg:'Event Organizer',aboutStudio:'About the Studio',about1:'is a creative studio founded in April 2018 by Jean Robenson Raymonvil.',about2:'Specialized in graphic design, photography and IT, we deliver impactful visuals for businesses of all sizes.',about3:'Every project is handled with passion, precision and professionalism — guaranteed.',founded:'Founded',specialty:'Specialty',specialtyV:'Design, Photo & IT',firstName:'First Name *',lastName:'Last Name',serviceLabel:'Service Needed',selectSvc:'Select a service...',other:'Other',message:'Message *',send:'Send Message',sent:'✓ Message sent! We\'ll get back to you within 24 hours.',failed:'✗ Failed to send. Please email us at infos@roobydesign.com',errName:'Please enter your name',errEmail:'Please enter a valid email',errMsg:'Please write your message',mainEmail:'Main Email',adminEmail:'Admin Email',techEmail:'Tech Email',navigation:'Navigation',followUs:'Follow Us',rights:'All rights reserved',footerTag:'Premium graphic design, photography & IT services since 2018.',builtWith:'Built with passion & precision',accept:'Accept',decline:'Decline',cookie:'We use cookies to improve your experience.',about:'About'},
+fr:{loading:'Chargement Portfolio 2026',menu:'Menu',graphic:'Design Graphique',photo:'Photographie',profile:'À Propos',why:'Pourquoi Me Choisir',services:'Services & Tarifs',testimonials:'Témoignages',contact:'Contact',about:'À Propos',portfolio:'Portfolio 2026',visual:'Identité Visuelle',viewWork:'Voir le Travail',hireMe:'M\'engager',years:'Années',projects:'Projets',satisfaction:'% Satisfaction',scroll:'Défiler pour explorer',all:'Tout',flyers:'Flyers & Affiches',visitcard:'Carte de Visite',weddingcard:'Faire-Part',banners:'Bannières & Roll-up',wedding:'Mariage',nature:'Nature & Paysage',couple:'Couple',portrait:'Portrait',studio:'Studio',profileTitle:'À Propos de Moi',yearsExp:"Années d'Expérience",bio:'Professionnel avec <strong>8+ ans d\'expérience</strong> à l\'intersection du design, de la technologie et de la stratégie. Spécialisé en design graphique, photographie et réseaux IT. Passionné par la transformation d\'idées en solutions visuelles percutantes.',skillsLabel:'Compétences Clés',expLabel:'Expérience',certLabel:'Certifications',langLabel:'Langues',professorRole:'Professeur — Design Graphique & Réseaux',professorOrg:'Institut Technique',mmRole:'Gestionnaire Multimédia',mmOrg:'Organisation Médias',whyD1:'Expertise prouvée en design, photographie et réseaux IT depuis 2018.',whyD2:'240+ projets réussis livrés à des clients de multiples secteurs.',whyD3:'Livraison rapide sans compromettre la qualité et l\'attention aux détails.',whyD4:'Chaque projet est livré au plus haut standard. Votre satisfaction est garantie.',whyD5:'Combinaison unique de compétences en design, photographie et réseaux IT.',fastDel:'Livraison Rapide',domains:'Domaines',svc1d:'Système d\'identité de marque complet conçu pour rendre votre entreprise inoubliable.',svc1i1:'Logo design (3 concepts)',svc1i2:'Palette de couleurs & typographie',svc1i3:'Guide de marque',svc1i4:'Tous formats (AI, PNG, SVG)',photoSvc:'Séances Photo',svc2d:'Séances photo professionnelles qui capturent vos moments les plus importants.',svc2i1:'Photographie mariage & couple',svc2i2:'Séances portrait & studio',svc2i3:'Couverture d\'événements',svc2i4:'Nature & paysage',mktSvc:'Design Marketing',svc3d:'Matériaux marketing accrocheurs qui génèrent des résultats.',svc3i1:'Flyers & affiches',svc3i2:'Contenu réseaux sociaux',svc3i3:'Bannières & roll-ups',svc3i4:'Brochures trifold',cardSvc:'Cartes & Invitations',svc4d:'Designs élégants pour vos occasions les plus importantes.',svc4i1:'Faire-part de mariage',svc4i2:'Cartes de visite pro',svc4i3:'Cartes de remerciement',svc4i4:'Invitations événements',svc5d:'Packaging produit qui se démarque en rayon.',svc5i1:'Design boîte & étiquette',svc5i2:'Visualisation 3D mockup',svc5i3:'Fichiers prêts à imprimer',svc5i4:'Variations multiples',svc6d:'Conception réseau Cisco pro et consulting IT.',svc6i1:'Architecture réseau',svc6i2:'Configuration Cisco',svc6i3:'Consulting IT',svc6i4:'Formation technique',contactPrice:'Contactez pour tarif',bookBtn:'Réserver ce service →',readyQ:'Prêt à démarrer votre projet ?',visionCTA:'Vision en Réalité',ctaSub:'Services de design et photographie professionnels adaptés à vos besoins',contactMe:'Me Contacter',t1:'Rooby Design a créé notre logo et identité de marque de zéro. Le résultat a dépassé toutes nos attentes.',t2:'Nos photos de mariage sont absolument magnifiques. Jean a capturé chaque moment avec art et sensibilité.',t3:'Les flyers et bannières pour notre événement étaient incroyables. Tout le monde demandait qui les avait créés.',weddingC:'Clients Mariage',eventOrg:"Organisateur d'Événements",aboutStudio:'À Propos du Studio',about1:'est un studio créatif fondé en avril 2018 par Jean Robenson Raymonvil.',about2:'Spécialisé en design graphique, photographie et IT, nous créons des visuels percutants pour toutes tailles d\'entreprises.',about3:'Chaque projet est traité avec passion, précision et professionnalisme — garanti.',founded:'Fondé',specialty:'Spécialité',specialtyV:'Design, Photo & IT',firstName:'Prénom *',lastName:'Nom',serviceLabel:'Service Souhaité',selectSvc:'Choisir un service...',other:'Autre',message:'Message *',send:'Envoyer',sent:'✓ Message envoyé ! Nous vous répondrons dans les 24h.',failed:'✗ Échec envoi. Écrivez-nous à infos@roobydesign.com',errName:'Veuillez entrer votre nom',errEmail:'Veuillez entrer un email valide',errMsg:'Veuillez écrire votre message',mainEmail:'Email Principal',adminEmail:'Email Admin',techEmail:'Email Tech',navigation:'Navigation',followUs:'Nous Suivre',rights:'Tous droits réservés',footerTag:'Services premium de design graphique, photographie & IT depuis 2018.',builtWith:'Créé avec passion & précision',accept:'Accepter',decline:'Refuser',cookie:'Nous utilisons des cookies pour améliorer votre expérience.',about:'À Propos'},
+ht:{loading:'Chajman Pòtfolyo 2026',menu:'Meni',graphic:'Dèsèn Grafik',photo:'Fotografi',profile:'Sou Mwen',why:'Poukisa Chwazi Mwen',services:'Sèvis & Pri',testimonials:'Temwayaj',contact:'Kontakte',about:'Sou Nou',portfolio:'Pòtfolyo 2026',visual:'Idantite Vizyèl',viewWork:'Wè Travay',hireMe:'Angaje Mwen',years:'Ane',projects:'Pwojè',satisfaction:'% Satisfaksyon',scroll:'Défile pou eksplore',all:'Tout',flyers:'Flyers & Afich',visitcard:'Kat Vizit',weddingcard:'Kart Maryaj',banners:'Banyè & Roll-up',wedding:'Maryaj',nature:'Nati & Peyzaj',couple:'Koup',portrait:'Pòtrè',studio:'Studio',profileTitle:'Sou Mwen',yearsExp:"Ane Eksperyans",bio:'Pwofesyonèl ak <strong>8+ ane eksperyans</strong> nan kafou dèsèn, teknoloji ak estrateji. Espesyalize nan dèsèn grafik, fotografi ak rezo IT. Pasyone pou transfòme lide an solisyon vizyèl ki gen enpak.',skillsLabel:'Konpetans Prensipal',expLabel:'Eksperyans',certLabel:'Sètifikasyon',langLabel:'Lang',professorRole:'Pwofesè — Dèsèn Grafik & Rezo',professorOrg:'Enstiti Teknik',mmRole:'Jesyonè Multimedia',mmOrg:'Òganizasyon Medya',whyD1:'Ekspètiz pwouve nan dèsèn, fotografi ak rezo IT depi 2018.',whyD2:'240+ pwojè siksè livreye bay kliyan nan plizyè sektè.',whyD3:'Livrezon rapid san konpwomi sou kalite ak atansyon pou detay.',whyD4:'Chak pwojè livreye nan pi wo estanda. Satisfaksyon ou garanti.',whyD5:'Kombinezòn inik nan dèsèn, fotografi ak konpetans rezo IT.',fastDel:'Livrezon Rapid',domains:'Domèn',svc1d:'Sistèm idantite mak konplè ki fèt pou rann biznis ou inoubliab.',svc1i1:'Dèsèn logo (3 konsèp)',svc1i2:'Palèt koulè & tipografi',svc1i3:'Dokiman gid mak',svc1i4:'Tout fòma (AI, PNG, SVG)',photoSvc:'Sesyon Foto',svc2d:'Sesyon foto pwofesyonèl ki kaptire moman ki pi enpòtan yo.',svc2i1:'Fotografi maryaj & koup',svc2i2:'Sesyon pòtrè & studio',svc2i3:'Kouvèti evènman',svc2i4:'Nati & peyzaj',mktSvc:'Dèsèn Maketing',svc3d:'Materyèl maketing ki atiran ki bay rezilta.',svc3i1:'Flyers & afich',svc3i2:'Kontni rezo sosyal',svc3i3:'Banyè & roll-ups',svc3i4:'Bwochi trifold',cardSvc:'Kat & Envitasyon',svc4d:'Dèsèn eleg pou okazyon ki pi enpòtan yo.',svc4i1:'Kart envitasyon maryaj',svc4i2:'Kat vizit pwofesyonèl',svc4i3:'Kat remèsiman',svc4i4:'Envitasyon evènman pèsonalize',svc5d:'Pakaj pwodwi ki fè diferans sou etajè.',svc5i1:'Dèsèn bwat & etikèt',svc5i2:'Vizwalizasyon 3D mockup',svc5i3:'Fichye prè pou enprime',svc5i4:'Plizyè varyasyon',svc6d:'Konsepsyon rezo Cisco pwofesyonèl ak konsiltasyon IT.',svc6i1:'Achitekti rezo',svc6i2:'Konfigirasyon Cisco',svc6i3:'Konsiltasyon IT',svc6i4:'Fòmasyon teknik',contactPrice:'Kontakte pou pri',bookBtn:'Rezève sèvis sa a →',readyQ:'Prè pou kòmanse pwojè ou?',visionCTA:'Vizyon Reyalize',ctaSub:'Sèvis dèsèn ak fotografi pwofesyonèl adapte pou bezwen ou',contactMe:'Kontakte Mwen',t1:'Rooby Design te kreye logo nou an ak idantite mak nou an depi nan kòmansman. Rezilta a te depase tout espwa nou.',t2:'Foto maryaj nou yo absoilman bèl. Jean te kaptire chak moman espesyal ak atizay ak santiman.',t3:'Flyers ak banyè yo pou evènman nou an te incrwayab. Tout moun te mande ki moun ki te fè yo.',weddingC:'Kliyan Maryaj',eventOrg:'Òganizatè Evènman',aboutStudio:'Sou Studio A',about1:'se yon studio kreyatif ki te fonde an avril 2018 pa Jean Robenson Raymonvil.',about2:'Espesyalize nan dèsèn grafik, fotografi ak IT, nou kreye vizyèl ki fò pou biznis tout gwosè.',about3:'Chak pwojè trete ak pasyon, presizyon ak pwofesyonalism — garanti.',founded:'Fonde',specialty:'Espesyalite',specialtyV:'Dèsèn, Photo & IT',firstName:'Prenon *',lastName:'Non',serviceLabel:'Sèvis Bezwen',selectSvc:'Chwazi yon sèvis...',other:'Lòt',message:'Mesaj *',send:'Voye',sent:'✓ Mesaj voye! Nou pral reponn ou nan 24 èdtan.',failed:'✗ Echèk voye. Ekri nou nan infos@roobydesign.com',errName:'Tanpri antre non ou',errEmail:'Tanpri antre yon imèl valid',errMsg:'Tanpri ekri mesaj ou',mainEmail:'Imèl Prensipal',adminEmail:'Imèl Admin',techEmail:'Imèl Teknik',navigation:'Navigasyon',followUs:'Swiv Nou',rights:'Tout dwa rezève',footerTag:'Sèvis dèsèn grafik, fotografi & IT pwoofesyonèl depi 2018.',builtWith:'Kreye ak pasyon & presizyon',accept:'Aksepte',decline:'Refize',cookie:'Nou itilize cookies pou amelyore eksperyans ou.',about:'Sou Nou'}
 };
-
-var currentLang = 'en';
-
-function detectLang(){
-  var nav = navigator.language || navigator.userLanguage || 'en';
-  var l = nav.substring(0,2).toLowerCase();
-  if(l === 'fr') return 'fr';
-  if(l === 'ht') return 'ht';
-  return 'en';
-}
-
-function setLang(lang){
-  currentLang = lang;
-  var t = i18n[lang];
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var key = el.dataset.i18n;
-    if(t[key] !== undefined){
-      if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA'){
-        el.placeholder = t[key];
-      } else if(el.tagName === 'OPTION'){
-        el.textContent = t[key];
-      } else {
-        el.innerHTML = t[key];
-      }
-    }
+var lang = 'en';
+function detectL(){var n=navigator.language||'en';var l=n.substring(0,2).toLowerCase();return l==='fr'?'fr':l==='ht'?'ht':'en';}
+function setL(l){
+  lang=l;var t=T[l];
+  document.querySelectorAll('[data-i]').forEach(function(el){
+    var k=el.dataset.i;if(!t[k])return;
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){el.placeholder=t[k];}
+    else if(el.tagName==='OPTION'){el.textContent=t[k];}
+    else{el.innerHTML=t[k];}
   });
-  document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('active'); });
-  var btn = document.getElementById('btn-'+lang);
-  if(btn) btn.classList.add('active');
-  document.documentElement.lang = lang;
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
+  var lb=document.getElementById('lb-'+l);if(lb)lb.classList.add('on');
+  document.documentElement.lang=l;
 }
 
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
 // CURSOR
-// ══════════════════════════════════════════
-var cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-document.addEventListener('mousemove',function(e){
-  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
-  ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';
-});
-document.querySelectorAll('a,button,.gallery-item,.cat-btn,.service-card,.testimonial-card').forEach(function(el){
-  el.addEventListener('mouseenter',function(){ring.classList.add('expand');});
-  el.addEventListener('mouseleave',function(){ring.classList.remove('expand');});
+// ══════════════════════════════════════
+var C=document.getElementById('cur'),CR=document.getElementById('cur-r');
+document.addEventListener('mousemove',function(e){C.style.left=e.clientX+'px';C.style.top=e.clientY+'px';CR.style.left=e.clientX+'px';CR.style.top=e.clientY+'px';});
+document.querySelectorAll('a,button,.g-item,.cat,.svc-card,.why-card,.test-card').forEach(function(el){
+  el.addEventListener('mouseenter',function(){CR.classList.add('big');});
+  el.addEventListener('mouseleave',function(){CR.classList.remove('big');});
 });
 
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
 // LOADER
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
 window.addEventListener('load',function(){
   setTimeout(function(){
-    document.getElementById('loader').classList.add('hidden');
-    startCounters();
-    showCookie();
-  },2400);
+    document.getElementById('loader').classList.add('out');
+    startCounters();startWhyCounters();
+    if(!localStorage.getItem('rd_ck'))setTimeout(function(){document.getElementById('cookie').classList.add('show');},1200);
+  },2500);
 });
 
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
 // THEME
-// ══════════════════════════════════════════
-function toggleTheme(){document.body.classList.toggle('light-mode');}
+// ══════════════════════════════════════
+function toggleTheme(){document.body.classList.toggle('light');}
 
-// ══════════════════════════════════════════
-// SCROLL
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
+// SCROLL EVENTS
+// ══════════════════════════════════════
 window.addEventListener('scroll',function(){
   var h=document.documentElement;
-  document.getElementById('progressBar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
-  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>80);
-  document.getElementById('backTop').classList.toggle('visible',window.scrollY>400);
-  document.querySelectorAll('.reveal').forEach(function(el){
-    if(el.getBoundingClientRect().top<window.innerHeight-60)el.classList.add('visible');
+  document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  document.getElementById('nav').classList.toggle('sm',window.scrollY>80);
+  document.getElementById('btt').classList.toggle('vis',window.scrollY>400);
+  document.querySelectorAll('.reveal,.reveal-r').forEach(function(el){
+    if(el.getBoundingClientRect().top<window.innerHeight-50)el.classList.add('vis');
   });
 });
 
-// ══════════════════════════════════════════
-// COUNTER
-// ══════════════════════════════════════════
-function startCounters(){
-  document.querySelectorAll('.stat-num[data-target]').forEach(function(el){
-    var target=parseInt(el.dataset.target),cur=0,step=target/80;
-    var t=setInterval(function(){
-      cur+=step;if(cur>=target){cur=target;clearInterval(t);}
-      el.textContent=Math.floor(cur)+(target===100?'%':'+');
-    },20);
-  });
+// ══════════════════════════════════════
+// COUNTERS
+// ══════════════════════════════════════
+function counter(el,target,suffix){
+  var c=0,step=target/70;
+  var t=setInterval(function(){c+=step;if(c>=target){c=target;clearInterval(t);}el.textContent=Math.floor(c)+suffix;},18);
 }
+function startCounters(){document.querySelectorAll('[data-target]').forEach(function(el){counter(el,parseInt(el.dataset.target),el.dataset.target==='100'?'%':'+');});}
+function startWhyCounters(){document.querySelectorAll('[data-target-why]').forEach(function(el){counter(el,parseInt(el.dataset.targetWhy),'+');});}
 
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
 // MARQUEE
-// ══════════════════════════════════════════
-var words=['Logo Design','Photography','Visual Identity','Wedding Card','Flyers','Trifold','Visit Card','Bannières','Studio','Portrait','Couple','Nature','Brand Identity','Graphic Design','Roll-up','Packaging'];
-var track=document.getElementById('marqueeTrack'),mhtml='';
-for(var w=0;w<4;w++)words.forEach(function(word,i){mhtml+='<div class="marquee-item'+(i%4===1?' hl':'')+'"><span class="mdot"></span>'+word+'</div>';});
-track.innerHTML=mhtml;
+// ══════════════════════════════════════
+var mwords=['Logo Design','Photography','Visual Identity','Wedding Card','Flyers','Trifold','Visit Card','Bannières','Studio','Portrait','Couple','Nature','Brand Identity','Graphic Design','Roll-up','Packaging','CCNA','Network'];
+var mt=document.getElementById('mqT'),mh='';
+for(var w=0;w<4;w++)mwords.forEach(function(wd,i){mh+='<div class="mq-i'+(i%5===2?' hl':'')+'"><span class="dot"></span>'+wd+'</div>';});
+mt.innerHTML=mh;
 
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
 // HERO SLIDESHOW
-// ══════════════════════════════════════════
-var hCur=0,hSlides=document.querySelectorAll('.hero-slide'),hTotal=hSlides.length;
-var hUI=document.getElementById('heroSlideUI'),hCnt=document.getElementById('heroCounter');
-hSlides.forEach(function(_,i){
-  var d=document.createElement('button');d.className='sdot'+(i===0?' active':'');
-  d.onclick=function(){goH(i);};hUI.appendChild(d);
-});
-function goH(n){
-  hSlides[hCur].classList.remove('active');hUI.querySelectorAll('.sdot')[hCur].classList.remove('active');
-  hCur=(n+hTotal)%hTotal;
-  hSlides[hCur].classList.add('active');hUI.querySelectorAll('.sdot')[hCur].classList.add('active');
-  hCnt.textContent=(hCur+1)+' / '+hTotal;
+// ══════════════════════════════════════
+var hC=0,hS=document.querySelectorAll('.h-slide'),hT=hS.length;
+var hUI=document.getElementById('sUI'),hCnt=document.getElementById('sCnt');
+hS.forEach(function(_,i){var d=document.createElement('button');d.className='s-dot'+(i===0?' on':'');d.onclick=function(){goS(i);};hUI.appendChild(d);});
+function goS(n){hS[hC].classList.remove('on');hUI.querySelectorAll('.s-dot')[hC].classList.remove('on');hC=(n+hT)%hT;hS[hC].classList.add('on');hUI.querySelectorAll('.s-dot')[hC].classList.add('on');hCnt.textContent=(hC+1)+' / '+hT;}
+function hNav(d){goS(hC+d);}
+setInterval(function(){goS(hC+1);},4500);
+
+// ══════════════════════════════════════
+// GALLERY
+// ══════════════════════════════════════
+var gAll=[],pAll=[],lbAll=[],lbI=0,exts=['.jpg','.JPG','.jpeg','.JPEG','.png','.PNG'],lqArr=[];
+function mkG(cat,lbl,base,cnt,st){st=st||1;for(var i=st;i<st+cnt;i++)gAll.push({cat:cat,label:lbl,file:'images/images/graphic/'+base+'_('+i+')'});}
+function mkP(cat,lbl,base,cnt,st,t){st=st||1;for(var i=st;i<st+cnt;i++)pAll.push({cat:cat,label:lbl,file:'images/images/photo/'+base+'_('+i+')',tall:!!t});}
+mkG('logo','Logo & Identity','Logo',29);mkG('flyer','Flyers & Affiches','Flyer',42);mkG('trifold','Trifold','Trifold',4);mkG('visitcard','Visit Card','VisitCard',7);mkG('weddingcard','Wedding Card','WeddingCard',8);mkG('banner','Bannières & Roll-up','Banner',9);
+mkP('wedding','Wedding','Wedding',13);mkP('nature','Nature & Paysage','Nature',31);mkP('couple','Couple','Couple',18,18);mkP('portrait','Portrait','Portrait',15,1,true);mkP('studio','Studio','Studio',66,1,true);
+
+function tryL(img,base,ei,par){
+  if(ei>=exts.length){if(par)par.innerHTML='<div class="g-ph"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>';return;}
+  img.onerror=function(){tryL(img,base,ei+1,par);};img.src=base+exts[ei];
 }
-function hNav(d){goH(hCur+d);}
-setInterval(function(){goH(hCur+1);},4500);
-
-// ══════════════════════════════════════════
-// GALLERY DATA
-// ══════════════════════════════════════════
-var gItems=[],pItems=[],exts=['.jpg','.JPG','.jpeg','.JPEG','.png','.PNG'];
-function addG(cat,label,base,count,start){start=start||1;for(var i=start;i<start+count;i++)gItems.push({cat:cat,label:label,file:'images/images/graphic/'+base+'_('+i+')'});}
-function addP(cat,label,base,count,start,tall){start=start||1;for(var i=start;i<start+count;i++)pItems.push({cat:cat,label:label,file:'images/images/photo/'+base+'_('+i+')',tall:!!tall});}
-addG('logo','Logo & Identity','Logo',29);
-addG('flyer','Flyers & Affiches','Flyer',42);
-addG('trifold','Trifold','Trifold',4);
-addG('visitcard','Visit Card','VisitCard',7);
-addG('weddingcard','Wedding Card','WeddingCard',8);
-addG('banner','Bannières & Roll-up','Banner',9);
-addP('wedding','Wedding','Wedding',13);
-addP('nature','Nature & Paysage','Nature',31);
-addP('couple','Couple','Couple',18,18);
-addP('portrait','Portrait','Portrait',15,1,true);
-addP('studio','Studio','Studio',66,1,true);
-
-// ══════════════════════════════════════════
-// BUILD GALLERIES WITH LAZY LOAD
-// ══════════════════════════════════════════
-var lbAll=[],lbIdx=0,lazyQueue=[];
-
-function tryL(img,base,eIdx,parent){
-  if(eIdx>=exts.length){
-    if(parent)parent.innerHTML='<div class="gallery-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>';
-    return;
-  }
-  img.onerror=function(){tryL(img,base,eIdx+1,parent);};
-  img.src=base+exts[eIdx];
-}
-
-function build(items,gridId){
-  var grid=document.getElementById(gridId);
+function buildG(items,gridId){
+  var g=document.getElementById(gridId);
   items.forEach(function(item){
-    var div=document.createElement('div');
-    div.className='gallery-item'+(item.tall?' tall':'');
-    div.dataset.cat=item.cat;div.dataset.idx=lbAll.length;
+    var d=document.createElement('div');d.className='g-item'+(item.tall?' tall':'');d.dataset.cat=item.cat;d.dataset.idx=lbAll.length;
     lbAll.push({file:item.file,label:item.label});
-    div.onclick=function(){openLB(parseInt(this.dataset.idx));};
-    var img=document.createElement('img');
-    img.alt=item.label;img.loading='lazy';
+    d.onclick=function(){openLB(parseInt(this.dataset.idx));};
+    var img=document.createElement('img');img.alt=item.label;img.loading='lazy';
     img.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
     img.dataset.base=item.file;
-    lazyQueue.push({img:img,base:item.file,parent:div});
-    var ov=document.createElement('div');ov.className='gallery-overlay';
-    ov.innerHTML='<div class="gallery-cat">'+item.label+'</div><div class="gallery-title">Rooby Design</div>';
-    var ic=document.createElement('div');ic.className='gallery-icon';ic.innerHTML='&#43;';
-    div.appendChild(img);div.appendChild(ov);div.appendChild(ic);grid.appendChild(div);
+    lqArr.push({img:img,base:item.file,par:d});
+    var ov=document.createElement('div');ov.className='g-ov';ov.innerHTML='<div class="g-cat">'+item.label+'</div><div class="g-ttl">Rooby Design</div>';
+    var ic=document.createElement('div');ic.className='g-ico';ic.innerHTML='&#43;';
+    d.appendChild(img);d.appendChild(ov);d.appendChild(ic);g.appendChild(d);
   });
 }
-
 function initLazy(){
-  if(!('IntersectionObserver' in window)){
-    lazyQueue.forEach(function(it){tryL(it.img,it.base,0,it.parent);});return;
-  }
-  var obs=new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(!entry.isIntersecting)return;
-      var img=entry.target;
-      tryL(img,img.dataset.base,0,img.parentNode);
-      obs.unobserve(img);
-    });
-  },{rootMargin:'300px 0px'});
-  lazyQueue.forEach(function(it){obs.observe(it.img);});
+  if(!('IntersectionObserver' in window)){lqArr.forEach(function(it){tryL(it.img,it.base,0,it.par);});return;}
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(!e.isIntersecting)return;var img=e.target;tryL(img,img.dataset.base,0,img.parentNode);obs.unobserve(img);});},{rootMargin:'300px'});
+  lqArr.forEach(function(it){obs.observe(it.img);});
+}
+buildG(gAll,'gg-graphic');buildG(pAll,'gg-photo');initLazy();
+
+// ══════════════════════════════════════
+// FILTER & TABS
+// ══════════════════════════════════════
+function fG(sec,cat,btn){
+  document.getElementById('gg-'+sec).querySelectorAll('.g-item').forEach(function(el){el.style.display=(cat==='all'||el.dataset.cat===cat)?'':'none';});
+  btn.closest('.cats').querySelectorAll('.cat').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');
+}
+function swTab(tab){
+  document.querySelectorAll('.tc').forEach(function(t){t.classList.remove('on');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+  document.getElementById('tc-'+tab).classList.add('on');
+  var tabs=document.querySelectorAll('.tab');if(tab==='graphic')tabs[0].classList.add('on');else tabs[1].classList.add('on');
+  document.getElementById('tabsBar').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-build(gItems,'gallery-graphic');
-build(pItems,'gallery-photography');
-initLazy();
-
-// ══════════════════════════════════════════
-// FILTER
-// ══════════════════════════════════════════
-function filterG(sec,cat,btn){
-  document.getElementById('gallery-'+sec).querySelectorAll('.gallery-item').forEach(function(item){
-    item.style.display=(cat==='all'||item.dataset.cat===cat)?'':'none';
-  });
-  btn.closest('.cat-filters').querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-}
-
-// ══════════════════════════════════════════
-// TABS
-// ══════════════════════════════════════════
-function switchTab(tab){
-  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
-  document.querySelectorAll('.main-tab').forEach(function(t){t.classList.remove('active');});
-  document.getElementById('tab-'+tab).classList.add('active');
-  var tabs=document.querySelectorAll('.main-tab');
-  if(tab==='graphic')tabs[0].classList.add('active');else tabs[1].classList.add('active');
-  document.getElementById('mainTabs').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
 // LIGHTBOX
-// ══════════════════════════════════════════
-function openLB(idx){
-  lbIdx=idx;var item=lbAll[lbIdx];
-  var tmp=new Image();tryL(tmp,item.file,0,null);
-  tmp.onload=function(){document.getElementById('lbImg').src=tmp.src;};
-  document.getElementById('lbInfo').textContent=item.label+' — '+(lbIdx+1)+' / '+lbAll.length;
-  document.getElementById('lightbox').classList.add('open');
-}
-function lbNav(dir){
-  lbIdx=(lbIdx+dir+lbAll.length)%lbAll.length;
-  var item=lbAll[lbIdx];var tmp=new Image();
-  tryL(tmp,item.file,0,null);tmp.onload=function(){document.getElementById('lbImg').src=tmp.src;};
-  document.getElementById('lbInfo').textContent=item.label+' — '+(lbIdx+1)+' / '+lbAll.length;
-}
-function closeLB(){document.getElementById('lightbox').classList.remove('open');}
-document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLB();});
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape')closeLB();
-  if(e.key==='ArrowRight')lbNav(1);
-  if(e.key==='ArrowLeft')lbNav(-1);
-});
+// ══════════════════════════════════════
+function openLB(i){lbI=i;var it=lbAll[lbI];var tmp=new Image();tryL(tmp,it.file,0,null);tmp.onload=function(){document.getElementById('lb-img').src=tmp.src;};document.getElementById('lb-inf').textContent=it.label+' — '+(lbI+1)+' / '+lbAll.length;document.getElementById('lb').classList.add('on');}
+function lbN(d){lbI=(lbI+d+lbAll.length)%lbAll.length;var it=lbAll[lbI];var tmp=new Image();tryL(tmp,it.file,0,null);tmp.onload=function(){document.getElementById('lb-img').src=tmp.src;};document.getElementById('lb-inf').textContent=it.label+' — '+(lbI+1)+' / '+lbAll.length;}
+function closeLB(){document.getElementById('lb').classList.remove('on');}
+document.getElementById('lb').addEventListener('click',function(e){if(e.target===this)closeLB();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLB();if(e.key==='ArrowRight')lbN(1);if(e.key==='ArrowLeft')lbN(-1);});
 
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
 // DROPDOWN
-// ══════════════════════════════════════════
-function toggleDD(id){
-  var li=document.getElementById(id);var o=li.classList.contains('open');
-  document.querySelectorAll('.nav-right > li').forEach(function(l){l.classList.remove('open');});
-  if(!o)li.classList.add('open');
-}
-function closeDD(){document.querySelectorAll('.nav-right > li').forEach(function(l){l.classList.remove('open');});}
-document.addEventListener('click',function(e){if(!e.target.closest('.nav-right > li'))closeDD();});
+// ══════════════════════════════════════
+function toggleDD(){var li=document.getElementById('ddLi');li.classList.toggle('on');}
+function cDD(){document.getElementById('ddLi').classList.remove('on');}
+document.addEventListener('click',function(e){if(!e.target.closest('#ddLi'))cDD();});
 
-// ══════════════════════════════════════════
-// FORM
-// ══════════════════════════════════════════
+// ══════════════════════════════════════
+// CONTACT FORM (EmailJS + fallback)
+// ══════════════════════════════════════
+// Initialize EmailJS - replace with your actual public key
+try{emailjs.init({publicKey:'YOUR_EMAILJS_PUBLIC_KEY'});}catch(e){}
+
+function validate(){
+  var ok=true;
+  var name=document.getElementById('f-fname').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var msg=document.getElementById('f-msg').value.trim();
+  var en=document.getElementById('e-fname'),ee=document.getElementById('e-email'),em=document.getElementById('e-msg');
+  en.classList.remove('show');ee.classList.remove('show');em.classList.remove('show');
+  if(!name){en.classList.add('show');ok=false;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ee.classList.add('show');ok=false;}
+  if(!msg){em.classList.add('show');ok=false;}
+  return ok;
+}
+
 function submitForm(){
-  var name=document.getElementById('fname').value;
-  var email=document.getElementById('femail').value;
-  var service=document.getElementById('fservice').value;
-  var msg=document.getElementById('fmessage').value;
-  if(!name||!email||!msg){alert('Please fill in all required fields.');return;}
-  var wa='https://wa.me/50937704274?text='+encodeURIComponent('Hello Rooby Design!\n\nName: '+name+'\nEmail: '+email+'\nService: '+service+'\n\nMessage: '+msg);
+  if(!validate())return;
+  var btn=document.getElementById('f-btn');var btnT=document.getElementById('f-btn-t');var btnI=document.getElementById('f-btn-i');
+  btn.disabled=true;btnT.textContent='Sending...';btnI.textContent='⏳';
+  var name=document.getElementById('f-fname').value.trim()+' '+document.getElementById('f-lname').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var phone=document.getElementById('f-phone').value.trim();
+  var service=document.getElementById('f-service').value;
+  var msg=document.getElementById('f-msg').value.trim();
+  var params={to_email:'infos@roobydesign.com',cc_email:'admin@roobydesign.com',bcc_email:'tech@roobydesign.com',from_name:name,from_email:email,phone:phone||'Not provided',service:service||'Not specified',message:msg,reply_to:email};
+  // Try EmailJS first
+  try{
+    emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',params).then(function(){
+      showSuccess(btn,btnT,btnI);
+    },function(){fallbackSend(name,email,phone,service,msg,btn,btnT,btnI);});
+  }catch(e){fallbackSend(name,email,phone,service,msg,btn,btnT,btnI);}
+}
+
+function fallbackSend(name,email,phone,service,msg,btn,btnT,btnI){
+  // Fallback: open WhatsApp
+  var wa='https://wa.me/50937704274?text='+encodeURIComponent('Hello Rooby Design!\n\nName: '+name+'\nEmail: '+email+'\nPhone: '+phone+'\nService: '+service+'\n\nMessage:\n'+msg);
   window.open(wa,'_blank');
-  document.getElementById('formSuccess').style.display='block';
+  showSuccess(btn,btnT,btnI);
 }
 
-// ══════════════════════════════════════════
+function showSuccess(btn,btnT,btnI){
+  btn.disabled=false;btnT.dataset.i='send';btnI.textContent='→';
+  setL(lang); // refresh button text
+  document.getElementById('f-ok').style.display='block';
+  setTimeout(function(){document.getElementById('f-ok').style.display='none';},6000);
+}
+
+function bookService(svc){
+  document.getElementById('f-service').value=svc;
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+}
+
+// ══════════════════════════════════════
 // COOKIE
-// ══════════════════════════════════════════
-function showCookie(){
-  if(!localStorage.getItem('rd_cookie')){
-    setTimeout(function(){document.getElementById('cookieBanner').classList.add('show');},1000);
-  }
-}
-function acceptCookie(){localStorage.setItem('rd_cookie','1');document.getElementById('cookieBanner').classList.remove('show');}
-function declineCookie(){document.getElementById('cookieBanner').classList.remove('show');}
+// ══════════════════════════════════════
+function ckAcc(){localStorage.setItem('rd_ck','1');document.getElementById('cookie').classList.remove('show');}
+function ckDec(){document.getElementById('cookie').classList.remove('show');}
 
-// ══════════════════════════════════════════
-// REVEAL ON LOAD + LANG DETECT
-// ══════════════════════════════════════════
-setTimeout(function(){
-  document.querySelectorAll('.reveal').forEach(function(el){
-    if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('visible');
-  });
-},2500);
-
-// Auto-detect language
-setLang(detectLang());
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+setL(detectL());
+setTimeout(function(){document.querySelectorAll('.reveal,.reveal-r').forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight)el.classList.add('vis');});},2600);
 </script>
 </body>
 </html>
-ENDOFFILE
+HTMLEOF
 echo "Done: $(wc -c < /mnt/user-data/outputs/index.html) bytes"
 Output
 
-Done: 75316 bytes
+Command argument is 101_363 bytes, exceeding the 100_000-byte per-argument limit. For large content, pipe via stdin or use a file-write API instead of embedding the content inline in the command. Argument preview: 'cat > /mnt/user-data/outputs/index.html << \'HTMLEOF\'\n<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>Rooby '
