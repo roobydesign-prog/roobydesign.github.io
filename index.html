@@ -38,8 +38,107 @@ img{max-width:100%;display:block}
 button{font-family:'Outfit',sans-serif;cursor:none}
 
 /* ═══════════════════════════════════════════
-   CURSOR
+   WEDDING PACKAGES
 ═══════════════════════════════════════════ */
+.wb-intro{color:var(--l3);font-size:14px;line-height:1.8;margin-bottom:40px;max-width:700px}
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:40px}
+.pkg-card{border:1px solid rgba(201,168,76,.13);background:var(--d2);padding:32px 28px;position:relative;cursor:pointer;transition:all .3s var(--ease)}
+.pkg-card:hover,.pkg-card.selected{border-color:var(--gold);background:var(--d3);transform:translateY(-4px)}
+.pkg-bronze{border-top:3px solid #cd7f32}
+.pkg-silver{border-top:3px solid #c0c0c0}
+.pkg-gold{border-top:3px solid var(--gold)}
+.pkg-badge{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.12em;margin-bottom:12px}
+.pkg-bronze .pkg-badge{color:#cd7f32}
+.pkg-silver .pkg-badge{color:#c0c0c0}
+.pkg-gold .pkg-badge{color:var(--gold)}
+.pkg-price{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--light);line-height:1;margin-bottom:20px}
+.pkg-price span{font-size:18px;color:var(--l3);margin-left:4px}
+.pkg-ribbon{position:absolute;top:14px;right:14px;background:var(--gold);color:#080808;font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;font-weight:700}
+.pkg-list{list-style:none;margin-bottom:24px}
+.pkg-list li{padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;color:var(--l3);display:flex;align-items:center;gap:8px}
+.pkg-list li::before{content:'✓';color:var(--gold);font-weight:700;font-size:11px;flex-shrink:0}
+.pkg-cta{width:100%;padding:12px;background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:none;transition:all .25s}
+.pkg-cta:hover,.pkg-card.selected .pkg-cta{background:var(--gold);color:#080808;border-color:var(--gold)}
+.extras-section{margin-bottom:40px}
+.extras-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;margin-bottom:16px;color:var(--l3)}
+.extras-grid{display:flex;flex-wrap:wrap;gap:12px}
+.extra-item{display:flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid rgba(255,255,255,.08);cursor:none;transition:all .2s;font-size:13px;color:var(--l3)}
+.extra-item:hover{border-color:rgba(201,168,76,.3);color:var(--light)}
+.extra-cb{accent-color:var(--gold);width:15px;height:15px}
+.book-form{background:var(--d2);border:1px solid rgba(201,168,76,.12);padding:36px;border-top:2px solid var(--gold)}
+.book-form-hd{display:flex;align-items:center;gap:14px;font-family:'Bebas Neue',sans-serif;font-size:22px;margin-bottom:28px;letter-spacing:.06em}
+.book-pkg-badge{padding:4px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;border:1px solid var(--gold);color:var(--gold);font-family:'Outfit',sans-serif}
+.book-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.book-summary{background:var(--d3);border:1px solid rgba(201,168,76,.15);padding:18px 20px;margin:20px 0;border-left:3px solid var(--gold)}
+.bsum-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:13px;color:var(--l3)}
+.bsum-total{border-top:1px solid rgba(255,255,255,.06);padding-top:10px;margin-top:6px;font-size:15px;color:var(--light)}
+.gold-txt{color:var(--gold)!important}
+.book-note{text-align:center;font-size:12px;color:var(--gold);margin-top:16px;letter-spacing:.04em;opacity:.75}
+
+/* ═══════════════════════════════════════════
+   QUICK BOOKING
+═══════════════════════════════════════════ */
+.qbook-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.qbook-card{background:var(--d2);border:1px solid rgba(201,168,76,.1);padding:24px 20px;text-align:center;cursor:pointer;transition:all .3s var(--ease)}
+.qbook-card:hover{border-color:var(--gold);background:var(--d3);transform:translateY(-3px)}
+.qbook-ico{font-size:32px;margin-bottom:12px}
+.qbook-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.06em;margin-bottom:6px}
+.qbook-desc{font-size:11px;color:var(--l3);margin-bottom:16px}
+.qbook-btn{padding:9px 20px;background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:none;transition:all .22s}
+.qbook-card:hover .qbook-btn{background:var(--gold);color:#080808;border-color:var(--gold)}
+.qb-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:8000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.qb-modal.open{display:flex}
+.qb-modal-box{background:var(--d3);border:1px solid rgba(201,168,76,.2);border-top:2px solid var(--gold);padding:36px;width:100%;max-width:540px;position:relative;max-height:90vh;overflow-y:auto}
+.qb-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--l3);font-size:22px;cursor:none;transition:color .2s}
+.qb-close:hover{color:var(--gold)}
+.qb-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.08em;margin-bottom:6px}
+.qb-service-label{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+
+/* ═══════════════════════════════════════════
+   PAYMENT SECTION
+═══════════════════════════════════════════ */
+.pay-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:48px}
+.pay-card{background:var(--d2);border:1px solid rgba(201,168,76,.12);padding:24px;transition:all .3s}
+.pay-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-2px)}
+.pay-moncash{border-top:2px solid var(--green)}
+.pay-bank-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.1em;color:var(--gold);margin-bottom:4px}
+.pay-owner{font-size:11px;color:var(--l3);letter-spacing:.06em;margin-bottom:16px;text-transform:uppercase}
+.pay-account{display:flex;flex-direction:column;gap:10px}
+.pay-acc-row{display:flex;flex-direction:column;gap:4px}
+.pay-currency{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--l4)}
+.pay-acc-num{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.08em;color:var(--light);cursor:pointer;display:flex;align-items:center;gap:6px;transition:color .2s}
+.pay-acc-num:hover{color:var(--gold)}
+.copy-icon{font-size:13px;opacity:.4;transition:opacity .2s}
+.pay-acc-num:hover .copy-icon{opacity:1}
+.moncash-wa{display:inline-block;margin-top:14px;padding:9px 18px;background:var(--green);color:#fff;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;transition:opacity .2s}
+.moncash-wa:hover{opacity:.85}
+.copy-toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:#080808;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:10px 24px;border-radius:0;opacity:0;pointer-events:none;transition:all .35s;z-index:9000}
+.copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* RECEIPT */
+.receipt-section{background:var(--d2);border:1px solid rgba(201,168,76,.12);padding:36px;border-top:2px solid var(--gold)}
+.receipt-hd{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.06em;margin-bottom:8px}
+.receipt-sub{font-size:13px;color:var(--l3);margin-bottom:28px;line-height:1.7}
+.receipt-upload-zone{border:2px dashed rgba(201,168,76,.2);padding:32px;text-align:center;cursor:pointer;transition:all .25s;margin-bottom:16px}
+.receipt-upload-zone:hover{border-color:var(--gold);background:rgba(201,168,76,.03)}
+.upload-icon{font-size:28px;margin-bottom:8px}
+.upload-txt{font-size:13px;color:var(--l3);margin-bottom:4px}
+.upload-fmt{font-size:10px;color:var(--l4);letter-spacing:.1em}
+.receipt-preview-wrap{position:relative;display:inline-block;max-width:220px;margin-bottom:16px}
+.receipt-preview-wrap img{width:100%;border:1px solid rgba(201,168,76,.2)}
+.remove-receipt{position:absolute;top:-8px;right:-8px;width:22px;height:22px;background:var(--red);border:none;color:#fff;font-size:14px;cursor:none;border-radius:50%}
+.receipt-note{font-size:11px;color:var(--l4);margin-top:14px;line-height:1.6}
+
+@media(max-width:768px){
+  .book-row{grid-template-columns:1fr}
+  .pay-grid{grid-template-columns:1fr}
+  .qbook-grid{grid-template-columns:1fr 1fr}
+  .pkg-grid{grid-template-columns:1fr}
+  .receipt-section{padding:24px 18px}
+  .book-form{padding:24px 18px}
+}
+
+
 #cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:difference}
 #cur-r{position:fixed;width:32px;height:32px;border:1px solid rgba(201,168,76,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
 #cur-r.big{width:52px;height:52px;border-color:var(--gold)}
@@ -498,6 +597,8 @@ footer{padding:50px 60px 28px;border-top:1px solid rgba(255,255,255,.04)}
         <a href="#services" onclick="cDD();" class="dd-link"><span class="dd-n">05</span><span data-i="services">Services</span></a>
         <a href="#testimonials" onclick="cDD();" class="dd-link"><span class="dd-n">06</span><span data-i="testimonials">Testimonials</span></a>
         <a href="#contact" onclick="cDD();" class="dd-link"><span class="dd-n">07</span><span data-i="contact">Contact</span></a>
+        <a href="#wedding-booking" onclick="cDD();" class="dd-link"><span class="dd-n">08</span><span data-i="weddingBook">Wedding Booking</span></a>
+        <a href="#payment" onclick="cDD();" class="dd-link"><span class="dd-n">09</span><span data-i="paymentNav">Payment</span></a>
       </div>
     </li>
     <li><a href="#" onclick="swTab('graphic');return false;" data-i="graphic">Graphic</a></li>
@@ -911,7 +1012,321 @@ footer{padding:50px 60px 28px;border-top:1px solid rgba(255,255,255,.04)}
   </div>
 </section>
 
-<!-- ═══════ FOOTER ═══════ -->
+<!-- ═══════ WEDDING BOOKING ═══════ -->
+<div class="divider"></div>
+<section class="section" id="wedding-booking">
+  <div class="sec-hd reveal"><span class="sec-n">09</span><h2 class="sec-t" data-i="weddingPkg">Wedding Packages</h2><div class="sec-l"></div></div>
+  <p class="wb-intro reveal" data-i="weddingIntro">Choose the package that fits your dream day. Reserve at least 2 months in advance to receive your invitation card free of charge.</p>
+
+  <!-- Package cards -->
+  <div class="pkg-grid reveal">
+    <!-- BRONZE -->
+    <div class="pkg-card pkg-bronze" onclick="selectPkg('bronze')">
+      <div class="pkg-badge">BRONZE</div>
+      <div class="pkg-price">300 <span>USD</span></div>
+      <ul class="pkg-list">
+        <li>100 Photos numériques</li>
+        <li>25 Photos 4×6 Imprimées</li>
+        <li>3 Photos 6×8 Imprimées</li>
+        <li>3 Photos 8×10 Imprimées</li>
+        <li>Photos Maquillage</li>
+        <li>Photos Cérémonie</li>
+      </ul>
+      <button class="pkg-cta" data-pkg="bronze" data-i="selectPkg">Réserver ce package →</button>
+    </div>
+    <!-- SILVER -->
+    <div class="pkg-card pkg-silver" onclick="selectPkg('silver')">
+      <div class="pkg-badge">SILVER</div>
+      <div class="pkg-price">450 <span>USD</span></div>
+      <ul class="pkg-list">
+        <li>170 Photos numériques</li>
+        <li>40 Photos 4×6 Imprimées</li>
+        <li>6 Photos 6×8 Imprimées</li>
+        <li>6 Photos 8×10 Imprimées</li>
+        <li>Photos Pré-Nuptial</li>
+        <li>Photos Maquillage</li>
+        <li>Photos Cérémonie</li>
+      </ul>
+      <button class="pkg-cta" data-pkg="silver" data-i="selectPkg">Réserver ce package →</button>
+    </div>
+    <!-- GOLD -->
+    <div class="pkg-card pkg-gold" onclick="selectPkg('gold')">
+      <div class="pkg-ribbon" data-i="popular">Populaire</div>
+      <div class="pkg-badge">GOLD</div>
+      <div class="pkg-price">600 <span>USD</span></div>
+      <ul class="pkg-list">
+        <li>300 Photos numériques</li>
+        <li>60 Photos 4×6 Imprimées</li>
+        <li>10 Photos 5×7 Imprimées</li>
+        <li>8 Photos 6×8 Imprimées</li>
+        <li>8 Photos 8×10 Imprimées</li>
+        <li>Photos Pré-Nuptial</li>
+        <li>Photos Maquillage</li>
+        <li>Photos Cérémonie</li>
+        <li>Photos Réception</li>
+      </ul>
+      <button class="pkg-cta" data-pkg="gold" data-i="selectPkg">Réserver ce package →</button>
+    </div>
+  </div>
+
+  <!-- Extras -->
+  <div class="extras-section reveal">
+    <div class="extras-title" data-i="extrasTitle">Services Supplémentaires</div>
+    <div class="extras-grid">
+      <label class="extra-item"><input type="checkbox" name="extra" value="Carte d'Invitation" class="extra-cb"> <span>Carte d'Invitation</span></label>
+      <label class="extra-item"><input type="checkbox" name="extra" value="Montage Vidéo" class="extra-cb"> <span>Montage Vidéo</span></label>
+      <label class="extra-item"><input type="checkbox" name="extra" value="Banner" class="extra-cb"> <span>Banner</span></label>
+      <label class="extra-item"><input type="checkbox" name="extra" value="Guestbook" class="extra-cb"> <span>Guestbook</span></label>
+    </div>
+  </div>
+
+  <!-- Booking form -->
+  <div class="book-form reveal" id="bookingForm">
+    <div class="book-form-hd">
+      <span id="book-pkg-label" data-i="bookFormTitle">Formulaire de Réservation</span>
+      <span class="book-pkg-badge" id="book-pkg-badge"></span>
+    </div>
+    <div class="book-row">
+      <div class="f-grp">
+        <label class="f-label" data-i="brideName">Nom de la Mariée *</label>
+        <div class="f-wrap"><span class="f-ico">👰</span><input type="text" class="f-in" id="b-bride" placeholder="Prénom et Nom"></div>
+      </div>
+      <div class="f-grp">
+        <label class="f-label" data-i="groomName">Nom du Marié *</label>
+        <div class="f-wrap"><span class="f-ico">🤵</span><input type="text" class="f-in" id="b-groom" placeholder="Prénom et Nom"></div>
+      </div>
+    </div>
+    <div class="book-row">
+      <div class="f-grp">
+        <label class="f-label" data-i="weddingDate">Date du Mariage *</label>
+        <div class="f-wrap"><span class="f-ico">📅</span><input type="date" class="f-in" id="b-date"></div>
+      </div>
+      <div class="f-grp">
+        <label class="f-label" data-i="weddingVenue">Lieu de la Cérémonie</label>
+        <div class="f-wrap"><span class="f-ico">📍</span><input type="text" class="f-in" id="b-venue" placeholder="Église, Salle..."></div>
+      </div>
+    </div>
+    <div class="book-row">
+      <div class="f-grp">
+        <label class="f-label">Email *</label>
+        <div class="f-wrap"><span class="f-ico">✉️</span><input type="email" class="f-in" id="b-email" placeholder="your@email.com"></div>
+      </div>
+      <div class="f-grp">
+        <label class="f-label">Phone / WhatsApp *</label>
+        <div class="f-wrap"><span class="f-ico">📞</span><input type="tel" class="f-in" id="b-phone" placeholder="+509 ..."></div>
+      </div>
+    </div>
+    <div class="f-grp">
+      <label class="f-label" data-i="bookNotes">Notes / Demandes spéciales</label>
+      <div class="f-wrap"><span class="f-ico-top">💬</span><textarea class="f-ta" id="b-notes" placeholder="Heure de début, invités spéciaux, style souhaité..."></textarea></div>
+    </div>
+    <div class="book-summary" id="book-summary">
+      <div class="bsum-row"><span data-i="selectedPkg">Package sélectionné:</span> <strong id="bsum-pkg">—</strong></div>
+      <div class="bsum-row"><span data-i="selectedExtras">Extras:</span> <strong id="bsum-extras">Aucun</strong></div>
+      <div class="bsum-row bsum-total"><span data-i="estimatedTotal">Total estimé:</span> <strong id="bsum-total" class="gold-txt">—</strong></div>
+    </div>
+    <button class="f-submit" onclick="submitBooking()"><span data-i="sendReservation">Envoyer la Réservation</span> →</button>
+    <div class="f-ok" id="b-ok" style="display:none" data-i="bookSent">✓ Réservation envoyée! Nous vous contacterons dans les 24h pour confirmer.</div>
+    <div class="book-note" data-i="bookNote">⭐ Réservez 2 mois à l'avance → Carte d'invitation GRATUITE</div>
+  </div>
+</section>
+
+<!-- ═══════ OTHER SERVICES BOOKING ═══════ -->
+<div class="divider"></div>
+<section class="section" id="services-booking">
+  <div class="sec-hd reveal"><span class="sec-n">10</span><h2 class="sec-t" data-i="quickBook">Réservation Rapide</h2><div class="sec-l"></div></div>
+  <p class="wb-intro reveal" data-i="quickBookIntro">Besoin d'un autre service ? Sélectionnez et réservez directement en quelques secondes.</p>
+  <div class="qbook-grid reveal">
+    <div class="qbook-card" onclick="quickBook('Branding & Logo Design')">
+      <div class="qbook-ico">🏢</div>
+      <div class="qbook-name">Branding &amp; Logo</div>
+      <div class="qbook-desc" data-i="svc1d">Identité visuelle complète</div>
+      <button class="qbook-btn" data-i="quickReserve">Réserver →</button>
+    </div>
+    <div class="qbook-card" onclick="quickBook('Flyers & Marketing Design')">
+      <div class="qbook-ico">🖨️</div>
+      <div class="qbook-name">Flyers &amp; Affiches</div>
+      <div class="qbook-desc">Design marketing percutant</div>
+      <button class="qbook-btn" data-i="quickReserve">Réserver →</button>
+    </div>
+    <div class="qbook-card" onclick="quickBook('Montage Vidéo')">
+      <div class="qbook-ico">🎬</div>
+      <div class="qbook-name">Montage Vidéo</div>
+      <div class="qbook-desc">Montage professionnel</div>
+      <button class="qbook-btn" data-i="quickReserve">Réserver →</button>
+    </div>
+    <div class="qbook-card" onclick="quickBook('Photography — Portrait')">
+      <div class="qbook-ico">📸</div>
+      <div class="qbook-name">Portrait &amp; Studio</div>
+      <div class="qbook-desc">Séance photo professionnelle</div>
+      <button class="qbook-btn" data-i="quickReserve">Réserver →</button>
+    </div>
+    <div class="qbook-card" onclick="quickBook('Visit Card')">
+      <div class="qbook-ico">💼</div>
+      <div class="qbook-name">Carte de Visite</div>
+      <div class="qbook-desc">Design élégant &amp; mémorable</div>
+      <button class="qbook-btn" data-i="quickReserve">Réserver →</button>
+    </div>
+    <div class="qbook-card" onclick="quickBook('IT & Network Services')">
+      <div class="qbook-ico">🌐</div>
+      <div class="qbook-name">IT &amp; Réseaux</div>
+      <div class="qbook-desc">Conseil &amp; configuration Cisco</div>
+      <button class="qbook-btn" data-i="quickReserve">Réserver →</button>
+    </div>
+  </div>
+  <!-- Quick booking modal -->
+  <div class="qb-modal" id="qbModal">
+    <div class="qb-modal-box">
+      <button class="qb-close" onclick="closeQBook()">×</button>
+      <div class="qb-title" data-i="quickBookTitle">Réservation Rapide</div>
+      <div class="qb-service-label" id="qb-service-name"></div>
+      <div class="f-grp"><label class="f-label" data-i="yourName">Votre Nom *</label><div class="f-wrap"><span class="f-ico">👤</span><input type="text" class="f-in" id="qb-name" placeholder="Prénom et Nom"></div></div>
+      <div class="f-grp"><label class="f-label">WhatsApp / Phone *</label><div class="f-wrap"><span class="f-ico">📞</span><input type="tel" class="f-in" id="qb-phone" placeholder="+509 ..."></div></div>
+      <div class="f-grp"><label class="f-label" data-i="message">Message</label><div class="f-wrap"><span class="f-ico-top">💬</span><textarea class="f-ta" id="qb-msg" rows="3" placeholder="Décrivez votre projet, votre budget..."></textarea></div></div>
+      <button class="f-submit" onclick="sendQBook()" style="margin-top:16px"><span data-i="sendOnWhatsApp">Envoyer via WhatsApp →</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PAYMENT SECTION ═══════ -->
+<div class="divider"></div>
+<section class="section" id="payment">
+  <div class="sec-hd reveal"><span class="sec-n">11</span><h2 class="sec-t" data-i="paymentTitle">Paiement</h2><div class="sec-l"></div></div>
+  <p class="wb-intro reveal" data-i="paymentIntro">Effectuez votre paiement via l'une des options ci-dessous, puis envoyez votre reçu directement. Nous vous confirmerons votre réservation dans les 24h.</p>
+
+  <div class="pay-grid reveal">
+    <!-- SOGEBANK -->
+    <div class="pay-card">
+      <div class="pay-bank-name">SOGEBANK</div>
+      <div class="pay-owner">Jean Robenson RAYMONVIL</div>
+      <div class="pay-account">
+        <div class="pay-acc-row">
+          <span class="pay-currency">🇭🇹 Gourde</span>
+          <span class="pay-acc-num" onclick="copyAcc(this)" title="Copier">140 124 3611 <span class="copy-icon">⧉</span></span>
+        </div>
+        <div class="pay-acc-row">
+          <span class="pay-currency">🇺🇸 Dollar</span>
+          <span class="pay-acc-num" onclick="copyAcc(this)" title="Copier">141 110 6196 <span class="copy-icon">⧉</span></span>
+        </div>
+      </div>
+    </div>
+    <!-- UNIBANK -->
+    <div class="pay-card">
+      <div class="pay-bank-name">UNIBANK</div>
+      <div class="pay-owner">Jean Robenson RAYMONVIL</div>
+      <div class="pay-account">
+        <div class="pay-acc-row">
+          <span class="pay-currency">🇭🇹 Gourde</span>
+          <span class="pay-acc-num" onclick="copyAcc(this)" title="Copier">250-2015-30504587 <span class="copy-icon">⧉</span></span>
+        </div>
+        <div class="pay-acc-row">
+          <span class="pay-currency">🇺🇸 Dollar</span>
+          <span class="pay-acc-num" onclick="copyAcc(this)" title="Copier">250-2016-30504574 <span class="copy-icon">⧉</span></span>
+        </div>
+      </div>
+    </div>
+    <!-- CAPITAL CARTE -->
+    <div class="pay-card">
+      <div class="pay-bank-name">CAPITAL CARTE</div>
+      <div class="pay-owner">Jean Robenson RAYMONVIL</div>
+      <div class="pay-account">
+        <div class="pay-acc-row">
+          <span class="pay-currency">🇺🇸 Dollar</span>
+          <span class="pay-acc-num" onclick="copyAcc(this)" title="Copier">4440 2044 0565 6719 <span class="copy-icon">⧉</span></span>
+        </div>
+      </div>
+    </div>
+    <!-- MONCASH -->
+    <div class="pay-card pay-moncash">
+      <div class="pay-bank-name">MonCash</div>
+      <div class="pay-owner">Jean Robenson RAYMONVIL</div>
+      <div class="pay-account">
+        <div class="pay-acc-row">
+          <span class="pay-currency">📱 Numéro</span>
+          <span class="pay-acc-num" onclick="copyAcc(this)" title="Copier">+509 3770 4274 <span class="copy-icon">⧉</span></span>
+        </div>
+      </div>
+      <a href="https://wa.me/50937704274?text=Bonjour%20Rooby%20Design%2C%20je%20viens%20d%27effectuer%20un%20paiement%20MonCash." target="_blank" class="moncash-wa">Confirmer via WhatsApp →</a>
+    </div>
+  </div>
+
+  <!-- Receipt Upload -->
+  <div class="receipt-section reveal">
+    <div class="receipt-hd" data-i="sendReceipt">Envoyer votre Reçu de Paiement</div>
+    <p class="receipt-sub" data-i="receiptSub">Après votre paiement, remplissez ce formulaire et joignez votre reçu (photo/capture d'écran). Nous confirmerons votre réservation rapidement.</p>
+    <div class="receipt-form">
+      <div class="book-row">
+        <div class="f-grp">
+          <label class="f-label" data-i="yourName">Votre Nom *</label>
+          <div class="f-wrap"><span class="f-ico">👤</span><input type="text" class="f-in" id="r-name" placeholder="Prénom et Nom"></div>
+        </div>
+        <div class="f-grp">
+          <label class="f-label">WhatsApp *</label>
+          <div class="f-wrap"><span class="f-ico">📞</span><input type="tel" class="f-in" id="r-phone" placeholder="+509 ..."></div>
+        </div>
+      </div>
+      <div class="book-row">
+        <div class="f-grp">
+          <label class="f-label" data-i="paymentMethod">Méthode de paiement</label>
+          <div class="f-wrap"><span class="f-ico">🏦</span>
+            <select class="f-sel" id="r-method">
+              <option>SOGEBANK — Gourde</option>
+              <option>SOGEBANK — Dollar</option>
+              <option>UNIBANK — Gourde</option>
+              <option>UNIBANK — Dollar</option>
+              <option>Capital Carte</option>
+              <option>MonCash</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-grp">
+          <label class="f-label" data-i="amountPaid">Montant payé *</label>
+          <div class="f-wrap"><span class="f-ico">💰</span><input type="text" class="f-in" id="r-amount" placeholder="Ex: 300 USD ou 30000 HTG"></div>
+        </div>
+      </div>
+      <div class="f-grp">
+        <label class="f-label" data-i="serviceFor">Service / Package concerné</label>
+        <div class="f-wrap"><span class="f-ico">🎯</span>
+          <select class="f-sel" id="r-service">
+            <option>Wedding Package — BRONZE (300 USD)</option>
+            <option>Wedding Package — SILVER (450 USD)</option>
+            <option>Wedding Package — GOLD (600 USD)</option>
+            <option>Branding &amp; Logo Design</option>
+            <option>Flyers &amp; Marketing</option>
+            <option>Montage Vidéo</option>
+            <option>Portrait &amp; Studio</option>
+            <option>Carte de Visite</option>
+            <option>IT &amp; Réseaux</option>
+            <option data-i="other">Autre</option>
+          </select>
+        </div>
+      </div>
+      <div class="f-grp">
+        <label class="f-label" data-i="uploadReceipt">Joindre le reçu (photo/capture)</label>
+        <div class="receipt-upload-zone" id="receiptUploadZone" onclick="document.getElementById('r-file').click()">
+          <input type="file" id="r-file" accept="image/*,application/pdf" style="display:none" onchange="handleReceiptFile(event)">
+          <div class="upload-icon">📎</div>
+          <div class="upload-txt" id="upload-txt" data-i="uploadTxt">Cliquez ou glissez votre reçu ici</div>
+          <div class="upload-fmt">JPG, PNG, PDF — Max 10MB</div>
+        </div>
+        <div class="receipt-preview-wrap" id="receiptPreview" style="display:none">
+          <img id="receipt-img-preview" src="" alt="Reçu">
+          <button class="remove-receipt" onclick="removeReceipt()" title="Supprimer">×</button>
+        </div>
+      </div>
+      <button class="f-submit" onclick="sendReceipt()" style="margin-top:8px">
+        <span data-i="sendReceiptBtn">Envoyer le Reçu via WhatsApp →</span>
+      </button>
+      <div class="f-ok" id="r-ok" style="display:none" data-i="receiptSent">✓ Informations envoyées! Votre reçu sera transmis via WhatsApp.</div>
+      <p class="receipt-note" data-i="receiptNote">📌 Note: Le reçu sera envoyé via WhatsApp car les emails peuvent filtrer les pièces jointes. Assurez-vous d'avoir WhatsApp installé.</p>
+    </div>
+  </div>
+
+  <!-- Copied toast -->
+  <div class="copy-toast" id="copyToast" data-i="copied">Copié !</div>
+</section>
+
+
 <footer>
   <div class="ft-top">
     <div>
