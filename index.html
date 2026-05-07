@@ -3177,6 +3177,8 @@ var gData={
   ]
 };
 var lbItems=[],lbIdx=0;
+var lbSets={graphic:[],photo:[]};
+var lbActiveTab='graphic';
 function fG(tab,cat,btn){
   // Update filter buttons
   var parent=btn?btn.closest('.cats'):null;
@@ -3188,12 +3190,12 @@ function fG(tab,cat,btn){
   if(!grid) return;
   var items=gData[tab]||[];
   var filtered=cat==='all'?items:items.filter(function(i){return i.cat===cat;});
-  lbItems=filtered;
+  lbSets[tab]=filtered;
   grid.innerHTML='';
   filtered.forEach(function(item,idx){
     var div=document.createElement('div');
     div.className='g-item'+(item.tall?' tall':'');
-    div.onclick=function(){openLB(idx);};
+    div.onclick=(function(i,t){return function(){openLB(i,t);};})(idx,tab);
     var img=document.createElement('img');
     img.src=item.src; img.alt=item.title; img.loading='lazy';
     img.onerror=function(){
@@ -3208,7 +3210,9 @@ function fG(tab,cat,btn){
     grid.appendChild(div);
   });
 }
-function openLB(idx){
+function openLB(idx,tab){
+  if(tab) lbActiveTab=tab;
+  lbItems=lbSets[lbActiveTab]||[];
   lbIdx=idx;
   var lb=document.getElementById('lb');
   if(!lb) return;
