@@ -82,15 +82,38 @@ button{font-family:'Outfit',sans-serif;cursor:none}
 ═══════════════════════════════════════════ */
 nav{position:fixed;inset:0 0 auto;height:70px;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.08);transition:height .3s,background .3s}
 nav.sm{height:58px}
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo img{height:36px;object-fit:contain}
-.nav-logo-t{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.08em;color:var(--gold)}
-.nav-links{display:flex;align-items:center;height:100%;list-style:none;gap:0}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0;min-width:0}
+.nav-logo img{height:36px;object-fit:contain;flex-shrink:0}
+.nav-logo-t{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.08em;color:var(--gold);white-space:nowrap}
+.nav-links{display:flex;align-items:center;height:100%;list-style:none;gap:0;flex-shrink:0}
 .nav-links>li{height:100%;display:flex;align-items:center;position:relative}
 .nav-links>li>a,.nav-links>li>button{height:100%;padding:0 16px;display:flex;align-items:center;gap:5px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--l3);background:none;border:none;cursor:none;transition:color .2s;font-weight:500}
 .nav-links>li>a:hover,.nav-links>li>button:hover{color:var(--gold)}
 .nav-links>li>a.nav-active{color:var(--gold)}
 .chev{font-size:7px;transition:transform .25s}
+/* ─── Mobile nav: compact book button ─── */
+@media(max-width:960px){
+  nav{padding:0 16px}
+  .nav-logo img{height:30px}
+  .nav-logo-t{font-size:17px;letter-spacing:.06em}
+  .nav-links>li>a,.nav-links>li>button{padding:0 10px;font-size:9px;letter-spacing:.12em}
+  .nav-links>li>button[onclick="openResModal()"]{padding:8px 14px;font-size:8px;letter-spacing:.14em}
+}
+@media(max-width:600px){
+  nav{padding:0 12px}
+  .nav-logo{gap:7px}
+  .nav-logo img{height:26px}
+  .nav-logo-t{font-size:15px;letter-spacing:.05em}
+  .nav-links>li>a,.nav-links>li>button{padding:0 8px;font-size:9px}
+  /* Hide text on Book Now button, show icon only */
+  .nav-book-text{display:none}
+  .nav-book-btn{padding:8px 12px !important;font-size:13px !important;letter-spacing:0 !important;min-width:36px}
+  .nav-book-icon{display:inline !important}
+}
+@media(max-width:400px){
+  .nav-logo-t{font-size:13px}
+  .nav-links>li>a,.nav-links>li>button{padding:0 6px}
+}
 .nav-links>li.on>button .chev{transform:rotate(180deg)}
 .dd{position:absolute;top:70px;left:50%;transform:translateX(-50%) translateY(-8px);width:280px;background:rgba(10,10,10,.98);border:1px solid rgba(201,168,76,.15);border-top:2px solid var(--gold);opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:600}
 .nav-links>li.on .dd{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
@@ -780,7 +803,7 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
     <li><a href="#" onclick="swTab('photo');return false;" data-i="photo">Photo</a></li>
     <li><a href="#pricing" data-i="pricingNav">Pricing</a></li>
     <li><a href="#contact" data-i="contact">Contact</a></li>
-    <li><button class="btn-g" style="height:auto;padding:9px 20px;font-size:9px;" onclick="openResModal()" data-i="bookNow">Book Now ✦</button></li>
+    <li><button class="btn-g nav-book-btn" style="height:auto;padding:9px 20px;font-size:9px;" onclick="openResModal()"><span class="nav-book-text" data-i="bookNow">Book Now</span><span class="nav-book-icon" aria-hidden="true" style="display:none">✦</span></button></li>
     <li><button class="th-btn" onclick="toggleTheme()" title="Theme"></button></li>
   </ul>
 </nav>
@@ -1164,46 +1187,82 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
     <div class="price-cat-sub" data-i="portraitSub">Professional headshots and artistic portraits for individuals, families and professionals.</div>
     <div class="pricing-grid">
       <div class="price-card">
-        <div class="price-tier">BASIC</div>
-        <div class="price-name">Headshot</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">50</span><span class="period">USD</span></div>
+        <div class="price-tier">MINI</div>
+        <div class="price-name" data-i="portraitMiniName">Mini Session</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">75</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span data-i="duration">Duration</span><span>45 min</span></div>
+          <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>48–72h</span></div>
+        </div>
         <ul class="price-features">
-          <li>30 min studio session</li>
-          <li>10 edited photos</li>
-          <li>2 background options</li>
-          <li>Digital download</li>
-          <li>Delivery in 48h</li>
+          <li data-i="portraitMini1">5 premium retouched photos</li>
+          <li data-i="portraitMini2">Cinema color grading</li>
+          <li data-i="portraitMini3">Natural skin enhancement</li>
+          <li data-i="portraitMini4">HD digital download</li>
+          <li data-i="portraitMini5">1 location, 1 outfit</li>
+          <li class="disabled">Multiple looks</li>
+          <li class="disabled">Print files</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Portrait BASIC – $50')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Portrait MINI – $75')" data-i="bookBtn">Book this package →</button>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">STANDARD</div>
+        <div class="price-name" data-i="portraitStdName">Creative Portrait</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">130</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span data-i="duration">Duration</span><span>1h 30</span></div>
+          <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>3–5 days</span></div>
+        </div>
+        <ul class="price-features">
+          <li data-i="portraitStd1">15 premium retouched photos</li>
+          <li data-i="portraitStd2">Cinema color grading</li>
+          <li data-i="portraitStd3">Advanced skin &amp; light retouch</li>
+          <li data-i="portraitStd4">2 looks/outfits</li>
+          <li data-i="portraitStd5">HD + print-ready files</li>
+          <li data-i="portraitStd6">Private online gallery</li>
+          <li class="disabled">Family/group</li>
+        </ul>
+        <button class="price-btn" onclick="openResModalWithPkg('Portrait STANDARD – $130')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
-        <div class="price-tier">STANDARD</div>
-        <div class="price-name">Creative Portrait</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">100</span><span class="period">USD</span></div>
+        <div class="price-tier">PREMIUM</div>
+        <div class="price-name" data-i="portraitPremName">Premium Portrait</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">220</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span data-i="duration">Duration</span><span>2h 30</span></div>
+          <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>2–3 days</span></div>
+        </div>
         <ul class="price-features">
-          <li>1 hour studio or outdoor</li>
-          <li>30 edited photos</li>
-          <li>Multiple looks/outfits</li>
-          <li>Retouching included</li>
-          <li>Print-ready files</li>
-          <li>Delivery in 3–4 days</li>
+          <li data-i="portraitPrem1">30 premium retouched photos</li>
+          <li data-i="portraitPrem2">Cinema + fashion color grading</li>
+          <li data-i="portraitPrem3">Full professional retouching</li>
+          <li data-i="portraitPrem4">3 looks, multiple backgrounds</li>
+          <li data-i="portraitPrem5">HD + print-ready files</li>
+          <li data-i="portraitPrem6">2 printed 8×10 photos</li>
+          <li data-i="portraitPrem7">Private gallery + USB</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Portrait STANDARD – $100')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Portrait PREMIUM – $220')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card">
-        <div class="price-tier">PREMIUM</div>
-        <div class="price-name">Family &amp; Group</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">180</span><span class="period">USD</span></div>
+        <div class="price-badge best">Best Value</div>
+        <div class="price-tier">LUXURY</div>
+        <div class="price-name" data-i="portraitLuxName">Luxury Family</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">320</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span data-i="duration">Duration</span><span>3h+</span></div>
+          <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>2–3 days</span></div>
+        </div>
         <ul class="price-features">
-          <li>2 hours (outdoor or studio)</li>
-          <li>60 edited photos</li>
-          <li>Up to 8 people</li>
-          <li>Multiple backgrounds</li>
-          <li>Large print ready</li>
-          <li>Delivery in 5 days</li>
+          <li data-i="portraitLux1">50 premium retouched photos</li>
+          <li data-i="portraitLux2">Full cinematic retouching</li>
+          <li data-i="portraitLux3">Up to 10 people</li>
+          <li data-i="portraitLux4">Multiple locations</li>
+          <li data-i="portraitLux5">HD + large print-ready files</li>
+          <li data-i="portraitLux6">Premium printed album</li>
+          <li data-i="portraitLux7">USB + online gallery</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Portrait PREMIUM – $180')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Portrait LUXURY – $320')" data-i="bookBtn">Book this package →</button>
       </div>
     </div>
   </div>
@@ -1267,51 +1326,78 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
     <div class="price-cat-sub" data-i="brandingSub">Build a powerful brand identity that makes your business unforgettable.</div>
     <div class="pricing-grid">
       <div class="price-card">
-        <div class="price-tier">STARTER</div>
-        <div class="price-name">Logo Only</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">50</span><span class="period">USD</span></div>
+        <div class="price-tier">BASIC</div>
+        <div class="price-name" data-i="brandingBasicName">Logo Essential</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">80</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>3–5 days</span></div>
+        </div>
         <ul class="price-features">
-          <li>2 logo concepts</li>
-          <li>2 revision rounds</li>
-          <li>PNG + SVG files</li>
-          <li>Delivery in 3–5 days</li>
+          <li data-i="brandingBasic1">3 logo concepts</li>
+          <li data-i="brandingBasic2">3 revision rounds</li>
+          <li data-i="brandingBasic3">PNG + SVG + PDF files</li>
+          <li data-i="brandingBasic4">Light &amp; dark versions</li>
           <li class="disabled">Brand guidelines</li>
-          <li class="disabled">Color palette</li>
+          <li class="disabled">Color system</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Branding LOGO – $50')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Branding BASIC – $80')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
-        <div class="price-tier">COMPLETE</div>
-        <div class="price-name">Brand Identity</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">120</span><span class="period">USD</span></div>
+        <div class="price-tier">PRO</div>
+        <div class="price-name" data-i="brandingProName">Brand Identity</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">180</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>5–7 days</span></div>
+        </div>
         <ul class="price-features">
-          <li>3 logo concepts</li>
-          <li>Color palette &amp; typography</li>
-          <li>Brand guidelines PDF</li>
-          <li>Business card design</li>
-          <li>All file formats (AI, PNG, SVG)</li>
-          <li>Unlimited revisions</li>
-          <li>Delivery in 5–7 days</li>
+          <li data-i="brandingPro1">4 logo concepts</li>
+          <li data-i="brandingPro2">Color palette &amp; typography</li>
+          <li data-i="brandingPro3">Brand guidelines PDF</li>
+          <li data-i="brandingPro4">Business card design</li>
+          <li data-i="brandingPro5">All formats (AI, PNG, SVG)</li>
+          <li data-i="brandingPro6">Unlimited revisions</li>
+          <li data-i="brandingPro7">Letterhead design</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Branding COMPLETE – $120')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Branding PRO – $180')" data-i="bookBtn">Book this package →</button>
+      </div>
+      <div class="price-card">
+        <div class="price-badge best">Best Value</div>
+        <div class="price-tier">ELITE</div>
+        <div class="price-name" data-i="brandingEliteName">Brand Experience</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">320</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>7–10 days</span></div>
+        </div>
+        <ul class="price-features">
+          <li data-i="brandingElite1">5 logo concepts</li>
+          <li data-i="brandingElite2">Full brand guidelines book</li>
+          <li data-i="brandingElite3">Social media templates (10)</li>
+          <li data-i="brandingElite4">Letterhead + email signature</li>
+          <li data-i="brandingElite5">Flyer + poster + roll-up</li>
+          <li data-i="brandingElite6">Brand mockup presentation</li>
+          <li data-i="brandingElite7">Priority delivery</li>
+        </ul>
+        <button class="price-btn" onclick="openResModalWithPkg('Branding ELITE – $320')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge premium">Premium</div>
-        <div class="price-tier">FULL BRAND</div>
-        <div class="price-name">Brand Experience</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">250</span><span class="period">USD</span></div>
+        <div class="price-tier">AGENCY</div>
+        <div class="price-name" data-i="brandingAgencyName">Agency Pack</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">550</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>10–14 days</span></div>
+        </div>
         <ul class="price-features">
-          <li>5 logo concepts</li>
-          <li>Full brand guidelines book</li>
-          <li>Social media templates (10)</li>
-          <li>Letterhead + email signature</li>
-          <li>Flyer + poster design</li>
-          <li>Roll-up banner design</li>
-          <li>Brand mockup presentation</li>
-          <li>Priority delivery in 7 days</li>
+          <li data-i="brandingAgency1">Complete brand identity</li>
+          <li data-i="brandingAgency2">Full print pack (all formats)</li>
+          <li data-i="brandingAgency3">20 social media templates</li>
+          <li data-i="brandingAgency4">Website banner set</li>
+          <li data-i="brandingAgency5">Pitch deck template</li>
+          <li data-i="brandingAgency6">Brand activation mockups</li>
+          <li data-i="brandingAgency7">Dedicated project manager</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Branding FULL – $250')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Branding AGENCY – $550')" data-i="bookBtn">Book this package →</button>
       </div>
     </div>
   </div>
