@@ -1128,6 +1128,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
     <button class="ptab" onclick="swPcat('wedding-video')">🎬 <span data-i="ptWeddingVideo">Wedding Video</span></button>
     <button class="ptab" onclick="swPcat('engagement')">💍 <span data-i="ptEngagement">Engagement</span></button>
     <button class="ptab" onclick="swPcat('portrait')">🧍 <span data-i="ptPortrait">Portrait</span></button>
+    <button class="ptab" onclick="swPcat('studio')">🎞️ Studio Photo</button>
     <button class="ptab" onclick="swPcat('event')">🎉 <span data-i="ptEvent">Event</span></button>
     <button class="ptab" onclick="swPcat('branding')">🏢 <span data-i="ptBranding">Branding</span></button>
     <button class="ptab" onclick="swPcat('graphic')">🎨 <span data-i="ptGraphic">Graphic Design</span></button>
@@ -1143,16 +1144,36 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
     <div class="price-cat-sub" data-i="weddingPhotoSub">Capture every precious moment of your special day with artistic precision and emotion.</div>
     <div class="pricing-grid">
       <div class="price-card">
+        <div class="price-tier">ESSENTIEL</div>
+        <div class="price-name">First Memories</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">250</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span data-i="duration">Duration</span><span>1–2 hours</span></div>
+          <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>10–14 days</span></div>
+        </div>
+        <ul class="price-features">
+          <li>60 digital photos (retouched)</li>
+          <li>Ceremony coverage only</li>
+          <li>Private online gallery</li>
+          <li>HD digital download</li>
+          <li class="disabled">Printed photos</li>
+          <li class="disabled">Video coverage</li>
+          <li class="disabled">Drone shots</li>
+          <li class="disabled">Premium album</li>
+        </ul>
+        <button class="price-btn" onclick="openResModalWithPkg('Wedding Photo ESSENTIEL – $250')">Book this package →</button>
+      </div>
+      <div class="price-card">
         <div class="price-tier">BRONZE</div>
         <div class="price-name" data-i="essential">Essential</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">300</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">380</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="duration">Duration</span><span>2–3 hours</span></div>
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>7–10 days</span></div>
         </div>
         <ul class="price-features">
-          <li>100 digital photos (retouched)</li>
-          <li>25 printed 4×6 photos</li>
+          <li>120 digital photos (retouched)</li>
+          <li>30 printed 4×6 photos</li>
           <li>3 printed 6×8 photos</li>
           <li>Makeup + ceremony coverage</li>
           <li>Private online gallery</li>
@@ -1160,19 +1181,19 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li class="disabled">Drone shots</li>
           <li class="disabled">Premium album</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Wedding Photo BRONZE – $300')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Wedding Photo BRONZE – $380')">Book this package →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">SILVER</div>
         <div class="price-name" data-i="prestige">Prestige</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">450</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">560</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="duration">Duration</span><span>5 hours</span></div>
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>5–7 days</span></div>
         </div>
         <ul class="price-features">
-          <li>170 digital photos (retouched)</li>
+          <li>200 digital photos (retouched)</li>
           <li>40 printed 4×6 photos</li>
           <li>6 photos 6×8 + 6 photos 8×10</li>
           <li>Pre-nuptial + ceremony coverage</li>
@@ -1181,19 +1202,19 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li class="disabled">Drone shots</li>
           <li class="disabled">Premium album</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Wedding Photo SILVER – $450')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Wedding Photo SILVER – $560')">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge best">Best Value</div>
         <div class="price-tier">GOLD</div>
         <div class="price-name" data-i="luxe">Luxe Intégral</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">600</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">780</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="duration">Duration</span><span>Full day (8h+)</span></div>
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>3–5 days</span></div>
         </div>
         <ul class="price-features">
-          <li>300+ digital photos (retouched)</li>
+          <li>350+ digital photos (retouched)</li>
           <li>60 printed 4×6 photos</li>
           <li>8 photos 6×8 + 8 photos 8×10</li>
           <li>Full day coverage (all stages)</li>
@@ -1202,19 +1223,19 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Drone aerial shots included</li>
           <li>Short highlight video reel</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Wedding Photo GOLD – $600')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Wedding Photo GOLD – $780')">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge premium">Premium</div>
         <div class="price-tier">PLATINUM</div>
         <div class="price-name">Absolute Luxury</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">900</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">1200</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="duration">Duration</span><span>2 days coverage</span></div>
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>Express 48–72h</span></div>
         </div>
         <ul class="price-features">
-          <li>500+ digital photos (retouched)</li>
+          <li>600+ digital photos (retouched)</li>
           <li>100+ printed photos various formats</li>
           <li>2 premium albums + USB drive</li>
           <li>Full wedding film (10–15 min)</li>
@@ -1223,22 +1244,23 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Photo booth setup included</li>
           <li>Free invitation card design</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Wedding Photo PLATINUM – $900')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Wedding Photo PLATINUM – $1200')">Book this package →</button>
       </div>
     </div>
     <!-- Compare Table -->
     <div class="compare-wrap reveal">
       <table class="compare-table">
-        <thead><tr><th>Feature</th><th>BRONZE</th><th>SILVER</th><th>GOLD</th><th>PLATINUM</th></tr></thead>
+        <thead><tr><th>Feature</th><th>ESSENTIEL</th><th>BRONZE</th><th>SILVER</th><th>GOLD</th><th>PLATINUM</th></tr></thead>
         <tbody>
-          <tr><td>Digital Photos</td><td>100</td><td>170</td><td>300+</td><td class="ct-gold">500+</td></tr>
-          <tr><td>Duration</td><td>2–3h</td><td>5h</td><td>Full day</td><td class="ct-gold">2 days</td></tr>
-          <tr><td>Drone</td><td class="ct-no">✗</td><td class="ct-no">✗</td><td class="ct-yes">✓</td><td class="ct-yes">✓</td></tr>
-          <tr><td>Video Reel</td><td class="ct-no">✗</td><td class="ct-no">✗</td><td class="ct-yes">✓</td><td class="ct-yes">✓</td></tr>
-          <tr><td>Premium Album</td><td class="ct-no">✗</td><td class="ct-no">✗</td><td class="ct-yes">✓</td><td class="ct-yes">✓</td></tr>
-          <tr><td>Photographers</td><td>1</td><td>1</td><td>1</td><td class="ct-gold">2</td></tr>
-          <tr><td>Delivery</td><td>7–10 days</td><td>5–7 days</td><td>3–5 days</td><td class="ct-gold">48–72h</td></tr>
-          <tr><td>Price</td><td>$300</td><td>$450</td><td>$600</td><td class="ct-gold">$900</td></tr>
+          <tr><td>Digital Photos</td><td>60</td><td>120</td><td>200</td><td>350+</td><td class="ct-gold">600+</td></tr>
+          <tr><td>Duration</td><td>1–2h</td><td>2–3h</td><td>5h</td><td>Full day</td><td class="ct-gold">2 days</td></tr>
+          <tr><td>Printed Photos</td><td class="ct-no">✗</td><td class="ct-yes">✓</td><td class="ct-yes">✓</td><td class="ct-yes">✓</td><td class="ct-yes">✓</td></tr>
+          <tr><td>Drone</td><td class="ct-no">✗</td><td class="ct-no">✗</td><td class="ct-no">✗</td><td class="ct-yes">✓</td><td class="ct-yes">✓</td></tr>
+          <tr><td>Video Reel</td><td class="ct-no">✗</td><td class="ct-no">✗</td><td class="ct-no">✗</td><td class="ct-yes">✓</td><td class="ct-yes">✓</td></tr>
+          <tr><td>Premium Album</td><td class="ct-no">✗</td><td class="ct-no">✗</td><td class="ct-no">✗</td><td class="ct-yes">✓</td><td class="ct-yes">✓</td></tr>
+          <tr><td>Photographers</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="ct-gold">2</td></tr>
+          <tr><td>Delivery</td><td>10–14 days</td><td>7–10 days</td><td>5–7 days</td><td>3–5 days</td><td class="ct-gold">48–72h</td></tr>
+          <tr><td>Price</td><td>$250</td><td>$380</td><td>$560</td><td>$780</td><td class="ct-gold">$1,200</td></tr>
         </tbody>
       </table>
     </div>
@@ -1252,7 +1274,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">STARTER</div>
         <div class="price-name">Highlight Reel</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">150</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">200</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span>Video length</span><span>3–5 min</span></div>
           <div class="price-meta-row"><span>Delivery</span><span>7–10 days</span></div>
@@ -1266,13 +1288,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li class="disabled">Drone footage</li>
           <li class="disabled">Full ceremony film</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Wedding Video STARTER – $150')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Wedding Video STARTER – $200')">Book this package →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">PRESTIGE</div>
         <div class="price-name">Cinematic Story</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">280</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">380</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span>Video length</span><span>8–12 min</span></div>
           <div class="price-meta-row"><span>Delivery</span><span>5–7 days</span></div>
@@ -1286,13 +1308,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Digital + USB delivery</li>
           <li class="disabled">Drone footage</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Wedding Video PRESTIGE – $280')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Wedding Video PRESTIGE – $380')">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge best">Best Value</div>
         <div class="price-tier">GRAND</div>
         <div class="price-name">Full Experience</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">450</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">620</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span>Video length</span><span>15–20 min</span></div>
           <div class="price-meta-row"><span>Delivery</span><span>3–5 days</span></div>
@@ -1306,7 +1328,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>USB + online streaming link</li>
           <li>Raw footage included</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Wedding Video GRAND – $450')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Wedding Video GRAND – $620')">Book this package →</button>
       </div>
     </div>
   </div>
@@ -1319,7 +1341,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">MINI</div>
         <div class="price-name">Love Moment</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">80</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">110</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>1 hour session</li>
           <li>40 edited digital photos</li>
@@ -1327,13 +1349,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Private online gallery</li>
           <li>Delivery in 5 days</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Engagement MINI – $80')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Engagement MINI – $110')">Book this package →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">CLASSIC</div>
         <div class="price-name">Our Story</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">150</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">200</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>2–3 hour session</li>
           <li>80+ edited digital photos</li>
@@ -1342,13 +1364,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Private online gallery</li>
           <li>Delivery in 3–5 days</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Engagement CLASSIC – $150')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Engagement CLASSIC – $200')">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge best">Best Value</div>
         <div class="price-tier">LUXURY</div>
         <div class="price-name">Love Story Film</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">250</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">340</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>4 hour session</li>
           <li>150+ edited digital photos</li>
@@ -1358,7 +1380,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Printed 8×10 framed photo</li>
           <li>Delivery in 3 days</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Engagement LUXURY – $250')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Engagement LUXURY – $340')">Book this package →</button>
       </div>
     </div>
   </div>
@@ -1371,7 +1393,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">MINI</div>
         <div class="price-name" data-i="portraitMiniName">Mini Session</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">75</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">90</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="duration">Duration</span><span>45 min</span></div>
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>48–72h</span></div>
@@ -1385,12 +1407,12 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li class="disabled">Multiple looks</li>
           <li class="disabled">Print files</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Portrait MINI – $75')" data-i="bookBtn">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Portrait MINI – $90')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-tier">STANDARD</div>
         <div class="price-name" data-i="portraitStdName">Creative Portrait</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">130</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">160</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="duration">Duration</span><span>1h 30</span></div>
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>3–5 days</span></div>
@@ -1404,13 +1426,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li data-i="portraitStd6">Private online gallery</li>
           <li class="disabled">Family/group</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Portrait STANDARD – $130')" data-i="bookBtn">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Portrait STANDARD – $160')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">PREMIUM</div>
         <div class="price-name" data-i="portraitPremName">Premium Portrait</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">220</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">260</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="duration">Duration</span><span>2h 30</span></div>
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>2–3 days</span></div>
@@ -1424,13 +1446,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li data-i="portraitPrem6">2 printed 8×10 photos</li>
           <li data-i="portraitPrem7">Private gallery + USB</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Portrait PREMIUM – $220')" data-i="bookBtn">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Portrait PREMIUM – $260')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge best">Best Value</div>
         <div class="price-tier">LUXURY</div>
         <div class="price-name" data-i="portraitLuxName">Luxury Family</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">320</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">380</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="duration">Duration</span><span>3h+</span></div>
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>2–3 days</span></div>
@@ -1444,7 +1466,93 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li data-i="portraitLux6">Premium printed album</li>
           <li data-i="portraitLux7">USB + online gallery</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Portrait LUXURY – $320')" data-i="bookBtn">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Portrait LUXURY – $380')" data-i="bookBtn">Book this package →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STUDIO PHOTOGRAPHY -->
+  <div class="price-cat" id="pcat-studio">
+    <div class="price-cat-title">Studio Photography</div>
+    <div class="price-cat-sub">Professional studio sessions in a controlled environment — perfect lighting, clean backgrounds, maximum impact.</div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">MINI</div>
+        <div class="price-name">Quick Shot</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">50</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span>Duration</span><span>30 min</span></div>
+          <div class="price-meta-row"><span>Delivery</span><span>48h</span></div>
+        </div>
+        <ul class="price-features">
+          <li>3 premium retouched photos</li>
+          <li>1 backdrop color</li>
+          <li>Professional studio lighting</li>
+          <li>HD digital download</li>
+          <li>1 outfit</li>
+          <li class="disabled">Multiple backdrops</li>
+          <li class="disabled">Print-ready files</li>
+        </ul>
+        <button class="price-btn" onclick="openResModalWithPkg('Studio MINI – $50')">Book this →</button>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">STANDARD</div>
+        <div class="price-name">Studio Session</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">110</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span>Duration</span><span>1 hour</span></div>
+          <div class="price-meta-row"><span>Delivery</span><span>3–5 days</span></div>
+        </div>
+        <ul class="price-features">
+          <li>10 premium retouched photos</li>
+          <li>2 backdrop colors</li>
+          <li>Advanced studio lighting setup</li>
+          <li>2 outfit changes</li>
+          <li>HD + print-ready files</li>
+          <li>Private online gallery</li>
+          <li class="disabled">Fashion/editorial look</li>
+        </ul>
+        <button class="price-btn" onclick="openResModalWithPkg('Studio STANDARD – $110')">Book this package →</button>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge popular">Most Popular</div>
+        <div class="price-tier">PREMIUM</div>
+        <div class="price-name">Creative Studio</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">200</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span>Duration</span><span>2 hours</span></div>
+          <div class="price-meta-row"><span>Delivery</span><span>2–3 days</span></div>
+        </div>
+        <ul class="price-features">
+          <li>20 premium retouched photos</li>
+          <li>Multiple backdrops &amp; setups</li>
+          <li>Cinema color grading</li>
+          <li>3 outfit changes</li>
+          <li>Fashion/editorial retouching</li>
+          <li>HD + large print-ready files</li>
+          <li>Private gallery + USB</li>
+        </ul>
+        <button class="price-btn" onclick="openResModalWithPkg('Studio PREMIUM – $200')">Book this package →</button>
+      </div>
+      <div class="price-card">
+        <div class="price-badge best">Best Value</div>
+        <div class="price-tier">PRO</div>
+        <div class="price-name">Full Studio Day</div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">320</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span>Duration</span><span>3h+</span></div>
+          <div class="price-meta-row"><span>Delivery</span><span>2–3 days</span></div>
+        </div>
+        <ul class="price-features">
+          <li>35 premium retouched photos</li>
+          <li>Unlimited backdrops &amp; setups</li>
+          <li>Full cinematic retouching</li>
+          <li>Up to 5 people / group</li>
+          <li>HD + print-ready files all formats</li>
+          <li>2 printed 8×10 photos</li>
+          <li>Premium gallery + USB delivery</li>
+        </ul>
+        <button class="price-btn" onclick="openResModalWithPkg('Studio PRO – $320')">Book this package →</button>
       </div>
     </div>
   </div>
@@ -1457,22 +1565,30 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">STARTER</div>
         <div class="price-name">Small Event</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">100</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">150</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span>Duration</span><span>2 hours</span></div>
+          <div class="price-meta-row"><span>Delivery</span><span>5–7 days</span></div>
+        </div>
         <ul class="price-features">
           <li>2 hours of coverage</li>
-          <li>80 edited digital photos</li>
+          <li>100 edited digital photos</li>
           <li>Online gallery</li>
           <li>Delivery in 5–7 days</li>
           <li class="disabled">Video coverage</li>
           <li class="disabled">Drone</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Event STARTER – $100')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Event STARTER – $150')">Book this package →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">FULL DAY</div>
         <div class="price-name">Corporate Event</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">200</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">300</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span>Duration</span><span>4–6 hours</span></div>
+          <div class="price-meta-row"><span>Delivery</span><span>3–5 days</span></div>
+        </div>
         <ul class="price-features">
           <li>4–6 hours of coverage</li>
           <li>200 edited digital photos</li>
@@ -1481,13 +1597,17 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Same-day preview images</li>
           <li>Delivery in 3–5 days</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Event FULL DAY – $200')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Event FULL DAY – $300')">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge best">Best Value</div>
         <div class="price-tier">GRAND SHOW</div>
         <div class="price-name">Premium Gala</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">350</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">580</span><span class="period">USD</span></div>
+        <div class="price-meta">
+          <div class="price-meta-row"><span>Duration</span><span>Full day (8h)</span></div>
+          <div class="price-meta-row"><span>Delivery</span><span>48–72h</span></div>
+        </div>
         <ul class="price-features">
           <li>Full day (8h) coverage</li>
           <li>400+ edited digital photos</li>
@@ -1497,7 +1617,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Livestream option available</li>
           <li>Delivery in 48–72h</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Event GRAND SHOW – $350')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Event GRAND SHOW – $580')">Book this package →</button>
       </div>
     </div>
   </div>
@@ -1510,7 +1630,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">BASIC</div>
         <div class="price-name" data-i="brandingBasicName">Logo Essential</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">80</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">120</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>3–5 days</span></div>
         </div>
@@ -1522,13 +1642,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li class="disabled">Brand guidelines</li>
           <li class="disabled">Color system</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Branding BASIC – $80')" data-i="bookBtn">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Branding BASIC – $120')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">PRO</div>
         <div class="price-name" data-i="brandingProName">Brand Identity</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">180</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">250</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>5–7 days</span></div>
         </div>
@@ -1541,13 +1661,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li data-i="brandingPro6">Unlimited revisions</li>
           <li data-i="brandingPro7">Letterhead design</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Branding PRO – $180')" data-i="bookBtn">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Branding PRO – $250')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge best">Best Value</div>
         <div class="price-tier">ELITE</div>
         <div class="price-name" data-i="brandingEliteName">Brand Experience</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">320</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">420</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>7–10 days</span></div>
         </div>
@@ -1560,13 +1680,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li data-i="brandingElite6">Brand mockup presentation</li>
           <li data-i="brandingElite7">Priority delivery</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Branding ELITE – $320')" data-i="bookBtn">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Branding ELITE – $420')" data-i="bookBtn">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge premium">Premium</div>
         <div class="price-tier">AGENCY</div>
         <div class="price-name" data-i="brandingAgencyName">Agency Pack</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">550</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">700</span><span class="period">USD</span></div>
         <div class="price-meta">
           <div class="price-meta-row"><span data-i="delivery">Delivery</span><span>10–14 days</span></div>
         </div>
@@ -1579,7 +1699,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li data-i="brandingAgency6">Brand activation mockups</li>
           <li data-i="brandingAgency7">Dedicated project manager</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Branding AGENCY – $550')" data-i="bookBtn">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Branding AGENCY – $700')" data-i="bookBtn">Book this package →</button>
       </div>
     </div>
   </div>
@@ -1592,19 +1712,19 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">SINGLE</div>
         <div class="price-name">Flyer / Poster</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">20</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">30</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>1 flyer or poster design</li>
           <li>2 revision rounds</li>
           <li>Print-ready PDF + JPEG</li>
           <li>Delivery in 24–48h</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Flyer Design – $20')">Book this →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Flyer Design – $30')">Book this →</button>
       </div>
       <div class="price-card">
         <div class="price-tier">PACK</div>
         <div class="price-name">Marketing Pack</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">80</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">140</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>5 flyers or posters</li>
           <li>Consistent brand design</li>
@@ -1612,13 +1732,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Print-ready files</li>
           <li>Delivery in 3–4 days</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Marketing Pack – $80')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Marketing Pack – $140')">Book this package →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">VISIT CARD</div>
         <div class="price-name">Business Cards</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">25</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">45</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>2 business card designs</li>
           <li>Front &amp; back</li>
@@ -1626,12 +1746,12 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Standard &amp; premium finishes</li>
           <li>Delivery in 24h</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Business Cards – $25')">Book this →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Business Cards – $45')">Book this →</button>
       </div>
       <div class="price-card">
         <div class="price-tier">TRIFOLD</div>
         <div class="price-name">Brochure</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">45</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">75</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>Trifold brochure design</li>
           <li>Both sides designed</li>
@@ -1639,7 +1759,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Print-ready PDF</li>
           <li>Delivery in 2–3 days</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Brochure/Trifold – $45')">Book this →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Brochure/Trifold – $75')">Book this →</button>
       </div>
     </div>
   </div>
@@ -1652,7 +1772,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">CARDS</div>
         <div class="price-name">Business Cards</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">15</span><span class="period">/ 50 cards</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">20</span><span class="period">/ 50 cards</span></div>
         <ul class="price-features">
           <li>50 premium business cards</li>
           <li>Glossy or matte finish</li>
@@ -1665,7 +1785,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">FLYERS</div>
         <div class="price-name">Flyer Printing</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">20</span><span class="period">/ 100 copies</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">25</span><span class="period">/ 100 copies</span></div>
         <ul class="price-features">
           <li>100 A5 or A4 flyers</li>
           <li>Full color double-sided</li>
@@ -1691,7 +1811,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">ALBUMS</div>
         <div class="price-name">Photo Albums</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">50</span><span class="period">per album</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">65</span><span class="period">per album</span></div>
         <ul class="price-features">
           <li>30×30cm hardcover album</li>
           <li>20 pages (40 sides)</li>
@@ -1712,7 +1832,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">MINI</div>
         <div class="price-name">Aerial Shots</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">60</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">100</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>20 min flight time</li>
           <li>15 aerial photos</li>
@@ -1720,13 +1840,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>1 location</li>
           <li>Delivery in 2 days</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Drone MINI – $60')">Book this →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Drone MINI – $100')">Book this →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">STANDARD</div>
         <div class="price-name">Event Drone</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">120</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">180</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>1 hour flight coverage</li>
           <li>40 edited aerial photos</li>
@@ -1735,13 +1855,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>4K cinematic delivery</li>
           <li>Delivery in 3 days</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Drone STANDARD – $120')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Drone STANDARD – $180')">Book this package →</button>
       </div>
       <div class="price-card">
         <div class="price-badge best">Best Value</div>
         <div class="price-tier">FULL FLIGHT</div>
         <div class="price-name">Full Aerial Package</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">200</span><span class="period">USD</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">300</span><span class="period">USD</span></div>
         <ul class="price-features">
           <li>Half day drone coverage</li>
           <li>100+ aerial photos edited</li>
@@ -1751,7 +1871,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Raw + edited footage</li>
           <li>Delivery in 2 days</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Drone FULL FLIGHT – $200')">Book this package →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Drone FULL FLIGHT – $300')">Book this package →</button>
       </div>
     </div>
   </div>
@@ -1764,7 +1884,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
       <div class="price-card">
         <div class="price-tier">STARTER</div>
         <div class="price-name">Content Pack</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">80</span><span class="period">/ month</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">120</span><span class="period">/ month</span></div>
         <ul class="price-features">
           <li>8 designed social posts</li>
           <li>2 story templates</li>
@@ -1772,13 +1892,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Captions included</li>
           <li>Instagram + Facebook ready</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Social Media STARTER – $80/mo')">Get Started →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Social Media STARTER – $120/mo')">Get Started →</button>
       </div>
       <div class="price-card featured">
         <div class="price-badge popular">Most Popular</div>
         <div class="price-tier">GROWTH</div>
         <div class="price-name">Content Creator</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">150</span><span class="period">/ month</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">220</span><span class="period">/ month</span></div>
         <ul class="price-features">
           <li>16 designed social posts</li>
           <li>4 Reels / Short videos</li>
@@ -1787,13 +1907,13 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Brand-consistent design</li>
           <li>All platforms optimized</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Social Media GROWTH – $150/mo')">Get Started →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Social Media GROWTH – $220/mo')">Get Started →</button>
       </div>
       <div class="price-card">
         <div class="price-badge premium">Premium</div>
         <div class="price-tier">INFLUENCER</div>
         <div class="price-name">Full Management</div>
-        <div class="price-amount"><span class="currency">$</span><span class="amount">280</span><span class="period">/ month</span></div>
+        <div class="price-amount"><span class="currency">$</span><span class="amount">380</span><span class="period">/ month</span></div>
         <ul class="price-features">
           <li>30 posts per month</li>
           <li>8 Reels + short videos</li>
@@ -1803,7 +1923,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <li>Influencer-style editing</li>
           <li>Hashtag &amp; strategy included</li>
         </ul>
-        <button class="price-btn" onclick="openResModalWithPkg('Social Media INFLUENCER – $280/mo')">Get Started →</button>
+        <button class="price-btn" onclick="openResModalWithPkg('Social Media INFLUENCER – $380/mo')">Get Started →</button>
       </div>
     </div>
   </div>
@@ -1826,11 +1946,11 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <div class="combo-item">Private online gallery</div>
         </div>
         <div class="combo-pricing">
-          <div class="combo-price-new">$720</div>
-          <div class="combo-price-old">$880</div>
+          <div class="combo-price-new">$880</div>
+          <div class="combo-price-old">$1,095</div>
         </div>
-        <div class="combo-save" data-i="save">Save $160 — 18% OFF</div>
-        <button class="combo-cta" onclick="openResModalWithPkg('Combo Love Story – $720')">Book This Combo →</button>
+        <div class="combo-save" data-i="save">Save $215 — 20% OFF</div>
+        <button class="combo-cta" onclick="openResModalWithPkg('Combo Love Story – $880')">Book This Combo →</button>
       </div>
       <!-- COMBO 2 -->
       <div class="combo-card">
@@ -1845,11 +1965,11 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <div class="combo-item">Brand mockup presentation</div>
         </div>
         <div class="combo-pricing">
-          <div class="combo-price-new">$200</div>
-          <div class="combo-price-old">$290</div>
+          <div class="combo-price-new">$320</div>
+          <div class="combo-price-old">$450</div>
         </div>
-        <div class="combo-save" data-i="save">Save $90 — 31% OFF</div>
-        <button class="combo-cta" onclick="openResModalWithPkg('Combo Business Brand – $200')">Book This Combo →</button>
+        <div class="combo-save" data-i="save">Save $130 — 29% OFF</div>
+        <button class="combo-cta" onclick="openResModalWithPkg('Combo Business Brand – $320')">Book This Combo →</button>
       </div>
       <!-- COMBO 3 -->
       <div class="combo-card">
@@ -1865,11 +1985,11 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <div class="combo-item">Printed photo album</div>
         </div>
         <div class="combo-pricing">
-          <div class="combo-price-new">$550</div>
-          <div class="combo-price-old">$750</div>
+          <div class="combo-price-new">$820</div>
+          <div class="combo-price-old">$1,100</div>
         </div>
-        <div class="combo-save" data-i="save">Save $200 — 27% OFF</div>
-        <button class="combo-cta" onclick="openResModalWithPkg('Combo Event Full Experience – $550')">Book This Combo →</button>
+        <div class="combo-save" data-i="save">Save $280 — 25% OFF</div>
+        <button class="combo-cta" onclick="openResModalWithPkg('Combo Event Full Experience – $820')">Book This Combo →</button>
       </div>
       <!-- COMBO 4 -->
       <div class="combo-card">
@@ -1884,11 +2004,11 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <div class="combo-item">Captions + hashtag strategy</div>
         </div>
         <div class="combo-pricing">
-          <div class="combo-price-new">$180</div>
-          <div class="combo-price-old">$250</div>
+          <div class="combo-price-new">$260</div>
+          <div class="combo-price-old">$360</div>
         </div>
-        <div class="combo-save" data-i="save">Save $70/mo — 28% OFF</div>
-        <button class="combo-cta" onclick="openResModalWithPkg('Combo Content Creator – $180/mo')">Book This Combo →</button>
+        <div class="combo-save" data-i="save">Save $100/mo — 28% OFF</div>
+        <button class="combo-cta" onclick="openResModalWithPkg('Combo Content Creator – $260/mo')">Book This Combo →</button>
       </div>
       <!-- COMBO 5 -->
       <div class="combo-card">
@@ -1896,7 +2016,7 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
         <div class="combo-title">COMBO WEDDING ULTIMATE</div>
         <div class="combo-tagline">Photo + Video + Drone — your perfect wedding day</div>
         <div class="combo-items">
-          <div class="combo-item">Full day photography GOLD (300+ photos)</div>
+          <div class="combo-item">Full day photography GOLD (350+ photos)</div>
           <div class="combo-item">Cinematic wedding film (15–20 min)</div>
           <div class="combo-item">Drone aerial coverage</div>
           <div class="combo-item">Premium printed album</div>
@@ -1904,11 +2024,11 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <div class="combo-item">Priority delivery (3–5 days)</div>
         </div>
         <div class="combo-pricing">
-          <div class="combo-price-new">$950</div>
-          <div class="combo-price-old">$1,250</div>
+          <div class="combo-price-new">$1,300</div>
+          <div class="combo-price-old">$1,720</div>
         </div>
-        <div class="combo-save">Save $300 — 24% OFF</div>
-        <button class="combo-cta" onclick="openResModalWithPkg('Combo Wedding Ultimate – $950')">Book This Combo →</button>
+        <div class="combo-save">Save $420 — 24% OFF</div>
+        <button class="combo-cta" onclick="openResModalWithPkg('Combo Wedding Ultimate – $1300')">Book This Combo →</button>
       </div>
       <!-- COMBO 6 -->
       <div class="combo-card">
@@ -1923,11 +2043,11 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
           <div class="combo-item">1 month social media pack (12 posts)</div>
         </div>
         <div class="combo-pricing">
-          <div class="combo-price-new">$280</div>
-          <div class="combo-price-old">$400</div>
+          <div class="combo-price-new">$420</div>
+          <div class="combo-price-old">$600</div>
         </div>
-        <div class="combo-save">Save $120 — 30% OFF</div>
-        <button class="combo-cta" onclick="openResModalWithPkg('Combo Startup Launch – $280')">Book This Combo →</button>
+        <div class="combo-save">Save $180 — 30% OFF</div>
+        <button class="combo-cta" onclick="openResModalWithPkg('Combo Startup Launch – $420')">Book This Combo →</button>
       </div>
     </div>
   </div>
@@ -1936,16 +2056,16 @@ footer{padding:80px 60px 48px;background:var(--d2);border-top:1px solid rgba(201
   <div class="price-extras reveal">
     <div class="price-extras-title" data-i="extrasTitle">Additional Services</div>
     <div class="price-extras-grid">
-      <div class="price-extra-item"><span data-i="extraInvite">Invitation card design</span><span class="price-extra-cost">+$30</span></div>
-      <div class="price-extra-item"><span data-i="extraVideo">Video edit / montage</span><span class="price-extra-cost">+$80</span></div>
-      <div class="price-extra-item"><span data-i="extraDrone">Drone aerial add-on</span><span class="price-extra-cost">+$60</span></div>
-      <div class="price-extra-item"><span data-i="extraGuestbook">Premium guestbook</span><span class="price-extra-cost">+$40</span></div>
-      <div class="price-extra-item"><span data-i="extraExpress">Express delivery</span><span class="price-extra-cost">+$25</span></div>
+      <div class="price-extra-item"><span data-i="extraInvite">Invitation card design</span><span class="price-extra-cost">+$50</span></div>
+      <div class="price-extra-item"><span data-i="extraVideo">Video edit / montage</span><span class="price-extra-cost">+$100</span></div>
+      <div class="price-extra-item"><span data-i="extraDrone">Drone aerial add-on</span><span class="price-extra-cost">+$100</span></div>
+      <div class="price-extra-item"><span data-i="extraGuestbook">Premium guestbook</span><span class="price-extra-cost">+$60</span></div>
+      <div class="price-extra-item"><span data-i="extraExpress">Express delivery</span><span class="price-extra-cost">+$40</span></div>
       <div class="price-extra-item"><span data-i="extraTravel">Travel outside city</span><span class="price-extra-cost">By distance</span></div>
-      <div class="price-extra-item"><span data-i="extraAlbum">Premium photo album</span><span class="price-extra-cost">+$50</span></div>
-      <div class="price-extra-item"><span data-i="extraOvertime">Extra hour</span><span class="price-extra-cost">+$40/h</span></div>
-      <div class="price-extra-item"><span data-i="extraLivestream">Livestream setup</span><span class="price-extra-cost">+$70</span></div>
-      <div class="price-extra-item"><span data-i="extraUSB">USB + physical delivery</span><span class="price-extra-cost">+$20</span></div>
+      <div class="price-extra-item"><span data-i="extraAlbum">Premium photo album</span><span class="price-extra-cost">+$70</span></div>
+      <div class="price-extra-item"><span data-i="extraOvertime">Extra hour</span><span class="price-extra-cost">+$60/h</span></div>
+      <div class="price-extra-item"><span data-i="extraLivestream">Livestream setup</span><span class="price-extra-cost">+$100</span></div>
+      <div class="price-extra-item"><span data-i="extraUSB">USB + physical delivery</span><span class="price-extra-cost">+$30</span></div>
     </div>
   </div>
 </section>
