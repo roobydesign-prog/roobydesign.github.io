@@ -14,6 +14,40 @@
 <meta property="og:url" content="https://roobydesign-prog.github.io/roobydesign.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Rooby Design",
+  "description": "Studio créatif premium spécialisé en design graphique, photographie et IT en Haïti.",
+  "url": "https://roobydesign-prog.github.io/roobydesign.github.io/",
+  "logo": "https://roobydesign-prog.github.io/roobydesign.github.io/images/logo.png",
+  "image": "https://roobydesign-prog.github.io/roobydesign.github.io/images/brand/Slide_01.png",
+  "founder": {"@type":"Person","name":"Jean Robenson Raymonvil"},
+  "foundingDate": "2018",
+  "address": {"@type":"PostalAddress","addressLocality":"Pétion-Ville","addressRegion":"Ouest","addressCountry":"HT"},
+  "telephone": "+50937704274",
+  "email": "infos@roobydesign.com",
+  "sameAs": [
+    "https://instagram.com/rooby.design",
+    "https://facebook.com/roobydesign",
+    "https://tiktok.com/@roobydesign",
+    "https://youtube.com/@roobydesign"
+  ],
+  "priceRange": "$$",
+  "openingHours": "Mo-Sa 08:00-20:00",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services Rooby Design",
+    "itemListElement": [
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Photographie de Mariage"},"price":"300","priceCurrency":"USD"},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Branding & Logo Design"},"price":"50","priceCurrency":"USD"},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Design Graphique"},"price":"20","priceCurrency":"USD"}
+    ]
+  },
+  "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"120","bestRating":"5"}
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
@@ -724,6 +758,102 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
   .combos-grid{grid-template-columns:1fr}
   .compare-wrap{font-size:11px}
 }
+
+/* ═══════════════════════════════════════════
+   WHATSAPP INTELLIGENT — TOOLTIP POPUP
+═══════════════════════════════════════════ */
+.wa-float-wrap{position:fixed;bottom:90px;right:24px;z-index:600;display:flex;align-items:flex-end;gap:12px;flex-direction:row-reverse}
+.wa-float{position:relative;bottom:auto;right:auto;flex-shrink:0}
+.wa-tooltip{background:rgba(10,10,10,.97);border:1px solid rgba(37,211,102,.25);border-left:3px solid var(--green);padding:14px 16px;max-width:220px;opacity:0;pointer-events:none;transform:translateX(10px);transition:all .35s var(--ease);border-radius:0}
+.wa-tooltip.show{opacity:1;pointer-events:all;transform:translateX(0)}
+.wa-tooltip-hd{font-size:11px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:.04em}
+.wa-tooltip-sub{font-size:11px;color:var(--l3);line-height:1.5;margin-bottom:10px}
+.wa-tooltip-btns{display:flex;flex-direction:column;gap:6px}
+.wa-qs-btn{display:block;padding:7px 12px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);color:#fff;font-size:10px;letter-spacing:.08em;cursor:pointer;transition:all .2s;text-align:left;font-family:'Outfit',sans-serif}
+.wa-qs-btn:hover{background:rgba(37,211,102,.2);border-color:var(--green)}
+.wa-close-tooltip{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--l3);font-size:14px;cursor:pointer;line-height:1}
+@media(max-width:768px){.wa-tooltip{max-width:180px;padding:12px 14px}.wa-qs-btn{cursor:pointer}}
+
+/* ═══════════════════════════════════════════
+   SCARCITY BADGE
+═══════════════════════════════════════════ */
+.scarcity-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.25);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;animation:scPulse 2.5s ease-in-out infinite}
+.scarcity-badge .sc-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;flex-shrink:0;animation:scDot 1.2s ease-in-out infinite}
+@keyframes scPulse{0%,100%{border-color:rgba(201,168,76,.25)}50%{border-color:rgba(201,168,76,.55)}}
+@keyframes scDot{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS — PREMIUM UPGRADE
+═══════════════════════════════════════════ */
+.test-section-inner{position:relative;overflow:hidden}
+.test-slider-wrap{overflow:hidden;position:relative}
+.test-track{display:flex;gap:24px;transition:transform .6s var(--ease);will-change:transform}
+.test-card-new{flex:0 0 calc(33.333% - 16px);background:var(--d2);border:1px solid rgba(255,255,255,.06);border-top:2px solid transparent;padding:32px 28px;transition:all .4s var(--ease);position:relative;overflow:hidden}
+.test-card-new:hover{border-top-color:var(--gold);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.test-card-new::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);opacity:0;transition:opacity .4s}
+.test-card-new:hover::before{opacity:1}
+.test-quote-icon{font-size:36px;color:rgba(201,168,76,.15);font-family:'Playfair Display',serif;line-height:1;margin-bottom:16px;font-style:italic}
+.test-stars-new{display:flex;gap:3px;margin-bottom:14px}
+.test-star{color:var(--gold);font-size:13px}
+.test-body{font-size:14px;color:var(--l2);line-height:1.75;margin-bottom:24px;font-weight:300;font-style:italic}
+.test-author-row{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid rgba(255,255,255,.05)}
+.test-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;font-weight:700;flex-shrink:0;border:1px solid rgba(201,168,76,.25)}
+.test-avatar.av1{background:linear-gradient(135deg,#1a0a2e,#3d1c6e);color:#c9a84c}
+.test-avatar.av2{background:linear-gradient(135deg,#0a1628,#1c3a6e);color:#c9a84c}
+.test-avatar.av3{background:linear-gradient(135deg,#1a2a0a,#3a6e1c);color:#c9a84c}
+.test-avatar.av4{background:linear-gradient(135deg,#2a0a0a,#6e1c1c);color:#c9a84c}
+.test-avatar.av5{background:linear-gradient(135deg,#0a2a1a,#1c6e4a);color:#c9a84c}
+.test-avatar.av6{background:linear-gradient(135deg,#2a1a0a,#6e4a1c);color:#c9a84c}
+.test-name-new{font-size:13px;font-weight:600;color:var(--light);letter-spacing:.03em}
+.test-role-new{font-size:11px;color:var(--l3);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.test-service-tag{display:inline-block;padding:2px 8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.test-nav{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:36px}
+.test-nav-btn{width:40px;height:40px;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);color:var(--gold);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.test-nav-btn:hover{background:var(--gold);color:#080808}
+.test-dots{display:flex;gap:8px}
+.test-dot{width:20px;height:2px;background:rgba(255,255,255,.15);border:none;cursor:pointer;transition:all .4s}
+.test-dot.on{background:var(--gold);width:32px}
+.test-rating-summary{display:flex;align-items:center;gap:24px;padding:24px 28px;background:var(--d2);border:1px solid rgba(201,168,76,.12);margin-bottom:40px}
+.trs-score{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--gold);line-height:1}
+.trs-stars{display:flex;gap:4px;margin-bottom:4px}
+.trs-count{font-size:11px;color:var(--l3);letter-spacing:.1em;text-transform:uppercase}
+.trs-divider{width:1px;height:52px;background:rgba(255,255,255,.06)}
+.trs-breakdown{flex:1}
+.trs-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.trs-bar-label{font-size:10px;color:var(--l4);width:14px;text-align:right;flex-shrink:0}
+.trs-bar-track{flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.trs-bar-fill{height:100%;background:var(--gold);border-radius:2px;transition:width 1s var(--ease)}
+.trs-bar-pct{font-size:10px;color:var(--l4);width:28px;text-align:right;flex-shrink:0}
+@media(max-width:960px){.test-card-new{flex:0 0 calc(50% - 12px)}}
+@media(max-width:600px){.test-card-new{flex:0 0 100%}.test-rating-summary{flex-direction:column;align-items:flex-start;gap:16px}.trs-divider{display:none}}
+
+/* ═══════════════════════════════════════════
+   BEFORE / AFTER SLIDER
+═══════════════════════════════════════════ */
+.ba-section{padding:80px 60px;background:var(--d2)}
+.ba-intro{font-size:13px;color:var(--l3);max-width:560px;line-height:1.7;margin-bottom:48px}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.ba-card{position:relative;overflow:hidden;background:var(--d3);border:1px solid rgba(255,255,255,.06)}
+.ba-label{position:absolute;bottom:14px;left:14px;z-index:5;display:flex;gap:8px}
+.ba-tag{padding:4px 12px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.ba-tag.before{background:rgba(0,0,0,.7);color:var(--l3);border:1px solid rgba(255,255,255,.1)}
+.ba-tag.after{background:var(--gold);color:#080808}
+.ba-slider-wrap{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;cursor:ew-resize;user-select:none}
+.ba-before,.ba-after{position:absolute;inset:0;overflow:hidden}
+.ba-before img,.ba-after img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba-after{clip-path:inset(0 50% 0 0);transition:none}
+.ba-divider-line{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);z-index:4;transform:translateX(-50%);pointer-events:none}
+.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;background:var(--gold);border-radius:50%;z-index:5;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(201,168,76,.25),0 4px 16px rgba(0,0,0,.5);pointer-events:none}
+.ba-handle::before,.ba-handle::after{content:'';border:5px solid transparent;border-top:0;border-bottom:0}
+.ba-handle::before{border-right:7px solid #080808;margin-right:2px}
+.ba-handle::after{border-left:7px solid #080808;margin-left:2px}
+.ba-card-info{padding:18px 20px;border-top:1px solid rgba(255,255,255,.05)}
+.ba-card-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.06em;color:var(--light);margin-bottom:4px}
+.ba-card-desc{font-size:12px;color:var(--l3);letter-spacing:.04em}
+.ba-drag-hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.7);border:1px solid rgba(201,168,76,.3);padding:8px 16px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);z-index:6;pointer-events:none;transition:opacity .5s}
+.ba-drag-hint.hide{opacity:0}
+@media(max-width:768px){.ba-section{padding:60px 24px}.ba-grid{grid-template-columns:1fr}.ba-slider-wrap{cursor:pointer}}
+@media(max-width:480px){.ba-section{padding:48px 16px}}
 </style>
 </head>
 <body>
@@ -752,10 +882,23 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
   <div class="ld-txt" data-i="loading">Loading Portfolio 2026</div>
 </div>
 
-<!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/50937704274" target="_blank" class="wa-float" title="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.122 1.533 5.854L.057 23.5l5.784-1.517A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.49-5.186-1.349l-.371-.22-3.844 1.008 1.028-3.737-.242-.385A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-</a>
+<!-- WHATSAPP INTELLIGENT FLOAT -->
+<div class="wa-float-wrap" id="waFloatWrap">
+  <div class="wa-tooltip" id="waTooltip">
+    <button class="wa-close-tooltip" onclick="closeWaTooltip()">×</button>
+    <div class="wa-tooltip-hd">💬 Écrire rapidement</div>
+    <div class="wa-tooltip-sub">Choisissez un sujet pour pré-remplir le message :</div>
+    <div class="wa-tooltip-btns">
+      <a class="wa-qs-btn" href="https://wa.me/50937704274?text=Bonjour+Rooby+Design%2C+je+suis+int%C3%A9ress%C3%A9(e)+par+la+photographie+de+mariage.+Pouvez-vous+me+donner+plus+de+d%C3%A9tails+%3F" target="_blank">📸 Photographie Mariage</a>
+      <a class="wa-qs-btn" href="https://wa.me/50937704274?text=Bonjour+Rooby+Design%2C+j%27ai+besoin+d%27un+logo+et+d%27une+identit%C3%A9+visuelle+pour+mon+entreprise." target="_blank">🏢 Logo & Branding</a>
+      <a class="wa-qs-btn" href="https://wa.me/50937704274?text=Bonjour+Rooby+Design%2C+je+voudrais+commander+un+design+graphique+%28flyer%2C+affiche+ou+carte%29." target="_blank">🎯 Design Graphique</a>
+      <a class="wa-qs-btn" href="https://wa.me/50937704274?text=Bonjour+Rooby+Design%2C+j%27ai+une+question+sur+vos+services+et+tarifs." target="_blank">💬 Autre question</a>
+    </div>
+  </div>
+  <a href="https://wa.me/50937704274" target="_blank" class="wa-float" title="WhatsApp" onclick="handleWaClick(event)">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.122 1.533 5.854L.057 23.5l5.784-1.517A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.49-5.186-1.349l-.371-.22-3.844 1.008 1.028-3.737-.242-.385A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  </a>
+</div>
 <!-- BACK TO TOP -->
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
 <!-- COOKIE -->
@@ -816,6 +959,8 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
     <h1 class="hero-name">Rooby<br><span class="g">Design</span></h1>
     <p class="hero-sub"><b data-i="visual">Visual Identity</b> &nbsp;&middot;&nbsp; <span data-i="graphic">Graphic Design</span> &nbsp;&middot;&nbsp; <b data-i="photo">Photography</b></p>
     <div class="hero-btns">
+      <div class="scarcity-badge" id="scarcityBadge"><span class="sc-dot"></span><span id="scarcityText">⚡ 3 créneaux disponibles ce mois</span></div>
+      <br>
       <button class="btn-g" onclick="openResModal()" data-i="bookNow">Book Now &#8594;</button>
       <a href="#pricing" class="btn-o" data-i="seePrices">See Prices</a>
     </div>
@@ -1855,13 +2000,190 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
 
 <div class="divider"></div>
 
-<!-- ═══════ TESTIMONIALS ═══════ -->
+<!-- ═══════ BEFORE / AFTER TRANSFORMATIONS ═══════ -->
+<section class="ba-section" id="transformations">
+  <div class="sec-hd reveal"><span class="sec-n" style="color:rgba(201,168,76,.08)">✦</span><h2 class="sec-t">Avant / Après</h2><div class="sec-l"></div></div>
+  <p class="ba-intro reveal">Glissez le curseur pour voir la transformation. Chaque projet est une identité repensée, une vision réalisée.</p>
+  <div class="ba-grid reveal">
+
+    <!-- Transformation 1: Branding -->
+    <div class="ba-card">
+      <div class="ba-slider-wrap" id="baSlider1" onmousedown="baStart(event,'baSlider1')" ontouchstart="baTStart(event,'baSlider1')">
+        <div class="ba-drag-hint" id="baHint1">← Glisser →</div>
+        <div class="ba-before" id="baBefore1">
+          <img src="images/brand/Slide_01.png" alt="Avant" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d4);display:flex;align-items:center;justify-content:center;color:var(--l4);font-size:12px;letter-spacing:.2em>AVANT</div>'">
+        </div>
+        <div class="ba-after" id="baAfter1">
+          <img src="images/brand/Slide_02.jpg" alt="Après" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;letter-spacing:.2em>APRÈS</div>'">
+        </div>
+        <div class="ba-divider-line" id="baDivider1"></div>
+        <div class="ba-handle" id="baHandle1"></div>
+        <div class="ba-label">
+          <span class="ba-tag before">Avant</span>
+          <span class="ba-tag after">Après</span>
+        </div>
+      </div>
+      <div class="ba-card-info">
+        <div class="ba-card-title">Identité Visuelle — Branding Complet</div>
+        <div class="ba-card-desc">Logo · Palette de couleurs · Typographie · Brand Guidelines</div>
+      </div>
+    </div>
+
+    <!-- Transformation 2: Photography -->
+    <div class="ba-card">
+      <div class="ba-slider-wrap" id="baSlider2" onmousedown="baStart(event,'baSlider2')" ontouchstart="baTStart(event,'baSlider2')">
+        <div class="ba-drag-hint" id="baHint2">← Glisser →</div>
+        <div class="ba-before" id="baBefore2">
+          <img src="images/brand/Slide_03.jpg" alt="Avant" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d4);display:flex;align-items:center;justify-content:center;color:var(--l4);font-size:12px;letter-spacing:.2em>AVANT</div>'">
+        </div>
+        <div class="ba-after" id="baAfter2">
+          <img src="images/brand/Slide_04.jpg" alt="Après" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;letter-spacing:.2em>APRÈS</div>'">
+        </div>
+        <div class="ba-divider-line" id="baDivider2"></div>
+        <div class="ba-handle" id="baHandle2"></div>
+        <div class="ba-label">
+          <span class="ba-tag before">Avant</span>
+          <span class="ba-tag after">Après Retouche</span>
+        </div>
+      </div>
+      <div class="ba-card-info">
+        <div class="ba-card-title">Retouche Photo — Post-Production</div>
+        <div class="ba-card-desc">Color grading · Retouche skin · Correction lumière · Export premium</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════ TESTIMONIALS — PREMIUM ═══════ -->
 <section class="section" id="testimonials">
   <div class="sec-hd reveal"><span class="sec-n">08</span><h2 class="sec-t" data-i="testimonials">Testimonials</h2><div class="sec-l"></div></div>
-  <div class="test-grid reveal">
-    <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-txt" data-i="t1">Rooby Design created our logo and brand identity from scratch. The result exceeded all our expectations — professional, creative and delivered on time.</div><div class="test-auth"><div class="test-av">MJ</div><div><div class="test-name">Marie Joseph</div><div class="test-role">CEO, Cooking Xpress</div></div></div></div>
-    <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-txt" data-i="t2">Our wedding photos are absolutely stunning. Jean captured every special moment with such artistry and sensitivity. We will treasure these forever.</div><div class="test-auth"><div class="test-av">KP</div><div><div class="test-name">Karl &amp; Patricia</div><div class="test-role" data-i="weddingC">Wedding Clients</div></div></div></div>
-    <div class="test-card"><div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="test-txt" data-i="t3">The flyers and banners for our event were incredible. Everyone asked who made them. 100% recommend Rooby Design for any creative project.</div><div class="test-auth"><div class="test-av">DS</div><div><div class="test-name">David Saint-Fleur</div><div class="test-role" data-i="eventOrg">Event Organizer</div></div></div></div>
+
+  <!-- Rating Summary -->
+  <div class="test-rating-summary reveal">
+    <div>
+      <div class="trs-score">5.0</div>
+      <div class="trs-stars">
+        <span style="color:var(--gold);font-size:16px">★★★★★</span>
+      </div>
+      <div class="trs-count">Basé sur 120+ avis</div>
+    </div>
+    <div class="trs-divider"></div>
+    <div class="trs-breakdown">
+      <div class="trs-bar-row"><span class="trs-bar-label">5</span><div class="trs-bar-track"><div class="trs-bar-fill" style="width:91%"></div></div><span class="trs-bar-pct">91%</span></div>
+      <div class="trs-bar-row"><span class="trs-bar-label">4</span><div class="trs-bar-track"><div class="trs-bar-fill" style="width:7%"></div></div><span class="trs-bar-pct">7%</span></div>
+      <div class="trs-bar-row"><span class="trs-bar-label">3</span><div class="trs-bar-track"><div class="trs-bar-fill" style="width:2%"></div></div><span class="trs-bar-pct">2%</span></div>
+      <div class="trs-bar-row"><span class="trs-bar-label">2</span><div class="trs-bar-track"><div class="trs-bar-fill" style="width:0%"></div></div><span class="trs-bar-pct">0%</span></div>
+      <div class="trs-bar-row"><span class="trs-bar-label">1</span><div class="trs-bar-track"><div class="trs-bar-fill" style="width:0%"></div></div><span class="trs-bar-pct">0%</span></div>
+    </div>
+  </div>
+
+  <!-- Slider -->
+  <div class="test-section-inner reveal">
+    <div class="test-slider-wrap">
+      <div class="test-track" id="testTrack">
+
+        <!-- Card 1 -->
+        <div class="test-card-new">
+          <div class="test-quote-icon">"</div>
+          <div class="test-stars-new"><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span></div>
+          <p class="test-body" data-i="t1">Rooby Design a créé notre logo et identité de marque de zéro. Le résultat a dépassé toutes nos attentes — professionnel, créatif et livré dans les délais.</p>
+          <div class="test-author-row">
+            <div class="test-avatar av1">MJ</div>
+            <div>
+              <div class="test-name-new">Marie Joseph</div>
+              <div class="test-role-new">CEO, Cooking Xpress</div>
+              <span class="test-service-tag">Branding</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="test-card-new">
+          <div class="test-quote-icon">"</div>
+          <div class="test-stars-new"><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span></div>
+          <p class="test-body" data-i="t2">Nos photos de mariage sont absolument sublimes. Jean a capturé chaque moment avec une sensibilité artistique remarquable. Nous les chérirons pour toujours.</p>
+          <div class="test-author-row">
+            <div class="test-avatar av2">KP</div>
+            <div>
+              <div class="test-name-new">Karl &amp; Patricia</div>
+              <div class="test-role-new" data-i="weddingC">Clients Mariage</div>
+              <span class="test-service-tag">Photo Mariage GOLD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="test-card-new">
+          <div class="test-quote-icon">"</div>
+          <div class="test-stars-new"><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span></div>
+          <p class="test-body" data-i="t3">Les flyers et banniéres pour notre événement étaient incroyables. Tout le monde nous demandait qui les avait faits. 100% recommandé pour tout projet créatif.</p>
+          <div class="test-author-row">
+            <div class="test-avatar av3">DS</div>
+            <div>
+              <div class="test-name-new">David Saint-Fleur</div>
+              <div class="test-role-new" data-i="eventOrg">Organisateur d'Événements</div>
+              <span class="test-service-tag">Design Graphique</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="test-card-new">
+          <div class="test-quote-icon">"</div>
+          <div class="test-stars-new"><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span></div>
+          <p class="test-body">Nous avions besoin d'une identité complète pour notre école technique. Rooby a livré un travail digne des plus grands studios. Sérieux, ponctuel et créatif.</p>
+          <div class="test-author-row">
+            <div class="test-avatar av4">GP</div>
+            <div>
+              <div class="test-name-new">Gary Pierre</div>
+              <div class="test-role-new">Directeur, Canado Technique</div>
+              <span class="test-service-tag">Branding Institutionnel</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="test-card-new">
+          <div class="test-quote-icon">"</div>
+          <div class="test-stars-new"><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span></div>
+          <p class="test-body">Le drone coverage de notre mariage était époustouflant. Des prises de vue aériennes que nous n'aurions jamais imaginé avoir. Un souvenir unique et exceptionnel.</p>
+          <div class="test-author-row">
+            <div class="test-avatar av5">RL</div>
+            <div>
+              <div class="test-name-new">Roseline &amp; Lubert</div>
+              <div class="test-role-new">Clients Mariage PLATINUM</div>
+              <span class="test-service-tag">Photo + Drone</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="test-card-new">
+          <div class="test-quote-icon">"</div>
+          <div class="test-stars-new"><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span></div>
+          <p class="test-body">Nos posts Instagram ont triplé en engagement depuis que Rooby gère nos visuels. Le contenu est premium, cohérent et toujours livré à temps. Je recommande les yeux fermés.</p>
+          <div class="test-author-row">
+            <div class="test-avatar av6">SA</div>
+            <div>
+              <div class="test-name-new">Sandra Alexis</div>
+              <div class="test-role-new">Influenceuse & Entrepreneur</div>
+              <span class="test-service-tag">Social Media Pack</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="test-nav">
+      <button class="test-nav-btn" onclick="testNav(-1)">&#8592;</button>
+      <div class="test-dots" id="testDots"></div>
+      <button class="test-nav-btn" onclick="testNav(1)">&#8594;</button>
+    </div>
   </div>
 </section>
 
@@ -3432,6 +3754,173 @@ function removeReceipt(){
 function bookService(svc){openResModal();document.getElementById('resSvcTitle').textContent=svc;}
 
 // ══════════════════════════════════════════════════════════
+// WHATSAPP INTELLIGENT TOOLTIP
+// ══════════════════════════════════════════════════════════
+var waTooltipOpen=false;
+var waTooltipTimer=null;
+function handleWaClick(e){
+  var tooltip=document.getElementById('waTooltip');
+  if(!tooltip) return;
+  if(!waTooltipOpen){
+    e.preventDefault();
+    tooltip.classList.add('show');
+    waTooltipOpen=true;
+    clearTimeout(waTooltipTimer);
+    waTooltipTimer=setTimeout(function(){closeWaTooltip();},8000);
+  }
+}
+function closeWaTooltip(){
+  var tooltip=document.getElementById('waTooltip');
+  if(tooltip){tooltip.classList.remove('show');waTooltipOpen=false;}
+}
+// Auto-show tooltip after 6s if page scrolled 40%
+setTimeout(function(){
+  if(!waTooltipOpen && window.scrollY > document.body.scrollHeight*0.3){
+    var tooltip=document.getElementById('waTooltip');
+    if(tooltip){tooltip.classList.add('show');waTooltipOpen=true;waTooltipTimer=setTimeout(closeWaTooltip,7000);}
+  }
+},6000);
+
+// ══════════════════════════════════════════════════════════
+// SCARCITY BADGE — Dynamic slots
+// ══════════════════════════════════════════════════════════
+(function(){
+  var d=new Date();
+  var dayOfMonth=d.getDate();
+  var slots=dayOfMonth<10?3:(dayOfMonth<20?2:1);
+  var el=document.getElementById('scarcityText');
+  if(el){
+    var lang=localStorage.getItem('rdLang')||'en';
+    var msgs={
+      en:'⚡ '+slots+' slot'+(slots>1?'s':'')+' available this month',
+      fr:'⚡ '+slots+' créneau'+(slots>1?'x':'')+' disponible'+(slots>1?'s':'')+' ce mois',
+      ht:'⚡ '+slots+' plas disponib mwa sa a'
+    };
+    el.textContent=msgs[lang]||msgs.en;
+  }
+})();
+
+// ══════════════════════════════════════════════════════════
+// TESTIMONIALS SLIDER
+// ══════════════════════════════════════════════════════════
+var testIdx=0;
+var testPerPage=3;
+var testTotal=6;
+var testTrack=null;
+var testDots=null;
+var testAutoTimer=null;
+
+function initTestSlider(){
+  testTrack=document.getElementById('testTrack');
+  testDots=document.getElementById('testDots');
+  if(!testTrack||!testDots) return;
+  updateTestPerPage();
+  buildTestDots();
+  goTest(0);
+  startTestAuto();
+  window.addEventListener('resize',function(){updateTestPerPage();goTest(testIdx);});
+}
+
+function updateTestPerPage(){
+  var w=window.innerWidth;
+  testPerPage=w<600?1:(w<960?2:3);
+}
+
+function buildTestDots(){
+  if(!testDots) return;
+  testDots.innerHTML='';
+  var pages=Math.ceil(testTotal/testPerPage);
+  for(var i=0;i<pages;i++){
+    var d=document.createElement('button');
+    d.className='test-dot'+(i===0?' on':'');
+    d.setAttribute('data-page',i);
+    d.onclick=(function(pg){return function(){goTest(pg*testPerPage);stopTestAuto();startTestAuto();};})(i);
+    testDots.appendChild(d);
+  }
+}
+
+function goTest(idx){
+  if(!testTrack) return;
+  var pages=Math.ceil(testTotal/testPerPage);
+  var maxIdx=(pages-1)*testPerPage;
+  testIdx=Math.max(0,Math.min(idx,maxIdx));
+  var cards=testTrack.querySelectorAll('.test-card-new');
+  if(!cards.length) return;
+  var cardW=cards[0].offsetWidth+24;
+  testTrack.style.transform='translateX(-'+(testIdx*cardW)+'px)';
+  var currentPage=Math.floor(testIdx/testPerPage);
+  testDots.querySelectorAll('.test-dot').forEach(function(d,i){
+    d.classList.toggle('on',i===currentPage);
+  });
+}
+
+function testNav(dir){
+  goTest(testIdx+dir*testPerPage);
+  stopTestAuto();startTestAuto();
+}
+
+function startTestAuto(){
+  testAutoTimer=setInterval(function(){
+    var pages=Math.ceil(testTotal/testPerPage);
+    var next=testIdx+testPerPage;
+    if(next>=(pages)*testPerPage) next=0;
+    goTest(next);
+  },5000);
+}
+
+function stopTestAuto(){clearInterval(testAutoTimer);}
+
+// ══════════════════════════════════════════════════════════
+// BEFORE / AFTER SLIDERS
+// ══════════════════════════════════════════════════════════
+var baActive=null;
+
+function baSetPos(id,pct){
+  var after=document.getElementById('baAfter'+id.replace('baSlider',''));
+  var div=document.getElementById('baDivider'+id.replace('baSlider',''));
+  var handle=document.getElementById('baHandle'+id.replace('baSlider',''));
+  if(!after||!div||!handle) return;
+  pct=Math.max(5,Math.min(95,pct));
+  after.style.clipPath='inset(0 '+(100-pct)+'% 0 0)';
+  div.style.left=pct+'%';
+  handle.style.left=pct+'%';
+}
+
+function baGetPct(e,wrap){
+  var rect=wrap.getBoundingClientRect();
+  var x=(e.clientX||e.touches[0].clientX)-rect.left;
+  return (x/rect.width)*100;
+}
+
+function baStart(e,id){
+  e.preventDefault();
+  baActive=id;
+  var hint=document.getElementById('baHint'+id.replace('baSlider',''));
+  if(hint) hint.classList.add('hide');
+  var wrap=document.getElementById(id);
+  baSetPos(id,baGetPct(e,wrap));
+  document.onmousemove=function(ev){if(baActive){baSetPos(baActive,baGetPct(ev,document.getElementById(baActive)));ev.preventDefault();}};
+  document.onmouseup=function(){baActive=null;document.onmousemove=null;document.onmouseup=null;};
+}
+
+function baTStart(e,id){
+  var hint=document.getElementById('baHint'+id.replace('baSlider',''));
+  if(hint) hint.classList.add('hide');
+  var wrap=document.getElementById(id);
+  baSetPos(id,baGetPct(e,wrap));
+  document.ontouchmove=function(ev){if(baActive){baSetPos(baActive,baGetPct(ev,document.getElementById(baActive)));ev.preventDefault();}};
+  document.ontouchend=function(){baActive=null;document.ontouchmove=null;document.ontouchend=null;};
+  baActive=id;
+}
+
+// Init sliders at 50%
+function initBaSliders(){
+  ['1','2'].forEach(function(n){
+    baSetPos('baSlider'+n,50);
+  });
+}
+
+// ══════════════════════════════════════════════════════════
 // COOKIE
 // ══════════════════════════════════════════════════════════
 function ckAcc(){localStorage.setItem('rdCk','1');hideCookie();}
@@ -3469,6 +3958,12 @@ document.addEventListener('DOMContentLoaded',function(){
 
   // Init EmailJS
   initEmailJS();
+
+  // Init testimonials slider
+  initTestSlider();
+
+  // Init before/after sliders
+  initBaSliders();
 
   // Loader dismiss
   var bar=document.querySelector('.ld-bar');
