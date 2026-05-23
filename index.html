@@ -79,7 +79,8 @@ button{font-family:'Outfit',sans-serif;cursor:none}
 /* ═══════════════════════════════════════════
    CURSOR
 ═══════════════════════════════════════════ */
-#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:difference}
+#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:8999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:difference}
+#cur-r{position:fixed;width:32px;height:32px;border:1px solid rgba(201,168,76,.5);border-radius:50%;pointer-events:none;z-index:8998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
 #cur-r{position:fixed;width:32px;height:32px;border:1px solid rgba(201,168,76,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
 #cur-r.big{width:52px;height:52px;border-color:var(--gold)}
 @media(max-width:768px){#cur,#cur-r{display:none}body,button{cursor:auto}}
@@ -161,7 +162,12 @@ body.light .th-btn::after{transform:translateX(17px)}
 /* ═══════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════ */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 80px 80px;gap:80px;position:relative;overflow:hidden}
+.hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;padding:0 80px 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.45)}
+.hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(8,8,8,0.92) 0%,rgba(8,8,8,0.65) 45%,rgba(8,8,8,0.15) 100%)}
+.hero-bg-overlay2{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,0.9) 0%,transparent 60%)}
+.hero-content{position:relative;z-index:2;max-width:680px;padding-bottom:20px}
 .hero-glow{position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(201,168,76,.055) 0%,transparent 70%);top:50%;left:25%;transform:translate(-50%,-50%);pointer-events:none;animation:gPulse 6s ease-in-out infinite}
 @keyframes gPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.9;transform:translate(-50%,-50%) scale(1.12)}}
 .hero-l{position:relative;z-index:2}
@@ -717,7 +723,8 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
    RESPONSIVE
 ═══════════════════════════════════════════ */
 @media(max-width:960px){
-  .hero{grid-template-columns:1fr;padding:96px 24px 56px;gap:36px}
+  .hero{padding:0 24px 60px}
+  .hero-content{max-width:100%}
   .hero-r{order:-1}.h-ss{aspect-ratio:16/9}
   nav{padding:0 20px}
   .nav-links li:not(:first-child):not(:last-child) a{display:none}
@@ -762,7 +769,7 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
 /* ═══════════════════════════════════════════
    WHATSAPP INTELLIGENT — TOOLTIP POPUP
 ═══════════════════════════════════════════ */
-.wa-float-wrap{position:fixed;bottom:90px;right:24px;z-index:500;display:flex;align-items:flex-end;gap:12px;flex-direction:row-reverse}
+.wa-float-wrap{position:fixed;bottom:90px;right:8px;z-index:500;display:flex;align-items:flex-end;gap:12px;flex-direction:row-reverse}
 .wa-float{position:relative;bottom:auto;right:auto;flex-shrink:0}
 .wa-tooltip{background:rgba(10,10,10,.97);border:1px solid rgba(37,211,102,.25);border-left:3px solid var(--green);padding:14px 16px;max-width:220px;opacity:0;pointer-events:none;transform:translateX(10px);transition:all .35s var(--ease);border-radius:0}
 .wa-tooltip.show{opacity:1;pointer-events:all;transform:translateX(0)}
@@ -953,37 +960,45 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
 
 <!-- ═══════ HERO ═══════ -->
 <section class="hero" id="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-l">
-    <div class="hero-tag" data-i="portfolio">Portfolio 2026</div>
-    <h1 class="hero-name">Rooby<br><span class="g">Design</span></h1>
-    <p class="hero-sub"><b data-i="visual">Visual Identity</b> &nbsp;&middot;&nbsp; <span data-i="graphic">Graphic Design</span> &nbsp;&middot;&nbsp; <b data-i="photo">Photography</b></p>
-    <div class="hero-btns">
-      <div class="scarcity-badge" id="scarcityBadge"><span class="sc-dot"></span><span id="scarcityText">⚡ 3 créneaux disponibles ce mois</span></div>
+
+  <!-- Background slides — full screen -->
+  <div class="hero-bg">
+    <div class="h-slide on" id="hBg0"><img src="images/brand/Slide_01.png" alt="Rooby Design" onerror="this.style.display='none'"></div>
+    <div class="h-slide" id="hBg1"><img src="images/brand/Slide_02.jpg" alt="Logo Design" onerror="this.style.display='none'"></div>
+    <div class="h-slide" id="hBg2"><img src="images/brand/Slide_03.jpg" alt="Brand Colors" onerror="this.style.display='none'"></div>
+    <div class="h-slide" id="hBg3"><img src="images/brand/Slide_04.jpg" alt="Typography" onerror="this.style.display='none'"></div>
+    <div class="h-slide" id="hBg4"><img src="images/brand/Slide_05.jpg" alt="Mockups" onerror="this.style.display='none'"></div>
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-bg-overlay2"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <div class="hero-tag" data-i="portfolio" style="opacity:0;animation:fUp .8s .3s forwards">Portfolio 2026</div>
+    <h1 class="hero-name" style="opacity:0;animation:fUp .8s .5s forwards">Rooby<br><span class="g">Design</span></h1>
+    <p class="hero-sub" style="opacity:0;animation:fUp .8s .7s forwards"><b data-i="visual">Visual Identity</b> &nbsp;&middot;&nbsp; <span data-i="graphic">Graphic Design</span> &nbsp;&middot;&nbsp; <b data-i="photo">Photography</b></p>
+    <div class="hero-btns" style="opacity:0;animation:fUp .8s .9s forwards">
+      <div class="scarcity-badge" id="scarcityBadge"><span class="sc-dot"></span><span id="scarcityText">⚡ 1 slot available this month</span></div>
       <br>
       <button class="btn-g" onclick="openResModal()" data-i="bookNow">Book Now &#8594;</button>
       <a href="#pricing" class="btn-o" data-i="seePrices">See Prices</a>
     </div>
-    <div class="hero-stats">
+    <div class="hero-stats" style="opacity:0;animation:fUp .8s 1.1s forwards">
       <div class="hs"><div class="hs-n" data-target="8">0</div><div class="hs-l" data-i="years">Years</div></div>
       <div class="hs"><div class="hs-n" data-target="240">0</div><div class="hs-l" data-i="projects">Projects</div></div>
       <div class="hs"><div class="hs-n" data-target="100">0</div><div class="hs-l" data-i="satisfaction">% Satisfaction</div></div>
     </div>
   </div>
-  <div class="hero-r">
-    <div class="h-ss">
-      <div class="fr-tl"></div><div class="fr-br"></div>
-      <div class="s-cnt" id="sCnt">1 / 5</div>
-      <div class="h-slide on"><img src="images/brand/Slide_01.png" alt="Rooby Design Brand Identity" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>01</div><div class=h-slide-ph-l>Brand</div></div>'"><div class="s-info"><div class="s-cat">Visual Identity</div><div class="s-title">Rooby Design — Brand Overview</div></div></div>
-      <div class="h-slide"><img src="images/brand/Slide_02.jpg" alt="Logo Design" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>02</div><div class=h-slide-ph-l>Logo</div></div>'"><div class="s-info"><div class="s-cat">Logo Design</div><div class="s-title">Rooby Design — Logo Collection</div></div></div>
-      <div class="h-slide"><img src="images/brand/Slide_03.jpg" alt="Brand Colors" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>03</div><div class=h-slide-ph-l>Colors</div></div>'"><div class="s-info"><div class="s-cat">Color Palette</div><div class="s-title">Rooby Design — Brand Colors</div></div></div>
-      <div class="h-slide"><img src="images/brand/Slide_04.jpg" alt="Typography" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>04</div><div class=h-slide-ph-l>Typography</div></div>'"><div class="s-info"><div class="s-cat">Typography</div><div class="s-title">Rooby Design — Brand Typography</div></div></div>
-      <div class="h-slide"><img src="images/brand/Slide_05.jpg" alt="Brand Mockup" onerror="this.parentNode.innerHTML='<div class=h-slide-ph><div class=h-slide-ph-n>05</div><div class=h-slide-ph-l>Mockups</div></div>'"><div class="s-info"><div class="s-cat">Brand Mockup</div><div class="s-title">Rooby Design — Mockup Collection</div></div></div>
-      <div class="s-ui" id="sUI"></div>
-      <div class="s-nav"><button class="s-btn" onclick="hNav(-1)">&#8593;</button><button class="s-btn" onclick="hNav(1)">&#8595;</button></div>
-    </div>
-  </div>
+
+  <!-- Slide dots bottom right -->
+  <div style="position:absolute;bottom:36px;right:60px;z-index:3;display:flex;gap:8px" id="sUI"></div>
+
+  <!-- Slide counter -->
+  <div class="s-cnt" id="sCnt" style="position:absolute;top:90px;right:60px;z-index:3">1 / 5</div>
+
+  <!-- Scroll indicator -->
   <div class="sc-ind"><div class="sc-line"></div><span class="sc-t" data-i="scroll">Scroll to explore</span></div>
+
 </section>
 
 <!-- MARQUEE -->
@@ -3713,15 +3728,15 @@ function submitBooking(){
 }
 function sendMsg(){
   var d=T[currentLang]||T['en'];
-  var nm=document.getElementById('c-name');
-  var em=document.getElementById('c-email');
-  var sv=document.getElementById('c-service');
-  var ms=document.getElementById('c-msg');
+  var nm=document.getElementById('f-fname');
+  var em=document.getElementById('f-email');
+  var sv=document.getElementById('f-service');
+  var ms=document.getElementById('f-msg');
   var st=document.getElementById('c-status');
   if(!nm||!nm.value.trim()){showToast(d.errName,'error');return;}
   if(!em||!/\S+@\S+\.\S+/.test(em.value)){showToast(d.errEmail,'error');return;}
   if(!ms||!ms.value.trim()){showToast(d.errMsg,'error');return;}
-  var btn=document.getElementById('c-btn');
+  var btn=document.getElementById('f-btn');
   if(btn){btn.disabled=true;btn.textContent='...';}
   if(typeof emailjs!=='undefined'){
     emailjs.send('service_pa9g0rz','template_xhnbkt6',{
