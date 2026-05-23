@@ -49,7 +49,6 @@
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 /* ═══════════════════════════════════════════
    ROOT & RESET
@@ -3675,10 +3674,6 @@ function resGo(step){
 // ══════════════════════════════════════════════════════════
 // CONTACT FORM
 // ══════════════════════════════════════════════════════════
-function initEmailJS(){
-  if(typeof emailjs!=='undefined') emailjs.init('9Dv2BzO1jNn-v7MWz');
-}
-
 // ══════════════════════════════════════════════════════════
 // WEDDING BOOKING FORM SUBMIT
 // ══════════════════════════════════════════════════════════
@@ -3712,15 +3707,6 @@ function submitBooking(){
     +'Total estimé : '+(total?total.textContent:'—')+'\n'
     +'Acompte (30%) : '+(deposit?deposit.textContent:'—')+'\n'
     +'Notes : '+(notes?notes.value:'—');
-  // Also send via EmailJS
-  if(typeof emailjs!=='undefined'){
-    emailjs.send('service_pa9g0rz','template_xhnbkt6',{
-      from_name:(bride?bride.value:'')+' & '+(groom?groom.value:''),
-      from_email:email?email.value:'',
-      service:'Wedding Booking — '+(pkg?pkg.textContent:''),
-      message:msg
-    });
-  }
   // Open WhatsApp with pre-filled message
   window.open('https://wa.me/50937704274?text='+encodeURIComponent(msg),'_blank');
   if(ok){ok.style.display='block';}
@@ -3732,31 +3718,17 @@ function sendMsg(){
   var em=document.getElementById('f-email');
   var sv=document.getElementById('f-service');
   var ms=document.getElementById('f-msg');
-  var st=document.getElementById('c-status');
   if(!nm||!nm.value.trim()){showToast(d.errName,'error');return;}
-  if(!em||!/\S+@\S+\.\S+/.test(em.value)){showToast(d.errEmail,'error');return;}
+  if(!em||!em.value.trim()){showToast(d.errEmail,'error');return;}
   if(!ms||!ms.value.trim()){showToast(d.errMsg,'error');return;}
-  var btn=document.getElementById('f-btn');
-  if(btn){btn.disabled=true;btn.textContent='...';}
-  if(typeof emailjs!=='undefined'){
-    emailjs.send('service_pa9g0rz','template_xhnbkt6',{
-      from_name:nm.value,from_email:em.value,
-      service:sv?sv.value:'',message:ms.value
-    }).then(function(){
-      showToast(d.sent,'success');
-      nm.value='';em.value='';if(sv)sv.value='';ms.value='';
-    }).catch(function(){
-      showToast(d.failed,'error');
-    }).finally(function(){
-      if(btn){btn.disabled=false;btn.textContent=d.send||'Send';}
-    });
-  } else {
-    setTimeout(function(){
-      showToast(d.sent,'success');
-      nm.value='';em.value='';if(sv)sv.value='';ms.value='';
-      if(btn){btn.disabled=false;btn.textContent=d.send||'Send';}
-    },800);
-  }
+  var msg='✦ ROOBY DESIGN — Nouveau Message\n\n'
+    +'Nom : '+nm.value+'\n'
+    +'Email : '+em.value+'\n'
+    +'Service : '+(sv&&sv.value?sv.value:'—')+'\n'
+    +'Message : '+ms.value;
+  window.open('https://wa.me/50937704274?text='+encodeURIComponent(msg),'_blank');
+  showToast(d.sent||'✓ Message envoyé !','success');
+  nm.value='';em.value='';if(sv)sv.value='';ms.value='';
 }
 
 // ══════════════════════════════════════════════════════════
@@ -4018,9 +3990,6 @@ document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
   var lbtn=document.getElementById('lb-'+currentLang);
   if(lbtn) lbtn.classList.add('on');
-
-  // Init EmailJS
-  initEmailJS();
 
   // Init testimonials slider
   initTestSlider();
