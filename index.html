@@ -2011,10 +2011,10 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
       <div class="ba-slider-wrap" id="baSlider1" onmousedown="baStart(event,'baSlider1')" ontouchstart="baTStart(event,'baSlider1')">
         <div class="ba-drag-hint" id="baHint1">← Glisser →</div>
         <div class="ba-before" id="baBefore1">
-          <img src="images/brand/Slide_01.png" alt="Avant" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d4);display:flex;align-items:center;justify-content:center;color:var(--l4);font-size:12px;letter-spacing:.2em>AVANT</div>'">
+          <img src="images/ba/brand-before.svg" alt="Avant Branding" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d4);display:flex;align-items:center;justify-content:center;color:var(--l4);font-size:12px;letter-spacing:.2em>AVANT</div>'">
         </div>
         <div class="ba-after" id="baAfter1">
-          <img src="images/brand/Slide_02.jpg" alt="Après" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;letter-spacing:.2em>APRÈS</div>'">
+          <img src="images/ba/brand-after.svg" alt="Après Branding" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;letter-spacing:.2em>APRÈS</div>'">
         </div>
         <div class="ba-divider-line" id="baDivider1"></div>
         <div class="ba-handle" id="baHandle1"></div>
@@ -2034,10 +2034,10 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
       <div class="ba-slider-wrap" id="baSlider2" onmousedown="baStart(event,'baSlider2')" ontouchstart="baTStart(event,'baSlider2')">
         <div class="ba-drag-hint" id="baHint2">← Glisser →</div>
         <div class="ba-before" id="baBefore2">
-          <img src="images/brand/Slide_03.jpg" alt="Avant" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d4);display:flex;align-items:center;justify-content:center;color:var(--l4);font-size:12px;letter-spacing:.2em>AVANT</div>'">
+          <img src="images/ba/photo-before.svg" alt="Avant Retouche" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d4);display:flex;align-items:center;justify-content:center;color:var(--l4);font-size:12px;letter-spacing:.2em>AVANT</div>'">
         </div>
         <div class="ba-after" id="baAfter2">
-          <img src="images/brand/Slide_04.jpg" alt="Après" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;letter-spacing:.2em>APRÈS</div>'">
+          <img src="images/ba/photo-after.svg" alt="Après Retouche" onerror="this.parentNode.innerHTML='<div style=width:100%;height:100%;background:var(--d3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:12px;letter-spacing:.2em>APRÈS</div>'">
         </div>
         <div class="ba-divider-line" id="baDivider2"></div>
         <div class="ba-handle" id="baHandle2"></div>
@@ -3661,7 +3661,7 @@ function resGo(step){
 // CONTACT FORM
 // ══════════════════════════════════════════════════════════
 function initEmailJS(){
-  if(typeof emailjs!=='undefined') emailjs.init('YOUR_PUBLIC_KEY');
+  if(typeof emailjs!=='undefined') emailjs.init('9Dv2BzO1jNn-v7MWz');
 }
 function sendMsg(){
   var d=T[currentLang]||T['en'];
@@ -3676,7 +3676,7 @@ function sendMsg(){
   var btn=document.getElementById('c-btn');
   if(btn){btn.disabled=true;btn.textContent='...';}
   if(typeof emailjs!=='undefined'){
-    emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',{
+    emailjs.send('service_pa9g0rz','template_xhnbkt6',{
       from_name:nm.value,from_email:em.value,
       service:sv?sv.value:'',message:ms.value
     }).then(function(){
