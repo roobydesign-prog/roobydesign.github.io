@@ -161,7 +161,7 @@ body.light .th-btn::after{transform:translateX(17px)}
 /* ═══════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════ */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:90px 60px 60px;gap:60px;position:relative;overflow:hidden}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 80px 80px;gap:80px;position:relative;overflow:hidden}
 .hero-glow{position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(201,168,76,.055) 0%,transparent 70%);top:50%;left:25%;transform:translate(-50%,-50%);pointer-events:none;animation:gPulse 6s ease-in-out infinite}
 @keyframes gPulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.9;transform:translate(-50%,-50%) scale(1.12)}}
 .hero-l{position:relative;z-index:2}
@@ -183,8 +183,8 @@ body.light .th-btn::after{transform:translateX(17px)}
 .hs:nth-child(2){padding-left:16px}
 .hs-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1;margin-bottom:3px}
 .hs-l{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--l3)}
-.hero-r{position:relative;z-index:2;opacity:0;animation:fIn 1s 1s forwards}
-.h-ss{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--d3)}
+.hero-r{position:relative;z-index:2;opacity:0;animation:fIn 1s 1s forwards;padding:20px 0 20px 20px}
+.h-ss{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--d3);border-radius:2px;box-shadow:0 40px 80px rgba(0,0,0,.6)}
 .h-ss::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.055) 0%,transparent 60%);z-index:1;pointer-events:none}
 
 /* ═══════ HERO SLIDER — LUXURY SLOW ═══════ */
@@ -762,7 +762,7 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
 /* ═══════════════════════════════════════════
    WHATSAPP INTELLIGENT — TOOLTIP POPUP
 ═══════════════════════════════════════════ */
-.wa-float-wrap{position:fixed;bottom:90px;right:24px;z-index:600;display:flex;align-items:flex-end;gap:12px;flex-direction:row-reverse}
+.wa-float-wrap{position:fixed;bottom:28px;right:28px;z-index:9000;display:flex;align-items:flex-end;gap:12px;flex-direction:row-reverse}
 .wa-float{position:relative;bottom:auto;right:auto;flex-shrink:0}
 .wa-tooltip{background:rgba(10,10,10,.97);border:1px solid rgba(37,211,102,.25);border-left:3px solid var(--green);padding:14px 16px;max-width:220px;opacity:0;pointer-events:none;transform:translateX(10px);transition:all .35s var(--ease);border-radius:0}
 .wa-tooltip.show{opacity:1;pointer-events:all;transform:translateX(0)}
@@ -2302,7 +2302,7 @@ footer{padding:64px 60px 40px;background:var(--d2);border-top:1px solid rgba(201
         <div class="f-wrap"><span class="f-ico-top">💬</span><textarea class="f-ta" id="f-msg" placeholder="Tell us about your project, your budget and deadline..."></textarea></div>
         <div class="f-err" id="e-msg" data-i="errMsg">Please write your message</div>
       </div>
-      <button class="f-submit" id="f-btn" onclick="submitForm()"><span id="f-btn-t" data-i="send">Send Message</span> <span id="f-btn-i">&#8594;</span></button>
+      <button class="f-submit" id="f-btn" onclick="sendMsg()"><span id="f-btn-t" data-i="send">Send Message</span> <span id="f-btn-i">&#8594;</span></button>
       <div class="f-ok" id="f-ok" data-i="sent">✓ Message sent! We'll get back to you within 24 hours.</div>
       <div class="f-fail" id="f-fail" data-i="failed">✗ Failed to send. Please email us directly at infos@roobydesign.com</div>
     </div>
@@ -3662,6 +3662,54 @@ function resGo(step){
 // ══════════════════════════════════════════════════════════
 function initEmailJS(){
   if(typeof emailjs!=='undefined') emailjs.init('9Dv2BzO1jNn-v7MWz');
+}
+
+// ══════════════════════════════════════════════════════════
+// WEDDING BOOKING FORM SUBMIT
+// ══════════════════════════════════════════════════════════
+function submitBooking(){
+  var bride=document.getElementById('b-bride');
+  var groom=document.getElementById('b-groom');
+  var date=document.getElementById('b-date');
+  var phone=document.getElementById('b-phone');
+  var ok=document.getElementById('b-ok');
+  if(!bride||!bride.value.trim()){showToast('Veuillez entrer le nom de la mariée','error');return;}
+  if(!groom||!groom.value.trim()){showToast('Veuillez entrer le nom du marié','error');return;}
+  if(!date||!date.value){showToast('Veuillez choisir une date','error');return;}
+  if(!phone||!phone.value.trim()){showToast('Veuillez entrer votre numéro WhatsApp','error');return;}
+  var venue=document.getElementById('b-venue');
+  var email=document.getElementById('b-email');
+  var notes=document.getElementById('b-notes');
+  var pkg=document.getElementById('bsum-pkg');
+  var total=document.getElementById('bsum-total');
+  var deposit=document.getElementById('bsum-deposit');
+  var extras=document.getElementById('bsum-extras');
+  // Build WhatsApp message
+  var msg='✦ ROOBY DESIGN — Réservation Mariage\n\n'
+    +'Mariée : '+(bride?bride.value:'')+'\n'
+    +'Marié : '+(groom?groom.value:'')+'\n'
+    +'Date : '+(date?date.value:'')+'\n'
+    +'Lieu : '+(venue?venue.value:'—')+'\n'
+    +'Tél/WhatsApp : '+(phone?phone.value:'')+'\n'
+    +'Email : '+(email?email.value:'—')+'\n'
+    +'Package : '+(pkg?pkg.textContent:'—')+'\n'
+    +'Extras : '+(extras?extras.textContent:'Aucun')+'\n'
+    +'Total estimé : '+(total?total.textContent:'—')+'\n'
+    +'Acompte (30%) : '+(deposit?deposit.textContent:'—')+'\n'
+    +'Notes : '+(notes?notes.value:'—');
+  // Also send via EmailJS
+  if(typeof emailjs!=='undefined'){
+    emailjs.send('service_pa9g0rz','template_xhnbkt6',{
+      from_name:(bride?bride.value:'')+' & '+(groom?groom.value:''),
+      from_email:email?email.value:'',
+      service:'Wedding Booking — '+(pkg?pkg.textContent:''),
+      message:msg
+    });
+  }
+  // Open WhatsApp with pre-filled message
+  window.open('https://wa.me/50937704274?text='+encodeURIComponent(msg),'_blank');
+  if(ok){ok.style.display='block';}
+  showToast('✓ Réservation envoyée ! Vérifiez WhatsApp.','success');
 }
 function sendMsg(){
   var d=T[currentLang]||T['en'];
